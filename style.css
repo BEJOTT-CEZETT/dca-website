@@ -31,7 +31,7 @@ a {
     text-decoration: none;
 }
 
-a:hover { opacity: 0.6; }
+a:hover { opacity: 1; }
 
 img {
     display: block;
@@ -181,6 +181,12 @@ main {
     display: block;
     outline: 1px solid rgba(0,0,0,0.1);
     outline-offset: -1px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.projects-grid .thumb:hover img {
+    filter: grayscale(0%);
 }
 
 /* Placeholder wenn kein Bild vorhanden */
