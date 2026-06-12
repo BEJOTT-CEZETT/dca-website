@@ -1,0 +1,11 @@
+titel=ODZD
+untertitel=
+auftraggeber=
+ort=
+bgf=
+lph=
+status=
+team=
+fotos=
+auszeichnung=
+beschreibung=

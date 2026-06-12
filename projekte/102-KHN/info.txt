@@ -1,0 +1,11 @@
+titel=Landhaus KHN
+untertitel=Neubau eines Landhauses in Bergisch Gladbach
+auftraggeber=Privat
+ort=Bergisch Gladbach
+bgf=
+lph=
+status=fertiggestellt
+team=Lisa Donnerhack und Bartosz Czempiel
+fotos=
+auszeichnung=
+beschreibung=

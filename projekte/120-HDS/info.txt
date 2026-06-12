@@ -1,0 +1,11 @@
+titel=Haus HDS
+untertitel=Köln
+auftraggeber=Privat
+ort=Köln
+bgf=
+lph=
+status=fertiggestellt
+team=Lisa Donnerhack und Bartosz Czempiel
+fotos=
+auszeichnung=
+beschreibung=

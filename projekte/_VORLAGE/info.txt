@@ -1,0 +1,11 @@
+titel=PROJEKTNAME
+untertitel=Kurzbeschreibung z.B. Neubau eines Einfamilienhauses in Köln
+auftraggeber=Privat
+ort=Köln
+bgf=000 m²
+lph=1-8 HOAI
+status=fertiggestellt
+team=Lisa Donnerhack und Bartosz Czempiel
+fotos=© Fotograf Name
+auszeichnung=
+beschreibung=Projektbeschreibung hier eingeben.
