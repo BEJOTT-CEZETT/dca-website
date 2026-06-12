@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | DCA Architekten</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-page { max-width: 70rem; margin: 0 auto; padding: 4rem 3rem 8rem; }
+        .legal-page h1 { font-size: 3rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3rem; text-align: center; }
+        .legal-page h2 { font-size: 1.9rem; font-weight: 700; margin: 3rem 0 1rem; text-align: center; }
+        .legal-page p { font-size: 1.8rem; line-height: 1.8; color: #000; margin-bottom: 1rem; text-align: center; }
+        .back-link { display: inline-block; font-size: 1.6rem; color: rgba(0,0,0,0.45); margin-bottom: 3rem; }
+        @media (max-width: 600px) { .legal-page { padding: 3rem 1.5rem 8rem; } }
+    </style>
+</head>
+<body>
+    <header id="site-header">
+        <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
+        <div class="subtitle">Bau– und Raumgestaltung</div>
+    </header>
+    <main style="padding-top: 9rem;">
+        <div class="legal-page">
+            
+            <h1>Impressum</h1>
+
+            <p><strong>Donnerhack Czempiel Architekten Partnerschaft mbB</strong><br>
+            Am Greinshof 6 | 50999 Köln</p>
+
+            <h2>Inhaber</h2>
+            <p>Lisa Donnerhack, Dipl.-Ing. Architektin<br>
+            Bartosz Czempiel, Prof. Dr.-Ing. Architekt</p>
+
+            <h2>Geschäftsleitung</h2>
+            <p>Lisa Donnerhack, Dipl.-Ing. Architektin</p>
+
+            <h2>Rechtsform</h2>
+            <p>Partnerschaftsgesellschaft mit beschränkter Berufshaftung.<br>
+            Eingetragen beim Amtsgericht Essen im Partnerschaftsregister | Registernummer: PR 5163</p>
+
+            <h2>Berufsverband</h2>
+            <p>Lisa Donnerhack und Bartosz Czempiel sind seit 2008 in die Architektenliste der Länderkammer NRW eingetragen.<br>
+            AKNW Mitgliedsnummer Lisa Donnerhack: 39727<br>
+            AKNW Mitgliedsnummer Bartosz Czempiel: 39725</p>
+
+            <h2>USt-Id Nr.</h2>
+            <p>DE 355103027</p>
+
+            <h2>Haftung für Inhalte</h2>
+            <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+
+            <h2>Haftung für Links</h2>
+            <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+            <h2>Urheberrecht</h2>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors.</p>
+
+            <p>© 2026 Donnerhack Czempiel Architekten Partnerschaft mbB</p>
+        </div>
+    </main>
+    <nav id="bottom-nav">
+        <a href="projekte.html">Projekte</a><span class="sep">|</span>
+        <a href="buero.html">Büro</a><span class="sep">|</span>
+        <a href="werkliste.html">Werkliste</a><span class="sep">|</span>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+    <script>
+    const header = document.getElementById('site-header');
+    function updateHeader() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
+    </script>
+    <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    </script>
+</body>
+</html>

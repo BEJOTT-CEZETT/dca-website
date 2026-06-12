@@ -1,0 +1,105 @@
+DCA WEBSITE — ANLEITUNG
+========================
+
+ORDNERSTRUKTUR:
+---------------
+_dca-website-claude/
+├── index.html              → Startseite (Hero + Projekt-Grid)
+├── projekte.html           → Projektübersicht
+├── buero.html              → Büro & Partner
+├── werkliste.html          → Vollständige Werkliste
+├── kontakt.html            → Kontakt & Karte
+├── impressum.html          → Impressum
+├── datenschutz.html        → Datenschutz
+├── style.css               → Globales Stylesheet
+├── projekte.js             → Projektkonfiguration (hier alles eintragen)
+├── hero_aktualisieren.py   → Hero-Bilder automatisch einlesen
+├── hero/                   → Hero-Slideshow Bilder (beliebige Namen)
+├── buero/                  → Bürofoto
+└── projekte/
+    ├── _NEUES_PROJEKT/     → Arbeitsordner für neue Projekte
+    │   ├── dca_neues_projekt.exe  → EXE zum Verarbeiten neuer Projekte
+    │   ├── [NUMMER-KÜRZEL].txt   → Projektinfos (z.B. 119-ABC.txt)
+    │   └── bilder_input/         → Rohbilder hier ablegen
+    ├── _VORLAGE/           → Vorlage für neue Projektseiten
+    │   └── index.html
+    ├── 101-EAK/
+    │   ├── index.html
+    │   ├── info.txt
+    │   └── bilder/         → DCA (1).jpg, DCA (2).jpg ... + DCA-Titelbild.jpg
+    ├── 102-KHN/
+    ├── 104-CUB/
+    ├── 116-HGK/
+    ├── 117-ODZD/
+    ├── 118-GZN/
+    └── 120-HDS/
+
+
+PROJEKTBEZEICHNUNG:
+--------------------
+Ordnername = Nummer + Bindestrich + Kürzel
+Beispiele:  101-EAK  |  102-KHN  |  120-HDS
+Die Nummer bestimmt die interne Sortierung im Explorer.
+Die Reihenfolge auf der Website wird in projekte.js festgelegt.
+
+
+NEUES PROJEKT HINZUFÜGEN:
+--------------------------
+1. Textdatei anlegen:  [NUMMER-KÜRZEL].txt  (z.B. 121-XYZ.txt)
+   Format (Beispiel):
+
+   Projekttitel
+   Kurzbeschreibung
+
+   Projektdaten:
+   Auftraggeber: ...
+   Ort: ...
+   BGF: ...
+   Leistungsphase: ...
+   Status: ...
+   Team: ...
+   Fotos: ...
+   Auszeichnung: ...
+
+   Projektbeschreibung:
+   Langer Fließtext...
+
+2. Textdatei in _NEUES_PROJEKT/ ablegen
+3. Rohbilder in _NEUES_PROJEKT/bilder_input/ ablegen
+4. dca_neues_projekt.exe starten
+
+   → Bilder werden umbenannt (DCA (1).jpg, DCA (2).jpg ...)
+   → DCA-Titelbild.jpg wird erstellt (erstes Bild)
+   → Projektordner wird in projekte/ angelegt
+   → Eintrag wird an erster Stelle in projekte.js eingefügt
+   → Rohbilder und Textdatei werden aus _NEUES_PROJEKT/ gelöscht
+
+
+REIHENFOLGE AUF DER WEBSITE ÄNDERN:
+-------------------------------------
+In projekte.js die Reihenfolge der Projektblöcke verschieben.
+Oben = links oben auf der Startseite.
+
+
+HERO-BILDER AKTUALISIEREN:
+---------------------------
+1. Neue Bilder (beliebige Namen) in den Ordner hero/ legen
+2. hero_aktualisieren.py starten (oder .exe falls kompiliert)
+   → projekte.js wird automatisch aktualisiert
+
+
+BILDER BENENNEN:
+-----------------
+Projektbilder:  DCA (1).jpg, DCA (2).jpg, DCA (3).jpg ...
+Titelbild:      DCA-Titelbild.jpg  (wird automatisch aus Bild 1 erstellt)
+Hero-Bilder:    beliebige Namen, werden automatisch eingelesen
+
+
+AUF STRATO HOCHLADEN:
+----------------------
+Alle Dateien per FTP in das Hauptverzeichnis hochladen.
+Empfohlenes FTP-Programm: FileZilla (kostenlos)
+Nicht hochladen: _NEUES_PROJEKT/, build/, dist/, *.py, *.spec
+
+
+© 2026 Donnerhack Czempiel Architekten

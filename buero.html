@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Büro | DCA Architekten</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .buero-page {
+            padding: 0 0 8rem 0;
+            text-align: center;
+        }
+        .buero-text {
+            max-width: 70rem;
+            margin: 0 auto;
+            padding: 3rem 3rem 0;
+        }
+        .partner-bereich {
+            max-width: 70rem;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        .buero-foto {
+            width: 70%;
+            margin: 3rem auto 4rem;
+            display: block;
+            cursor: pointer;
+        }
+        .buero-foto img {
+            width: 100%;
+            max-height: 65vh;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.aktiv {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            display: block;
+        }
+        .buero-foto img {
+            width: 100%;
+            height: auto;
+            outline: 1px solid rgba(0,0,0,0.08);
+            outline-offset: -1px;
+        }
+        .buero-text p {
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        .buero-text .zitat {
+            font-style: italic;
+            font-size: 1.6rem;
+            margin: 3rem 0;
+        }
+        .partner-bereich {
+            margin-top: 6rem;
+            text-align: center;
+        }
+        .partner-bereich h2 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 4rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 2rem;
+        }
+        .partner {
+            margin-bottom: 5rem;
+        }
+        .partner h3 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+            text-align: center;
+        }
+        .partner .titel {
+            font-size: 1.7rem;
+            color: #000;
+            margin-bottom: 0.2rem;
+        }
+        .partner .geb {
+            font-size: 1.6rem;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        .partner-block {
+            margin-top: 1.8rem;
+        }
+        .partner-block h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            color: #000;
+        }
+        .partner-block p {
+            font-size: 1.7rem;
+            line-height: 1.7;
+            color: #000;
+            margin: 0;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .buero-page { padding: 3rem 1.5rem 8rem; }
+            .buero-text p { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
+        <div class="subtitle">Bau– und Raumgestaltung</div>
+    </header>
+
+    <main style="padding-top: 9rem;">
+        <div class="buero-page">
+
+            <!-- Lightbox -->
+            <div class="lightbox" id="lightbox" onclick="this.classList.remove('aktiv')">
+                <img src="buero/DCA_Partner_4-3_web.jpg" alt="Lisa Donnerhack und Bartosz Czempiel">
+            </div>
+
+            <!-- Foto -->
+            <div class="buero-foto" onclick="document.getElementById('lightbox').classList.add('aktiv')">
+                <img src="buero/DCA_Partner_4-3_web.jpg" alt="Lisa Donnerhack und Bartosz Czempiel"
+                     onerror="this.parentElement.style.display='none'">
+            </div>
+
+            <!-- Bürotext -->
+            <div class="buero-text">
+                <p>Ihr Bauvorhaben ist unsere Leidenschaft!</p>
+                <p>Als versierte Architekten mit über 20 Jahren Berufserfahrung im In- und Ausland wissen wir, wie wichtig ein gutes Gefühl für eine erfolgreiche Zusammenarbeit ist. Deshalb steht bei uns der persönliche, intensiv geführte Dialog mit unseren Auftraggebern an erster Stelle. Wir beweisen unser Feingespür für Ihre Wünsche und Vorstellungen und entwickeln maßgeschneiderte Lösungen und ganzheitliche Konzeptionen für Ihren besonderen Bedarf.</p>
+                <p>Unserem Anspruch an Gestaltung und Qualität folgend, entwickeln wir mit Hingabe ansprechende, zeitgemäße Architektur, die ihrem Kontext gerecht wird. Starke Lösungen – von der Idee bis zur Umsetzung – sind unsere Ambition.</p>
+                <p>Wir realisieren Ihren Wohnungs- oder Verwaltungsbau sowie Projekte für die kirchliche Kundschaft. Neu-, Um- und Anbauten, Baulückenschlüsse, Aufstockungen, Dachgeschoßausbauten sowie Fassadensanierungen, aber auch Küchen-, Bad- und Möbelplanungen gehören zu den Leistungen, für die Sie uns buchen können – als einzelne Teilleistungen genauso wie für sämtliche Leistungsphasen der Architekturplanung im Paket. Darüber hinaus erstellen wir auf Wunsch Machbarkeitsstudien, um so die finanziellen und baurechtlichen Rahmenbedingungen für die Realisierung Ihres Bauvorhabens zu ermitteln.</p>
+                <p class="zitat">„Ein Haus ist gelungen, wenn es den Alltag leise schöner macht."</p>
+                <p>Sprechen Sie uns an, wir beraten Sie gerne und unverbindlich.<br>
+                Ihre Architekten<br>
+                Lisa Donnerhack und Bartosz Czempiel</p>
+            </div>
+
+            <!-- Partner -->
+            <div class="partner-bereich">
+                <h2>Partner</h2>
+
+                <div class="partner">
+                    <h3>Lisa Donnerhack</h3>
+                    <div class="titel">Dipl.-Ing. Architektin</div>
+                    <div class="geb">geb. 1979 in Berkeley, USA</div>
+
+                    <div class="partner-block">
+                        <h4>Beruf</h4>
+                        <p>seit 2022: Partnerin im Büro Donnerhack Czempiel Architekten | Köln<br>
+                        seit 2006: Architektin bei Corneille Uedingslohmann Architekten | Köln<br>
+                        2006: Architektin bei Peter Böhm Architekten | Köln<br>
+                        2005–2006: Architektin bei Massimiliano Fuksas Architecture | Paris<br>
+                        2004–2005: Architektin bei EYRC Architects | Los Angeles</p>
+                    </div>
+
+                    <div class="partner-block">
+                        <h4>Studium</h4>
+                        <p>2005–2006: Leonardo Stipendium der TU Braunschweig | Architektin Paris<br>
+                        1999–2005: Studium der Architektur | RWTH Aachen<br>
+                        2002–2003: Auslandsstudium in Portugal | Universidade de Coimbra<br>
+                        2002–2003: Erasmus Stipendium der RWTH Aachen</p>
+                    </div>
+
+                    <div class="partner-block">
+                        <h4>Schwerpunkte</h4>
+                        <p>Innenraumplanung, kommerzielle Architektur, Einrichtungsberatung</p>
+                    </div>
+                </div>
+
+                <div class="partner">
+                    <h3>Bartosz Józef Czempiel</h3>
+                    <div class="titel">Prof. Dr.-Ing. Architekt</div>
+                    <div class="geb">geb. 1979 in Siemianowice Śląskie, Polen</div>
+
+                    <div class="partner-block">
+                        <h4>Beruf</h4>
+                        <p>seit 2022: Partner im Büro Donnerhack Czempiel Architekten | Köln<br>
+                        2009–2022: Gründer und Inhaber von archequipe | Köln<br>
+                        2013–2017: Mitglied im Gestaltungsbeirat der Stadt Siegen<br>
+                        2006–2010: Entwurfsleitender Architekt bei JSWD Architekten | Köln<br>
+                        2002–2006: Mitarbeit in Aachener Architekturbüros</p>
+                    </div>
+
+                    <div class="partner-block">
+                        <h4>Lehre und Forschung</h4>
+                        <p>seit 2021: Professor am Fachgebiet „Entwerfen und Visualisieren" | THM Gießen<br>
+                        2019–2021: Gastprofessor am Fachgebiet „Visualisierung und Entwurf" | THM Gießen<br>
+                        2014–2021: Doktorarbeit „Universitäre Zwischenräume" | Universität Siegen<br>
+                        2010–2019: wissenschaftlicher Mitarbeiter | Universität Siegen</p>
+                    </div>
+
+                    <div class="partner-block">
+                        <h4>Studium</h4>
+                        <p>2006: Masterclass Steel | Berlage Institut Rotterdam<br>
+                        2006: Diplom „Rhein-Oper Köln" bei Prof. Gottfried Böhm | RWTH Aachen<br>
+                        2000–2006: Studium der Architektur | RWTH Aachen<br>
+                        2003–2004: Auslandsstudium in Polen | Politechnika Krakowska</p>
+                    </div>
+
+                    <div class="partner-block">
+                        <h4>Schwerpunkte</h4>
+                        <p>Hochbau, Eigenheimplanung, Machbarkeitsstudien, Bauen im Bestand, Nachhaltiges Bauen</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <nav id="bottom-nav">
+        <a href="projekte.html">Projekte</a>
+        <span class="sep">|</span>
+        <a href="buero.html">Büro</a>
+        <span class="sep">|</span>
+        <a href="werkliste.html">Werkliste</a>
+        <span class="sep">|</span>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <script>
+    const header = document.getElementById('site-header');
+    function updateHeader() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+    window.addEventListener('scroll', updateHeader);
+    updateHeader();
+    </script>
+    <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    </script>
+</body>
+</html>

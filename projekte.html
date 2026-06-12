@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekte | DCA Architekten</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .projects-wrap {
+            padding: 12rem 0 7rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
+        <div class="subtitle">Bau– und Raumgestaltung</div>
+    </header>
+
+    <main style="padding-top: 0;">
+        <div class="projects-wrap">
+            <div class="projects-grid" id="grid"></div>
+        </div>
+    </main>
+
+    <nav id="bottom-nav">
+        <a href="projekte.html">Projekte</a>
+        <span class="sep">|</span>
+        <a href="buero.html">Büro</a>
+        <span class="sep">|</span>
+        <a href="werkliste.html">Werkliste</a>
+        <span class="sep">|</span>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <script src="projekte.js"></script>
+    <script>
+    const grid = document.getElementById('grid');
+    PROJEKTE.forEach(p => {
+        const titelbildSrc = `projekte/${p.ordner}/bilder/DCA-Titelbild.jpg`;
+        const thumb = document.createElement('a');
+        thumb.href = `projekte/${p.ordner}/index.html`;
+        thumb.className = 'thumb';
+        thumb.innerHTML = `
+            <img src="${titelbildSrc}" alt="${p.titel}"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="thumb-placeholder" style="display:none; aspect-ratio:4/3;"></div>
+            <div class="title">${p.titel}</div>
+        `;
+        grid.appendChild(thumb);
+    });
+
+    // Scroll-Header für andere Seiten die hierher zurücknavigieren
+    const header = document.getElementById('site-header');
+    </script>
+
+    <script>
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    </script>
+</body>
+</html>
