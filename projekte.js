@@ -48,7 +48,7 @@ const PROJEKTE = [
         titel: "Gemeindehaus EAK | Oberhausen",
         untertitel: "Neubau eines Gemeindehauses in Oberhausen",
         auftraggeber: "Evangelische Auferstehungskirchengemeinde Osterfeld",
-        ort: "Oberhausen-Osterfeld",
+        ort: "O18:08 12.06.2026berhausen-Osterfeld",
         bgf: "650 m²",
         lph: "1-9 HOAI",
         status: "2020 fertiggestellt",
@@ -119,7 +119,7 @@ const PROJEKTE = [
         fotos: "",
         auszeichnung: "",
         beschreibung: "",
-        bilder: 4
+        bilder: 3
     },
     {
         ordner: "118-GZN",
