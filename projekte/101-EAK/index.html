@@ -384,19 +384,18 @@
     });
 
     // Mobile: Infoblock nach erstem Bild einschieben
-    if (window.innerWidth <= 900) {
+    function mobileReihenfolge() {
+        if (window.innerWidth > 900) return;
         const info = document.querySelector('.projekt-info');
         const bilderSpalteEl = document.getElementById('bilderSpalte');
-        // Warte bis erstes Bild geladen
-        const beobachter = new MutationObserver(function() {
-            const erstesBild = bilderSpalteEl.querySelector('.bild-wrap');
-            if (erstesBild && erstesBild.nextSibling) {
-                bilderSpalteEl.insertBefore(info, erstesBild.nextSibling);
-                beobachter.disconnect();
-            }
-        });
-        beobachter.observe(bilderSpalteEl, { childList: true });
+        const erstesBild = bilderSpalteEl.querySelector('.bild-wrap');
+        if (erstesBild && info) {
+            // Info nach erstem Bild in die Bildspalte verschieben
+            erstesBild.after(info);
+        }
     }
+    // Nach dem Befüllen der Galerie ausführen
+    setTimeout(mobileReihenfolge, 0);
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
 
