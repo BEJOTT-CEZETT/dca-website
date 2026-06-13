@@ -85,7 +85,7 @@ const PROJEKTE = [
         bgf: "300 m²",
         lph: "1-9 HOAI",
         status: "fertiggestellt",
-        team: "Lisa Donnerhack und Bartosz Czempiel",
+        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
         fotos: "",
         auszeichnung: "",
         beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
