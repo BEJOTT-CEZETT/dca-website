@@ -105,6 +105,16 @@
 
     <script src="projekte.js"></script>
     <script>
+
+    // Bei Rückkehr zur Startseite: zu Grid scrollen wenn #grid in URL
+    if (window.location.hash === '#grid') {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+    }
+
     // Header
     const header = document.getElementById('site-header');
     function updateHeader() {
@@ -126,12 +136,20 @@
         const heroH = document.getElementById('hero').offsetHeight;
         const scrollPos = window.scrollY;
 
-        // Nur wenn wir im Hero-Bereich sind
+        // Nach unten: Hero -> Grid
         if (scrollPos < heroH * 0.9 && e.deltaY > 0) {
             e.preventDefault();
             if (scrollSperrt) return;
             scrollSperrt = true;
             window.scrollTo({ top: heroH, behavior: 'smooth' });
+            setTimeout(() => { scrollSperrt = false; }, 800);
+        }
+        // Nach oben: Grid -> Hero
+        if (scrollPos >= heroH * 0.9 && scrollPos <= heroH * 1.5 && e.deltaY < 0) {
+            e.preventDefault();
+            if (scrollSperrt) return;
+            scrollSperrt = true;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             setTimeout(() => { scrollSperrt = false; }, 800);
         }
     }, { passive: false });

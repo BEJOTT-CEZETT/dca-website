@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" style="scroll-behavior: smooth;">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -480,7 +480,7 @@
     </main>
 
     <nav id="bottom-nav">
-        <a href="projekte.html">Projekte</a>
+        <a href="index.html#grid">Projekte</a>
         <span class="sep">|</span>
         <a href="buero.html">Büro</a>
         <span class="sep">|</span>
@@ -502,20 +502,6 @@
     updateHeader();
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-    </script>
-
-    <script>
-    // Leertaste: großer smooth Sprung nach unten/oben
-    document.addEventListener('keydown', function(e) {
-        if (e.code === 'Space') {
-            e.preventDefault();
-            const schrittweite = window.innerHeight * 0.8;
-            window.scrollBy({
-                top: e.shiftKey ? -schrittweite : schrittweite,
-                behavior: 'smooth'
-            });
-        }
-    });
     </script>
 </body>
 </html>
