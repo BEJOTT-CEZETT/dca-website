@@ -17,30 +17,23 @@
             margin: 3rem auto 3rem;
             user-select: none;
         }
-        /* Bild als echtes img — passt sich automatisch ans Format an */
-        .slide-img-wrap {
-            position: relative;
+        .slide-bg {
             width: 100%;
-            overflow: hidden;
-        }
-        .slide-img-wrap img {
-            width: 100%;
-            height: auto;
-            display: block;
+            height: 75vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #fff;
             transition: opacity 0.6s ease-in-out;
-            pointer-events: none;
-            user-select: none;
-            -webkit-user-drag: none;
+            position: relative;
         }
-        /* Unsichtbares Overlay — blockiert Rechtsklick und Drag */
-        .slide-img-wrap::after {
+        .slide-bg::after {
             content: '';
             position: absolute;
             inset: 0;
             z-index: 2;
             cursor: default;
         }
-        /* Pfeil Buttons */
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -58,7 +51,6 @@
         .slide-btn:hover { color: rgba(0,0,0,0.9); }
         .slide-btn.prev { left: 0.5rem; }
         .slide-btn.next { right: 0.5rem; }
-        /* Klickbereiche */
         .slide-left, .slide-right {
             position: absolute;
             top: 0; bottom: 0;
@@ -68,7 +60,6 @@
         }
         .slide-left { left: 0; }
         .slide-right { right: 0; }
-        /* Punkte */
         .slide-dots {
             display: flex;
             flex-wrap: wrap;
@@ -121,6 +112,7 @@
         .project-info .block { margin-top: 2rem; }
         @media (max-width: 750px) {
             .slideshow { width: 95%; }
+            .slide-bg { height: 50vh; }
         }
         @media (max-width: 600px) {
             .projekt-wrap { padding-top: 10rem; padding-bottom: 8rem; }
@@ -142,9 +134,7 @@
         <div class="projekt-wrap">
 
             <div class="slideshow" id="slideshow">
-                <div class="slide-img-wrap" id="slide-img-wrap">
-                    <img id="slide-img" src="" alt="">
-                </div>
+                <div class="slide-bg" id="slide-bg"></div>
                 <div class="slide-left" onclick="prevSlide()"></div>
                 <div class="slide-right" onclick="nextSlide()"></div>
                 <button class="slide-btn prev" onclick="prevSlide()">&#8249;</button>
@@ -171,12 +161,10 @@
 
     <script src="../../projekte.js"></script>
     <script>
-    // ---- BILDSCHUTZ ----
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
     document.addEventListener('dragstart', function(e) { e.preventDefault(); });
     document.addEventListener('selectstart', function(e) { e.preventDefault(); });
 
-    // ---- SLIDESHOW ----
     const pfad = window.location.pathname.replace(/\\/g, '/');
     const teile = pfad.split('/');
     const ordner = teile[teile.length - 2] || '';
@@ -222,13 +210,28 @@
         document.getElementById('info').innerHTML = html;
     }
 
+    // ---- Mobile: Höhe dynamisch ans Bildformat anpassen ----
+    function passeHoheAn(bildUrl) {
+        if (window.innerWidth > 600) return;
+        const tmpImg = new Image();
+        tmpImg.onload = function() {
+            const bg = document.getElementById('slide-bg');
+            const breite = bg.offsetWidth;
+            const verhaeltnis = tmpImg.naturalHeight / tmpImg.naturalWidth;
+            bg.style.height = (breite * verhaeltnis) + 'px';
+        };
+        tmpImg.src = bildUrl;
+    }
+
     function zeigeSlide(n) {
         aktuellesBild = n;
-        const img = document.getElementById('slide-img');
-        img.style.opacity = '0';
+        const bg = document.getElementById('slide-bg');
+        const bildUrl = `bilder/DCA (${n}).jpg`;
+        bg.style.opacity = '0';
         setTimeout(() => {
-            img.src = `bilder/DCA (${n}).jpg`;
-            img.style.opacity = '1';
+            bg.style.backgroundImage = `url('${bildUrl}')`;
+            bg.style.opacity = '1';
+            passeHoheAn(bildUrl);
         }, 600);
         document.getElementById('counter').textContent = n + ' / ' + anzahlBilder;
         document.querySelectorAll('.dot').forEach((d, i) => {
