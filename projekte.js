@@ -56,7 +56,7 @@ const PROJEKTE = [
         fotos: "© Fotografie Michael Neuhaus, Duisburg",
         auszeichnung: "1. Preis beim Architekturwettbewerb 2015 | 1. Architekturpreis der evangelischen Kirche im Rheinland 2023 | Auszeichnung Baukultur Oberhausen 2024",
         beschreibung: "Das geplante Gemeindehaus soll das vorhandene Gebäude-Ensemble sinnvoll und behutsam ergänzen. Eine klare und bodenständige Architektursprache spiegelt dies ebenso wider wie die Wahl der Materialien im Innen- und Außenraum. In dem Ansatz, das Gebäude baulich und funktional unmittelbar an die Kirche anzuschließen, äußert sich die Strategie für den Umgang mit der historischen Bausubstanz, bei der die Verschmelzung des Alten und Neuen den Gedanken der Einheit von Liturgie und Gemeindeleben repräsentiert. So wird die Außenwand der Kirche zur Innenwand des neuen Gemeindezentrums und macht durch ihre beidseitige Präsenz die Verbundenheit beider Räumlichkeiten erlebbar und wird darüber hinaus ihrer zentralen Rolle bei der Beachtung der historischen Bausubstanz im gestalterischen und funktionalen Kontext gerecht.",
-        bilder: 17
+        bilder: 10
     },
 
 
