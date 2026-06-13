@@ -165,13 +165,39 @@
         }
 
         @media (max-width: 900px) {
-            .projekt-layout { grid-template-columns: 1fr; padding-top: 7rem; }
-            .projekt-info {
-                position: static; height: auto;
-                padding: 3rem 2rem 3rem 2rem;
+            .projekt-layout {
+                grid-template-columns: 1fr;
+                padding-top: 0;
+                display: flex;
+                flex-direction: column;
             }
-            .projekt-bilder .bild-wrap { height: auto; min-height: 60vw; }
-            .projekt-bilder .bild-wrap img { max-width: 100%; max-height: 80vh; }
+            /* Auf Mobile: Bildspalte zuerst, aber nur erstes Bild vor Info */
+            .projekt-info {
+                position: static;
+                height: auto;
+                padding: 2.5rem 2rem 2rem 2rem;
+                order: 2;
+            }
+            .projekt-bilder {
+                order: 1;
+            }
+            /* Erstes Bild: vor dem Infotext, volle Breite */
+            .projekt-bilder .bild-wrap:first-child {
+                margin-top: 7rem;
+            }
+            .projekt-bilder .bild-wrap {
+                height: auto;
+                min-height: 0;
+                padding: 0 0 1.5rem 0;
+            }
+            .projekt-bilder .bild-wrap img {
+                max-width: 100%;
+                max-height: none;
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+            /* Nach erstem Bild: Infotext einschieben per JS */
         }
 
     </style>
@@ -351,6 +377,21 @@
         if (e.key === 'ArrowLeft') naechstesBild(-1);
         if (e.key === 'ArrowRight') naechstesBild(1);
     });
+
+    // Mobile: Infoblock nach erstem Bild einschieben
+    if (window.innerWidth <= 900) {
+        const info = document.querySelector('.projekt-info');
+        const bilderSpalteEl = document.getElementById('bilderSpalte');
+        // Warte bis erstes Bild geladen
+        const beobachter = new MutationObserver(function() {
+            const erstesBild = bilderSpalteEl.querySelector('.bild-wrap');
+            if (erstesBild && erstesBild.nextSibling) {
+                bilderSpalteEl.insertBefore(info, erstesBild.nextSibling);
+                beobachter.disconnect();
+            }
+        });
+        beobachter.observe(bilderSpalteEl, { childList: true });
+    }
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
 
