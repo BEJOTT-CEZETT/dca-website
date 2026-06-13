@@ -341,13 +341,13 @@ main {
         max-width: 100%;
     }
     .project-info h2 {
-        font-size: 2.2rem;
+        font-size: 1.6rem;
     }
     .project-info .project-subtitle {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     .project-info small {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     /* Bottom Nav */
