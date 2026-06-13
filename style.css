@@ -306,11 +306,11 @@ main {
         padding: 1.8rem 1.5rem 1rem;
     }
     #site-header h1 {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
         letter-spacing: 0.08em;
     }
     #site-header .subtitle {
-        font-size: 1.0rem;
+        font-size: 1.3rem;
     }
 
     /* Hero */
@@ -329,7 +329,7 @@ main {
         margin-bottom: 1.5rem;
     }
     .projects-grid .thumb .title {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         margin-top: 0.6rem;
     }
 
@@ -341,7 +341,10 @@ main {
         max-width: 100%;
     }
     .project-info h2 {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
+    }
+    .project-info .project-subtitle {
+        font-size: 1.3rem;
     }
     .project-info small {
         font-size: 1.3rem;
@@ -352,12 +355,12 @@ main {
         padding: 1.2rem 0.5rem;
     }
     #bottom-nav a {
-        font-size: 1.0rem;
+        font-size: 1.3rem;
         padding: 0 0.7rem;
         letter-spacing: 0.05em;
     }
     #bottom-nav .sep {
-        font-size: 1.0rem;
+        font-size: 1.3rem;
     }
 }
 
