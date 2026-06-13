@@ -1,22 +1,9 @@
 # ============================================================
-# DCA — Neues Projekt einrichten v3
-# ============================================================
-# Struktur:
-#
-#   projekte/
-#     _NEUES_PROJEKT/
-#       dca_neues_projekt.exe   ← EXE hier (nicht in dist/)
-#       118-GZN.txt
-#       bilder_input/
-#           foto1.jpg ...
-#     _VORLAGE/
-#       index.html
-#   projekte.js
+# DCA — Neues Projekt einrichten v4
 # ============================================================
 
-import os, sys, shutil, glob
+import os, sys, shutil, glob, re
 
-# ---- Pfade ermitteln ----
 if getattr(sys, 'frozen', False):
     exe_ordner = os.path.dirname(sys.executable)
 else:
@@ -29,16 +16,11 @@ vorlage_pfad = os.path.join(proj_ordner, "_VORLAGE", "index.html")
 bilder_input = os.path.join(exe_ordner, "bilder_input")
 
 
-# ============================================================
-# HILFSFUNKTIONEN
-# ============================================================
-
 def trennlinie():
     print("=" * 54)
 
 
 def pfade_pruefen():
-    """Gibt Warnung aus wenn Pfade nicht stimmen."""
     ok = True
     if not os.path.exists(js_pfad):
         print(f"  ⚠  projekte.js nicht gefunden: {js_pfad}")
@@ -46,19 +28,18 @@ def pfade_pruefen():
     if not os.path.exists(vorlage_pfad):
         print(f"  ⚠  Vorlage nicht gefunden: {vorlage_pfad}")
         ok = False
-    # Sicherheitsprüfung: EXE darf nicht in dist/ liegen
     if os.path.basename(exe_ordner).lower() == "dist":
         print(f"  ⚠  EXE liegt noch im dist/-Ordner!")
-        print(f"     Bitte erst nach _NEUES_PROJEKT/ verschieben.")
         ok = False
     return ok
 
 
 def finde_textdatei():
-    treffer = [
-        f for f in glob.glob(os.path.join(exe_ordner, "*.txt"))
-        if os.path.isfile(f)
-    ]
+    # Erst neue info.txt-Format, dann alte .txt
+    info_pfad = os.path.join(exe_ordner, "info.txt")
+    if os.path.exists(info_pfad):
+        return info_pfad
+    treffer = [f for f in glob.glob(os.path.join(exe_ordner, "*.txt")) if os.path.isfile(f)]
     return treffer[0] if treffer else None
 
 
@@ -69,8 +50,21 @@ def parse_info(pfad):
         "team": "", "fotos": "", "auszeichnung": "", "beschreibung": "",
     }
     with open(pfad, encoding="utf-8") as f:
-        zeilen = [z.strip() for z in f.readlines()]
+        inhalt = f.read()
 
+    # Neues Format: key=value
+    if "=" in inhalt.split("\n")[0]:
+        for zeile in inhalt.splitlines():
+            if "=" in zeile:
+                key, _, val = zeile.partition("=")
+                key = key.strip().lower()
+                val = val.strip()
+                if key in daten:
+                    daten[key] = val
+        return daten
+
+    # Altes Format: Fließtext mit Schlüssel:
+    zeilen = [z.strip() for z in inhalt.splitlines()]
     nicht_leer = [z for z in zeilen if z and z != "Projektdaten:"]
     if len(nicht_leer) >= 1:
         daten["titel"] = nicht_leer[0]
@@ -78,19 +72,14 @@ def parse_info(pfad):
         daten["untertitel"] = nicht_leer[1]
 
     felder = {
-        "Auftraggeber": "auftraggeber",
-        "Ort": "ort", "Standort": "ort",
-        "BGF": "bgf", "NUF": "bgf", "Nutzfläche": "bgf",
-        "LPH": "lph", "Leistungsphase": "lph",
-        "Status": "status", "Team": "team",
-        "Fotos": "fotos", "Auszeichnung": "auszeichnung",
-        "Beschreibung": "beschreibung",
+        "Auftraggeber": "auftraggeber", "Ort": "ort", "Standort": "ort",
+        "BGF": "bgf", "NUF": "bgf", "LPH": "lph", "Leistungsphase": "lph",
+        "Status": "status", "Team": "team", "Fotos": "fotos",
+        "Auszeichnung": "auszeichnung", "Beschreibung": "beschreibung",
         "Projektbeschreibung": "beschreibung",
     }
-
     aktives_feld = None
     puffer = []
-
     for zeile in zeilen:
         gefunden = False
         for schlüssel, feld in felder.items():
@@ -110,26 +99,18 @@ def parse_info(pfad):
                     daten[aktives_feld] = " ".join(puffer).strip()
                 aktives_feld = None
                 puffer = []
-
     if aktives_feld and puffer:
         daten[aktives_feld] = " ".join(puffer).strip()
-
     return daten
 
 
 def bilder_umbenennen(bilder_output):
-    """Kopiert Bilder aus bilder_input nach bilder_output mit neuem Namen."""
-
-    # Sicherstellen dass Quelle und Ziel verschieden sind
     quelle = os.path.realpath(bilder_input)
     ziel   = os.path.realpath(bilder_output)
     if quelle == ziel:
-        print("  ⚠  Quelle und Ziel sind identisch — abgebrochen.")
+        print("  ⚠  Quelle und Ziel identisch.")
         return 0
-
     os.makedirs(bilder_output, exist_ok=True)
-
-    # Set mit normcase verhindert Duplikate auf Windows zuverlässig
     gefunden = {}
     for f in glob.glob(os.path.join(bilder_input, "*")):
         ext = os.path.splitext(f)[1].lower()
@@ -138,17 +119,13 @@ def bilder_umbenennen(bilder_output):
             if key not in gefunden:
                 gefunden[key] = f
     dateien = sorted(gefunden.values(), key=lambda f: os.path.normcase(os.path.basename(f)))
-
     if not dateien:
         print("    ⚠  Keine Bilder in bilder_input gefunden.")
         return 0
-
     for i, quelle_datei in enumerate(dateien, start=1):
         ziel_datei = os.path.join(bilder_output, f"DCA ({i}).jpg")
         shutil.copy2(quelle_datei, ziel_datei)
         print(f"    {i:02d}  {os.path.basename(quelle_datei):<40} → DCA ({i}).jpg")
-
-    # Titelbild
     shutil.copy2(
         os.path.join(bilder_output, "DCA (1).jpg"),
         os.path.join(bilder_output, "DCA-Titelbild.jpg")
@@ -157,33 +134,101 @@ def bilder_umbenennen(bilder_output):
     return len(dateien)
 
 
-def projektseite_erstellen(ziel_pfad):
+def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
+    """Kopiert Vorlage und befüllt sie mit den Projektdaten."""
     ziel = os.path.join(ziel_pfad, "index.html")
-    if os.path.exists(ziel):
-        print("    → index.html bereits vorhanden.")
-        return
-    if os.path.exists(vorlage_pfad):
-        shutil.copy2(vorlage_pfad, ziel)
-        print("    → index.html aus Vorlage kopiert.")
-    else:
+    if not os.path.exists(vorlage_pfad):
         print(f"    ⚠  Vorlage nicht gefunden.")
+        return
+
+    with open(vorlage_pfad, encoding="utf-8") as f:
+        html = f.read()
+
+    # Kurztitel (ohne Ortsangabe nach |)
+    kurztitel = daten["titel"].split("|")[0].strip() if "|" in daten["titel"] else daten["titel"]
+    untertitel = daten["untertitel"].upper() if daten["untertitel"] else ""
+
+    # Titel im <title>-Tag
+    html = re.sub(r"<title>[^<]*</title>", f"<title>{kurztitel} | DCA Architekten</title>", html)
+
+    # h2
+    html = re.sub(r"<h2>[^<]*</h2>", f"<h2>{kurztitel}</h2>", html)
+
+    # Untertitel
+    html = re.sub(r'<div class="untertitel">[^<]*</div>', f'<div class="untertitel">{untertitel}</div>', html)
+
+    # Bildanzahl
+    html = re.sub(r"const BILDANZAHL = \d+[^;]*;", f"const BILDANZAHL = {anzahl};", html)
+
+    # Projektdaten-Block ersetzen
+    projektdaten = (
+        f'                <div class="info-block">\n'
+        f'                    <h4>Projektdaten</h4>\n'
+        f'                    <p>Auftraggeber: {daten["auftraggeber"]}<br>\n'
+        f'                    Ort: {daten["ort"]}<br>\n'
+    )
+    if daten["bgf"]:
+        projektdaten += f'                    BGF: {daten["bgf"]}<br>\n'
+    projektdaten += (
+        f'                    LPH: {daten["lph"]}<br>\n'
+        f'                    Status: {daten["status"]}</p>\n'
+        f'                </div>\n'
+        f'                <div class="info-block">\n'
+        f'                    <h4>Team</h4>\n'
+        f'                    <p>{daten["team"]}</p>\n'
+        f'                </div>'
+    )
+
+    # Auszeichnung einfügen wenn vorhanden
+    aus_block = ""
+    if daten["auszeichnung"]:
+        aus_block = (
+            f'                <div class="info-block">\n'
+            f'                    <h4>Auszeichnung</h4>\n'
+            f'                    <p class="auszeichnung">{daten["auszeichnung"]}</p>\n'
+            f'                </div>\n'
+        )
+
+    # Fotos einfügen wenn vorhanden
+    foto_block = ""
+    if daten["fotos"]:
+        foto_block = (
+            f'\n                <div class="info-block">\n'
+            f'                    <h4>Fotos</h4>\n'
+            f'                    <p>{daten["fotos"]}</p>\n'
+            f'                </div>'
+        )
+
+    # Alten Projektdaten-Platzhalter ersetzen
+    html = re.sub(
+        r'<!-- Auszeichnung.*?<!-- Fotos.*?-->\s*',
+        aus_block,
+        html,
+        flags=re.DOTALL
+    )
+    html = re.sub(
+        r'<div class="info-block">\s*<h4>Projektdaten</h4>.*?</div>\s*<div class="info-block">\s*<h4>Team</h4>.*?</div>',
+        projektdaten + foto_block,
+        html,
+        flags=re.DOTALL
+    )
+
+    with open(ziel, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"    → index.html erstellt und befüllt.")
 
 
 def in_js_eintragen(ordner, daten, anzahl):
     with open(js_pfad, encoding="utf-8") as f:
         inhalt = f.read()
-
     if f'ordner: "{ordner}"' in inhalt:
-        print(f"    → '{ordner}' bereits eingetragen, übersprungen.")
+        print(f"    → '{ordner}' bereits eingetragen.")
         return
-
     titel = daten["titel"]
-    if " | " not in titel:
-        if daten["ort"]:
-            titel = f"{titel} | {daten['ort']}"
-
+    if " | " not in titel and daten["ort"]:
+        titel = f"{titel} | {daten['ort']}"
     block = (
-        f'    {{\n'
+        f'        {{\n'
         f'        ordner: "{ordner}",\n'
         f'        titel: "{titel}",\n'
         f'        untertitel: "{daten["untertitel"]}",\n'
@@ -195,30 +240,25 @@ def in_js_eintragen(ordner, daten, anzahl):
         f'        team: "{daten["team"]}",\n'
         f'        fotos: "{daten["fotos"]}",\n'
         f'        auszeichnung: "{daten["auszeichnung"]}",\n'
-        f'        beschreibung: "{daten["beschreibung"]}",\n'
+        f'        beschreibung: "",\n'
         f'        bilder: {anzahl}\n'
-        f'    }},\n'
+        f'        }},\n'
     )
-
     marke = "const PROJEKTE = [\n"
     if marke not in inhalt:
         print("    ⚠  'const PROJEKTE = [' nicht gefunden.")
         return
-
     with open(js_pfad, "w", encoding="utf-8") as f:
         f.write(inhalt.replace(marke, marke + block, 1))
-    print(f"    → An erster Stelle in projekte.js eingetragen.")
+    print(f"    → In projekte.js eingetragen.")
 
 
 def aufraeumen(txt_pfad):
-    """Löscht .txt und Rohbilder in bilder_input. Ordner bleibt erhalten."""
-    # .txt löschen
     try:
         os.remove(txt_pfad)
         print(f"    → {os.path.basename(txt_pfad)} gelöscht.")
     except Exception as e:
         print(f"    ⚠  Konnte txt nicht löschen: {e}")
-    # Rohbilder in bilder_input löschen, Ordner bleibt
     if os.path.isdir(bilder_input):
         for f in os.scandir(bilder_input):
             if f.is_file():
@@ -226,100 +266,81 @@ def aufraeumen(txt_pfad):
                     os.remove(f.path)
                 except Exception:
                     pass
-        print(f"    → Rohbilder aus bilder_input/ gelöscht. Ordner bleibt.")
+        print(f"    → Rohbilder gelöscht.")
 
-
-# ============================================================
-# HAUPTPROGRAMM
-# ============================================================
 
 def main():
     print()
     trennlinie()
-    print("  DCA — Neues Projekt einrichten")
+    print("  DCA — Neues Projekt einrichten v4")
     trennlinie()
 
-    # Pfade prüfen
     if not pfade_pruefen():
-        print()
-        input("  Fehler — Enter zum Beenden...")
+        input("\n  Fehler — Enter zum Beenden...")
         return
 
-    print(f"\n  Website-Ordner: {basis}")
-    print(f"  projekte/:      {proj_ordner}")
-
-    # Textdatei suchen
     txt_pfad = finde_textdatei()
     if not txt_pfad:
-        print("\n  ⚠  Keine .txt Datei gefunden.")
-        print(f"     Erwartet in: {exe_ordner}")
-        print()
+        print("\n  ⚠  Keine info.txt Datei gefunden.")
         input("  Enter zum Beenden...")
         return
 
-    # bilder_input prüfen
     if not os.path.isdir(bilder_input):
-        print(f"\n  ⚠  bilder_input/ Ordner nicht gefunden.")
-        print(f"     Erwartet in: {exe_ordner}")
-        print()
+        print(f"\n  ⚠  bilder_input/ nicht gefunden.")
         input("  Enter zum Beenden...")
         return
 
-    # Ordnername aus Dateiname
     ordnername = os.path.splitext(os.path.basename(txt_pfad))[0]
-    ziel_pfad  = os.path.join(proj_ordner, ordnername)
+    # info.txt -> Ordnername aus Ordner-Dateiname (z.B. 121-XYZ.txt)
+    if ordnername == "info":
+        # Fallback: Ordnername des exe_ordners nehmen? Nein — Fehler ausgeben
+        print("\n  ⚠  Datei muss [NUMMER-KÜRZEL].txt heißen, z.B. 121-XYZ.txt")
+        print("     'info.txt' ist nur die Vorlage, nicht umbenennen!")
+        input("  Enter zum Beenden...")
+        return
+
+    ziel_pfad = os.path.join(proj_ordner, ordnername)
 
     print(f"\n  Textdatei:  {os.path.basename(txt_pfad)}")
     print(f"  Zielordner: {ziel_pfad}")
 
-    # Zielordner darf noch nicht existieren
     if os.path.exists(ziel_pfad):
-        print(f"\n  ⚠  Zielordner existiert bereits: {ziel_pfad}")
-        antwort = input("     Überschreiben? (j/n): ").strip().lower()
+        antwort = input(f"\n  ⚠  '{ordnername}' existiert bereits. Überschreiben? (j/n): ").strip().lower()
         if antwort != "j":
-            print("  Abgebrochen.")
-            input("  Enter zum Beenden...")
+            input("  Abgebrochen. Enter zum Beenden...")
             return
 
-    # Infos parsen
     daten = parse_info(txt_pfad)
-    print(f"\n  Titel:   {daten['titel']}")
-    print(f"  Status:  {daten['status']}")
+    print(f"\n  Titel:  {daten['titel']}")
+    print(f"  Status: {daten['status']}")
 
-    # Zielordner anlegen
     os.makedirs(ziel_pfad, exist_ok=True)
 
-    # 1. Bilder umbenennen und kopieren
     print(f"\n  Bilder:")
     bilder_output = os.path.join(ziel_pfad, "bilder")
     anzahl = bilder_umbenennen(bilder_output)
 
     if anzahl == 0:
-        print("\n  ⚠  Keine Bilder verarbeitet — Abbruch.")
+        print("\n  ⚠  Keine Bilder — Abbruch.")
         shutil.rmtree(ziel_pfad)
         input("  Enter zum Beenden...")
         return
 
-    # 2. info.txt kopieren
     shutil.copy2(txt_pfad, os.path.join(ziel_pfad, "info.txt"))
     print(f"\n  info.txt kopiert.")
 
-    # 3. index.html erstellen
     print(f"\n  Projektseite:")
-    projektseite_erstellen(ziel_pfad)
+    projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl)
 
-    # 4. projekte.js eintragen
     print(f"\n  projekte.js:")
     in_js_eintragen(ordnername, daten, anzahl)
 
-    # 5. Aufräumen (erst ganz am Ende!)
     print(f"\n  Aufräumen:")
     aufraeumen(txt_pfad)
 
     print()
     trennlinie()
-    print(f"  ✓  {ordnername} erfolgreich abgeschlossen.")
-    print(f"     {anzahl} Bilder verarbeitet.")
+    print(f"  ✓  {ordnername} abgeschlossen. {anzahl} Bilder.")
     trennlinie()
     print()
     input("  Enter zum Beenden...")
