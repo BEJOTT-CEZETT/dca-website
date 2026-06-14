@@ -23,7 +23,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 3rem 3rem 2rem;
+            padding: 5rem 3rem 2rem;
         }
         .kontakt-info .name {
             font-size: 2rem;
@@ -43,7 +43,7 @@
         }
         .kontakt-info .qr-code {
             width: 10rem;
-            margin: 2rem auto;
+            margin: 2.5rem auto 1.5rem;
             cursor: zoom-in;
         }
         .kontakt-info .qr-code img {
@@ -72,7 +72,7 @@
             text-decoration: none;
         }
         .kontakt-links {
-            margin-top: 3rem;
+            margin-top: 1.5rem;
             font-size: 1.6rem;
             color: #000;
             display: flex;
@@ -127,8 +127,8 @@
             <div class="name">Donnerhack Czempiel Architekten</div>
             <div class="rechtsform">Partnerschaft mbB</div>
             <p>Am Greinshof 6 | 50999 Köln</p>
-            <p><a href="tel:+491775608843">+49 (0)177 5608843</a></p>
-            <p><a href="mailto:info@dca.koeln">info@dca.koeln</a></p>
+            <p id="kontakt-tel"></p>
+            <p id="kontakt-mail"></p>
 
             <div class="qr-code" onclick="document.getElementById('lightbox').classList.add('aktiv')">
                 <img src="dca_qr.svg" alt="QR-Code zur Website">
@@ -167,6 +167,14 @@
     }
     window.addEventListener('scroll', updateHeader);
     updateHeader();
+
+    // Kontaktdaten zusammensetzen (Spam-/Crawler-Schutz)
+    const telTeile = ['+49', ' (0)', '177', ' ', '5608843'];
+    document.getElementById('kontakt-tel').textContent = telTeile.join('');
+
+    const mailName = ['i','n','f','o'].join('');
+    const mailDomain = ['dca','.','koeln'].join('');
+    document.getElementById('kontakt-mail').textContent = mailName + '@' + mailDomain;
     </script>
     <script>
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
