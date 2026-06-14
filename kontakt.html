@@ -26,20 +26,46 @@
             padding: 3rem 3rem 2rem;
         }
         .kontakt-info .name {
-            font-size: 2.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #000;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
         .kontakt-info .rechtsform {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             color: #000;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
         .kontakt-info p {
-            font-size: 2.2rem;
-            line-height: 2;
+            font-size: 1.6rem;
+            line-height: 1.4;
             color: #000;
+        }
+        .kontakt-info .qr-code {
+            width: 10rem;
+            margin: 2rem auto;
+            cursor: zoom-in;
+        }
+        .kontakt-info .qr-code img {
+            width: 100%;
+            display: block;
+        }
+        /* Lightbox für QR-Code */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.98);
+            z-index: 9000;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox.aktiv { display: flex; }
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 80vh;
+            object-fit: contain;
         }
         .kontakt-info a {
             color: #000;
@@ -71,9 +97,10 @@
             .kontakt-karte iframe { height: 300px; }
             .kontakt-info .name { font-size: 1.4rem; }
             .kontakt-info .rechtsform { font-size: 1.4rem; }
-            .kontakt-info p { font-size: 1.4rem; }
+            .kontakt-info p { font-size: 1.4rem; line-height: 1.4; }
             .kontakt-links { font-size: 1.4rem; }
             .kontakt-links a { font-size: 1.4rem; padding: 0 1rem; }
+            .kontakt-info .qr-code { width: 8rem; }
         }
     </style>
 </head>
@@ -103,6 +130,10 @@
             <p><a href="tel:+491775608843">+49 (0)177 5608843</a></p>
             <p><a href="mailto:info@dca.koeln">info@dca.koeln</a></p>
 
+            <div class="qr-code" onclick="document.getElementById('lightbox').classList.add('aktiv')">
+                <img src="dca_qr.svg" alt="QR-Code zur Website">
+            </div>
+
             <div class="kontakt-links">
                 <a href="impressum.html">Impressum</a>
                 <span class="sep">|</span>
@@ -111,8 +142,12 @@
         </div>
     </main>
 
+    <div class="lightbox" id="lightbox" onclick="this.classList.remove('aktiv')">
+        <img src="dca_qr.svg" alt="QR-Code zur Website">
+    </div>
+
     <nav id="bottom-nav">
-        <a href="index.html#grid">Projekte</a>
+        <a href="index.html?v=2#grid">Projekte</a>
         <span class="sep">|</span>
         <a href="buero.html">Büro</a>
         <span class="sep">|</span>
