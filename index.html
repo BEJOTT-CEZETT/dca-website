@@ -71,6 +71,15 @@
             padding-top: 11rem;
             min-height: 100vh;
         }
+
+        @media (max-width: 900px) {
+            html {
+                scroll-snap-type: none;
+            }
+            .hero, .projects-grid {
+                scroll-snap-align: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -94,7 +103,7 @@
     </main>
 
     <nav id="bottom-nav">
-        <a href="projekte.html">Projekte</a>
+        <a href="index.html#grid">Projekte</a>
         <span class="sep">|</span>
         <a href="buero.html">Büro</a>
         <span class="sep">|</span>
