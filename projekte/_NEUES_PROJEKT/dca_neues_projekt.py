@@ -160,18 +160,20 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
     # Bildanzahl
     html = re.sub(r"const BILDANZAHL = \d+[^;]*;", f"const BILDANZAHL = {anzahl};", html)
 
-    # Projektdaten-Block ersetzen
+    # Projektdaten-Block ersetzen (leere Felder werden automatisch ausgeblendet)
+    felder_anzeige = [
+        ("Auftraggeber", daten["auftraggeber"]),
+        ("Ort", daten["ort"]),
+        ("BGF", daten["bgf"]),
+        ("LPH", daten["lph"]),
+        ("Status", daten["status"]),
+    ]
+    zeilen_pd = [f"{label}: {wert}" for label, wert in felder_anzeige if wert]
+    pd_inhalt = ('<br>\n                    '.join(zeilen_pd)) if zeilen_pd else ""
     projektdaten = (
         f'                <div class="info-block">\n'
         f'                    <h4>Projektdaten</h4>\n'
-        f'                    <p>Auftraggeber: {daten["auftraggeber"]}<br>\n'
-        f'                    Ort: {daten["ort"]}<br>\n'
-    )
-    if daten["bgf"]:
-        projektdaten += f'                    BGF: {daten["bgf"]}<br>\n'
-    projektdaten += (
-        f'                    LPH: {daten["lph"]}<br>\n'
-        f'                    Status: {daten["status"]}</p>\n'
+        f'                    <p>{pd_inhalt}</p>\n'
         f'                </div>\n'
         f'                <div class="info-block">\n'
         f'                    <h4>Team</h4>\n'

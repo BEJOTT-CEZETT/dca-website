@@ -67,6 +67,72 @@ const PROJEKTE = [
         bilder: 10
     },
 
+{
+        ordner: "120-HDS",
+        titel: "Haus HDS | Köln",
+        untertitel: "Umbau eines Einfamilienhauses",
+        auftraggeber: "Privat",
+        ort: "Köln",
+        bgf: "350 m²",
+        lph: "1-8",
+        status: "laufendes Projekt",
+        team: "DCA Architekten (Köln) in Zusammenarbeit mit sopha Architekten (Köln)",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 12
+    },
+
+
+
+    {
+        ordner: "102-KHN",
+        titel: "Landhaus KHN | Bergisch Gladbach",
+        untertitel: "Neubau eines Landhauses",
+        auftraggeber: "Privat",
+        ort: "Bergisch Gladbach",
+        bgf: "300 m²",
+        lph: "1-9 HOAI",
+        status: "fertiggestellt",
+        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
+        bilder: 31
+    },
+
+
+        {
+        ordner: "040-VVW",
+        titel: "Wohnhochhaus VVW | Köln",
+        untertitel: "Neubau von vier Wohn(hoch)häusern von Köln",
+        auftraggeber: "privat",
+        ort: "Köln",
+        bgf: "15.000 m²",
+        lph: "Wettbewerb",
+        status: "Wettbewerb abgeschlossen",
+        team: "Bartosz Czempiel in Zusammenarbeit mit Frederik Jaspert (JSWD Architekten, Köln) und Jakub Sztur (Sztur Architekten, Köln).Entwurf / Konzept (Phase 1 & Phase 2): Bartosz CzempielWeitere Teilnehmer: Hadi Teherani (Hamburg), MVRDV (Rotterdam), Benthem Crouwel / Cross architects (Amsterdam, Aachen), RKW Architekten (Düsseldorf), Kister Scheithauer Groß Architekten (Köln)",
+        fotos: "",
+        auszeichnung: "1. Preis (Baufeld 1 und 4) und 2. Preis (Baufeld 2 und 3) beim 2-phasigen internationalen Wettbewerb",
+        beschreibung: "",
+        bilder: 4
+        },
+
+    {
+        ordner: "116-HGK",
+        titel: "Haus HGK | Köln",
+        untertitel: "Neubau eines Wohn- und Atelierhauses in Köln-Bayenthal",
+        auftraggeber: "Privat Größe: 450 m² Kategorie: Neubau",
+        ort: "Köln",
+        bgf: "750 m²",
+        lph: "1-3",
+        status: "2024 abgeschlossen",
+        team: "Bartosz Czempiel und Lisa Donnerhack",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 3
+    },
 
     {
         ordner: "026-SLM",
@@ -84,51 +150,6 @@ const PROJEKTE = [
         bilder: 10
     },
 
-    {
-        ordner: "102-KHN",
-        titel: "Landhaus KHN | Bergisch Gladbach",
-        untertitel: "Neubau eines Landhauses",
-        auftraggeber: "Privat",
-        ort: "Bergisch Gladbach",
-        bgf: "300 m²",
-        lph: "1-9 HOAI",
-        status: "fertiggestellt",
-        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
-        bilder: 31
-    },
-{
-        ordner: "120-HDS",
-        titel: "Haus HDS | Köln",
-        untertitel: "Umbau eines Einfamilienhauses",
-        auftraggeber: "Privat",
-        ort: "Köln",
-        bgf: "350 m²",
-        lph: "1-8",
-        status: "laufendes Projekt",
-        team: "DCA Architekten (Köln) in Zusammenarbeit mit sopha Architekten (Köln)",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 12
-    },
-    {
-        ordner: "116-HGK",
-        titel: "Haus HGK | Köln",
-        untertitel: "Neubau eines Wohn- und Atelierhauses in Köln-Bayenthal",
-        auftraggeber: "Privat Größe: 450 m² Kategorie: Neubau",
-        ort: "Köln",
-        bgf: "",
-        lph: "1-3",
-        status: "2024 abgeschlossen",
-        team: "Bartosz Czempiel und Lisa Donnerhack",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 3
-    },
     {
         ordner: "118-GZN",
         titel: "Gemeindezentrum GZN | Neuss",
