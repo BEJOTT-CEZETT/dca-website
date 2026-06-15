@@ -67,8 +67,6 @@ const PROJEKTE = [
         bilder: 10
     },
 
-
-
 {
         ordner: "120-HDS",
         titel: "Haus HDS | Köln",
@@ -85,22 +83,21 @@ const PROJEKTE = [
         bilder: 12
     },
 
-
-    {
-        ordner: "118-GZN",
-        titel: "Gemeindezentrum GZN | Neuss",
-        untertitel: "Neubau Gemeindezentrum Nordstadt in Neuss",
-        auftraggeber: "Evangelische Stadtgemeinde Neuss",
-        ort: "Neuss",
-        bgf: "800 m²",
-        lph: "Wettbewerb",
-        status: "abgeschlossen 2025",
-        team: "Bartosz Czempiel und Lisa Donnerhack (Köln) in Zusammenarbeit mit Greta Romberger und Nina Kryvenko (Gießen)",
-        fotos: "",
-        auszeichnung: "2. Preis beim Architekturwettbewerb",
-        beschreibung: "Der Abschied von der Versöhnungskirche fällt uns nicht leicht. Wir schätzen ihr architektonisches Erscheinungsbild ebenso wie die hochwertigen Materialien, aus denen sie erbaut wurde. Doch eine wirtschaftlich vertretbare Kernsanierung ist nicht möglich. Deshalb verfolgen wir mit unserem Neubau ein klares Ziel: Bewahren, was wertvoll ist – und nachhaltig weiterbauen. Unser Konzept setzt auf Wiederverwendung und Ressourcenschonung. Der bestehende Glockenturm bleibt erhalten, ebenso zentrale Elemente wie Altar, Kanzel, Taufbecken und Weltkugel. Doch wir gehen noch weiter: Wir nutzen das Bestandsgebäude als Materialdepot, um wertvolle Ressourcen zu sichern. Die roten Klinkersteine, das Holzpflaster des Bodens, das tragende Holzdachwerk – all das findet im neuen Gemeindehaus eine zweite Heimat. Selbst Leuchten, Saalbestuhlung und Massivholztüren werden wiederverwendet. In einer Zeit, in der nachhaltiges, ressourcenschonendes Bauen immer wichtiger wird, setzen wir auf einen zirkulären Ansatz. Auch wenn dieses Prinzip in der zeitgenössischen Architektur noch jung ist, zeigt ein Blick in die Baugeschichte: Wiederverwendung war schon immer ein fester Bestandteil christlicher Kirchenbauten. Daran knüpfen wir an – mit einem Gemeindehaus, das Tradition und Zukunft verbindet.",
-        bilder: 4
-    },
+ {
+        ordner: "010-DCK",
+        titel: "Haus DCK | Köln",
+        untertitel: "Umbau eines Doppelhauses in Köln",
+        auftraggeber: "Privat",
+        ort: "Köln",
+        bgf: "280 m²",
+        lph: "1-3 und 5-9",
+        status: "2011 fertiggestellt",
+        team: "Lisa Donnerhack und Bartosz Czempiel",
+        fotos: "© dca.koeln",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
 
 
     {
@@ -119,7 +116,21 @@ const PROJEKTE = [
         bilder: 31
     },
 
-
+    {
+        ordner: "118-GZN",
+        titel: "Gemeindezentrum GZN | Neuss",
+        untertitel: "Neubau Gemeindezentrum Nordstadt in Neuss",
+        auftraggeber: "Evangelische Stadtgemeinde Neuss",
+        ort: "Neuss",
+        bgf: "800 m²",
+        lph: "Wettbewerb",
+        status: "abgeschlossen 2025",
+        team: "Bartosz Czempiel und Lisa Donnerhack (Köln) in Zusammenarbeit mit Greta Romberger und Nina Kryvenko (Gießen)",
+        fotos: "",
+        auszeichnung: "2. Preis beim Architekturwettbewerb",
+        beschreibung: "Der Abschied von der Versöhnungskirche fällt uns nicht leicht. Wir schätzen ihr architektonisches Erscheinungsbild ebenso wie die hochwertigen Materialien, aus denen sie erbaut wurde. Doch eine wirtschaftlich vertretbare Kernsanierung ist nicht möglich. Deshalb verfolgen wir mit unserem Neubau ein klares Ziel: Bewahren, was wertvoll ist – und nachhaltig weiterbauen. Unser Konzept setzt auf Wiederverwendung und Ressourcenschonung. Der bestehende Glockenturm bleibt erhalten, ebenso zentrale Elemente wie Altar, Kanzel, Taufbecken und Weltkugel. Doch wir gehen noch weiter: Wir nutzen das Bestandsgebäude als Materialdepot, um wertvolle Ressourcen zu sichern. Die roten Klinkersteine, das Holzpflaster des Bodens, das tragende Holzdachwerk – all das findet im neuen Gemeindehaus eine zweite Heimat. Selbst Leuchten, Saalbestuhlung und Massivholztüren werden wiederverwendet. In einer Zeit, in der nachhaltiges, ressourcenschonendes Bauen immer wichtiger wird, setzen wir auf einen zirkulären Ansatz. Auch wenn dieses Prinzip in der zeitgenössischen Architektur noch jung ist, zeigt ein Blick in die Baugeschichte: Wiederverwendung war schon immer ein fester Bestandteil christlicher Kirchenbauten. Daran knüpfen wir an – mit einem Gemeindehaus, das Tradition und Zukunft verbindet.",
+        bilder: 4
+    },
         {
         ordner: "040-VVW",
         titel: "Wohnhochhaus VVW | Köln",
@@ -136,21 +147,6 @@ const PROJEKTE = [
         bilder: 4
         },
 
- {
-        ordner: "010-DCK",
-        titel: "Haus DCK | Köln",
-        untertitel: "Umbau eines Doppelhauses in Köln",
-        auftraggeber: "Privat",
-        ort: "Köln",
-        bgf: "280 m²",
-        lph: "1-3 und 5-9",
-        status: "2011 fertiggestellt",
-        team: "Lisa Donnerhack und Bartosz Czempiel",
-        fotos: "© dca.koeln",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 2
-        },
 
     {
         ordner: "116-HGK",
