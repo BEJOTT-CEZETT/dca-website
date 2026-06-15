@@ -83,8 +83,6 @@ const PROJEKTE = [
         bilder: 12
     },
 
-
-
     {
         ordner: "102-KHN",
         titel: "Landhaus KHN | Bergisch Gladbach",
@@ -133,6 +131,7 @@ const PROJEKTE = [
         bilder: 4
         },
 
+
     {
         ordner: "116-HGK",
         titel: "Haus HGK | Köln",
@@ -148,6 +147,7 @@ const PROJEKTE = [
         beschreibung: "",
         bilder: 3
     },
+
 
     {
         ordner: "026-SLM",
@@ -165,6 +165,21 @@ const PROJEKTE = [
         bilder: 10
     },
 
+        {
+        ordner: "105-BRV",
+        titel: "Bürokomplex BRV | Netphen",
+        untertitel: "Modernisierung und Umnutzung eines Bürogebäudes in Netphen",
+        auftraggeber: "Kriton Immobilien",
+        ort: "Netphen",
+        bgf: "ca. 12.000 m²",
+        lph: "1-8 HOAI",
+        status: "2021 fertiggestellt",
+        team: "Bartosz Czempiel, Lisa Donnerhack, Matthias Weber, Benjamin Weber, Jakob von Schwanewede und Bernhard Farnschläder",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 3
+        },
     {
         ordner: "117-ODZD",
         titel: "Opernhaus ODZD | Düsseldorf",

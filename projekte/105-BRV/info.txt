@@ -1,0 +1,11 @@
+titel=Bürokomplex BRV
+untertitel=Modernisierung und Umnutzung eines Bürogebäudes in Netphen
+auftraggeber=Kriton Immobilien
+ort=Netphen
+bgf=ca. 12.000 m²
+lph=1-8 HOAI
+status=2021 fertiggestellt
+team=Bartosz Czempiel, Lisa Donnerhack, Matthias Weber, Benjamin Weber, Jakob von Schwanewede und Bernhard Farnschläder
+fotos=
+auszeichnung=
+beschreibung=Typologie: Gesundheitswesen / Bürobau. Kategorie: Bauen im Bestand.
