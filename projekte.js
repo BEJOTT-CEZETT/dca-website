@@ -101,6 +101,21 @@ const PROJEKTE = [
         bilder: 31
     },
 
+    {
+        ordner: "118-GZN",
+        titel: "Gemeindezentrum GZN | Neuss",
+        untertitel: "Neubau Gemeindezentrum Nordstadt in Neuss",
+        auftraggeber: "Evangelische Stadtgemeinde Neuss",
+        ort: "Neuss",
+        bgf: "800 m²",
+        lph: "Wettbewerb",
+        status: "abgeschlossen 2025",
+        team: "Bartosz Czempiel und Lisa Donnerhack (Köln) in Zusammenarbeit mit Greta Romberger und Nina Kryvenko (Gießen)",
+        fotos: "",
+        auszeichnung: "2. Preis beim Architekturwettbewerb",
+        beschreibung: "Der Abschied von der Versöhnungskirche fällt uns nicht leicht. Wir schätzen ihr architektonisches Erscheinungsbild ebenso wie die hochwertigen Materialien, aus denen sie erbaut wurde. Doch eine wirtschaftlich vertretbare Kernsanierung ist nicht möglich. Deshalb verfolgen wir mit unserem Neubau ein klares Ziel: Bewahren, was wertvoll ist – und nachhaltig weiterbauen. Unser Konzept setzt auf Wiederverwendung und Ressourcenschonung. Der bestehende Glockenturm bleibt erhalten, ebenso zentrale Elemente wie Altar, Kanzel, Taufbecken und Weltkugel. Doch wir gehen noch weiter: Wir nutzen das Bestandsgebäude als Materialdepot, um wertvolle Ressourcen zu sichern. Die roten Klinkersteine, das Holzpflaster des Bodens, das tragende Holzdachwerk – all das findet im neuen Gemeindehaus eine zweite Heimat. Selbst Leuchten, Saalbestuhlung und Massivholztüren werden wiederverwendet. In einer Zeit, in der nachhaltiges, ressourcenschonendes Bauen immer wichtiger wird, setzen wir auf einen zirkulären Ansatz. Auch wenn dieses Prinzip in der zeitgenössischen Architektur noch jung ist, zeigt ein Blick in die Baugeschichte: Wiederverwendung war schon immer ein fester Bestandteil christlicher Kirchenbauten. Daran knüpfen wir an – mit einem Gemeindehaus, das Tradition und Zukunft verbindet.",
+        bilder: 4
+    },
 
         {
         ordner: "040-VVW",
@@ -151,21 +166,6 @@ const PROJEKTE = [
     },
 
     {
-        ordner: "118-GZN",
-        titel: "Gemeindezentrum GZN | Neuss",
-        untertitel: "Neubau Gemeindezentrum Nordstadt in Neuss",
-        auftraggeber: "Evangelische Stadtgemeinde Neuss",
-        ort: "Neuss",
-        bgf: "800 m²",
-        lph: "Wettbewerb",
-        status: "abgeschlossen 2025",
-        team: "Bartosz Czempiel und Lisa Donnerhack (Köln) in Zusammenarbeit mit Greta Romberger und Nina Kryvenko (Gießen)",
-        fotos: "",
-        auszeichnung: "2. Preis beim Architekturwettbewerb",
-        beschreibung: "Der Abschied von der Versöhnungskirche fällt uns nicht leicht. Wir schätzen ihr architektonisches Erscheinungsbild ebenso wie die hochwertigen Materialien, aus denen sie erbaut wurde. Doch eine wirtschaftlich vertretbare Kernsanierung ist nicht möglich. Deshalb verfolgen wir mit unserem Neubau ein klares Ziel: Bewahren, was wertvoll ist – und nachhaltig weiterbauen. Unser Konzept setzt auf Wiederverwendung und Ressourcenschonung. Der bestehende Glockenturm bleibt erhalten, ebenso zentrale Elemente wie Altar, Kanzel, Taufbecken und Weltkugel. Doch wir gehen noch weiter: Wir nutzen das Bestandsgebäude als Materialdepot, um wertvolle Ressourcen zu sichern. Die roten Klinkersteine, das Holzpflaster des Bodens, das tragende Holzdachwerk – all das findet im neuen Gemeindehaus eine zweite Heimat. Selbst Leuchten, Saalbestuhlung und Massivholztüren werden wiederverwendet. In einer Zeit, in der nachhaltiges, ressourcenschonendes Bauen immer wichtiger wird, setzen wir auf einen zirkulären Ansatz. Auch wenn dieses Prinzip in der zeitgenössischen Architektur noch jung ist, zeigt ein Blick in die Baugeschichte: Wiederverwendung war schon immer ein fester Bestandteil christlicher Kirchenbauten. Daran knüpfen wir an – mit einem Gemeindehaus, das Tradition und Zukunft verbindet.",
-        bilder: 4
-    },
-    {
         ordner: "117-ODZD",
         titel: "Opernhaus ODZD | Düsseldorf",
         untertitel: "Opernhaus der Zukunft in Düsseldorf",
@@ -197,6 +197,22 @@ const PROJEKTE = [
         beschreibung: "",
         bilder: 5
     },
+
+        {
+        ordner: "901-TZA",
+        titel: "Fraunhofer Institut TZA | Darmstadt",
+        untertitel: "Neubau eines Transferzentrums für Adaptronik in Darmstadt",
+        auftraggeber: "Fraunhofer-Gesellschaft, München (Nutzer: Fraunhofer LBF, Darmstadt)",
+        ort: "Darmstadt",
+        bgf: "2.300 m²",
+        lph: "1-9 HOAI",
+        status: "fertiggestellt 2010",
+        team: "Bartosz Czempiel (Federführung LPH 1-5) bei JSWD Architekten",
+        fotos: "JSWD Architekten / dca.koeln",
+        auszeichnung: "1. Preis beim Verhandlungsverfahren",
+        beschreibung: "",
+        bilder: 4
+        },
 
 
     // NEUES PROJEKT EINFÜGEN — Kommentarzeichen // entfernen:

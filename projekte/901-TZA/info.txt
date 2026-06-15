@@ -1,0 +1,11 @@
+titel=Fraunhofer Institut TZA
+untertitel=Neubau eines Transferzentrums für Adaptronik in Darmstadt
+auftraggeber=Fraunhofer-Gesellschaft, München (Nutzer: Fraunhofer LBF, Darmstadt)
+ort=Darmstadt
+bgf=2.300 m²
+lph=1-9 HOAI
+status=fertiggestellt 2010
+team=Bartosz Czempiel bei JSWD Architekten
+fotos=JSWD Architekten / dca.koeln
+auszeichnung=1. Preis beim Verhandlungsverfahren
+beschreibung=Federführende Entwurfsleitung von Bartosz Czempiel bei JSWD Architekten, Köln, beim Verhandlungsverfahren sowie in den Leistungsphasen 1-5. Das neue Fraunhofer-Institut TZA in Darmstadt präsentiert sich klar und monolithisch im südöstlichen Bereich des LBF-Grundstückes. Das Gebäude ist als kompakter, quaderförmiger Baukörper konzipiert, der sich in die orthogonalen städtebaulichen Strukturen einfügt. Der Fassade des Gebäudes kommt eine besondere Bedeutung zu. Die Komplexität des Wissenschaftsgebiets Adaptronik, welches sich mit dem Aufbau selbstanpassender Struktursysteme befasst, wird auf die Grundaspekte reduziert: Aktion und Reaktion. Die interdisziplinäre Wissenschaft der Adaptronik mit ihren Themenfeldern Forschen, Analysieren und Präsentieren wird innen mit einem offenen, geschossübergreifenden Raumgefüge übersetzt. Der Wissensaustausch sowie die Kommunikation zwischen internen und externen Mitarbeitern stehen bei dieser modernen Arbeitswelt im Vordergrund des Raumkonzepts.

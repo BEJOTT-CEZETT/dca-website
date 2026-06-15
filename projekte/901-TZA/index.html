@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJEKTTITEL | DCA Architekten</title>
+    <title>Fraunhofer Institut TZA | DCA Architekten</title>
     <link rel="stylesheet" href="../../style.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -196,6 +196,7 @@
                 width: 100%;
                 height: auto;
                 object-fit: contain;
+                transform: none;
             }
             /* Nach erstem Bild: Infotext einschieben per JS */
         }
@@ -213,20 +214,25 @@
         <div class="projekt-layout">
 
             <aside class="projekt-info">
-                <h2>PROJEKTNAME</h2>
-                <div class="untertitel">KURZBESCHREIBUNG</div>
+                <h2>Fraunhofer Institut TZA</h2>
+                <div class="untertitel">NEUBAU EINES TRANSFERZENTRUMS FÜR ADAPTRONIK IN DARMSTADT</div>
                 <!-- AUSZEICHNUNG_BLOCK -->
-<div class="info-block">
+                <div class="info-block">
                     <h4>Projektdaten</h4>
-                    <p>Auftraggeber: AUFTRAGGEBER<br>
-                    Ort: ORT<br>
-                    BGF: BGF<br>
-                    LPH: LPH<br>
-                    Status: STATUS</p>
+                    <p>Auftraggeber: Fraunhofer-Gesellschaft, München <br>
+		    Nutzer: Fraunhofer LBF, Darmstadt<br>
+                    Ort: Darmstadt<br>
+                    BGF: 2.300 m²<br>
+                    LPH: 1-9 HOAI<br>
+                    Status: fertiggestellt 2010</p>
                 </div>
                 <div class="info-block">
                     <h4>Team</h4>
-                    <p>TEAM</p>
+                    <p>Bartosz Czempiel (Federführung LPH 1-5) bei JSWD Architekten</p>
+                </div>
+                <div class="info-block">
+                    <h4>Fotos</h4>
+                    <p>JSWD Architekten Köln</p>
                 </div>
                                 <!-- FOTOS_BLOCK -->
             </aside>
@@ -257,7 +263,7 @@
     </nav>
 
     <script>
-    const BILDANZAHL = 10;  // ← anpassen
+    const BILDANZAHL = 5;  // ← anpassen
     const BILDORDNER = 'bilder/';
     const bildPfade = [];
     for (let i = 1; i <= BILDANZAHL; i++) {
