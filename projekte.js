@@ -50,7 +50,7 @@ const HERO_BILDER = [
 // Neues Projekt: Block kopieren und einfügen
 // ============================================
 const PROJEKTE = [
-
+       
         {
         ordner: "101-EAK",
         titel: "Gemeindehaus EAK | Oberhausen",
@@ -66,6 +66,8 @@ const PROJEKTE = [
         beschreibung: "Das geplante Gemeindehaus soll das vorhandene Gebäude-Ensemble sinnvoll und behutsam ergänzen. Eine klare und bodenständige Architektursprache spiegelt dies ebenso wider wie die Wahl der Materialien im Innen- und Außenraum. In dem Ansatz, das Gebäude baulich und funktional unmittelbar an die Kirche anzuschließen, äußert sich die Strategie für den Umgang mit der historischen Bausubstanz, bei der die Verschmelzung des Alten und Neuen den Gedanken der Einheit von Liturgie und Gemeindeleben repräsentiert. So wird die Außenwand der Kirche zur Innenwand des neuen Gemeindezentrums und macht durch ihre beidseitige Präsenz die Verbundenheit beider Räumlichkeiten erlebbar und wird darüber hinaus ihrer zentralen Rolle bei der Beachtung der historischen Bausubstanz im gestalterischen und funktionalen Kontext gerecht.",
         bilder: 10
     },
+
+
 
 {
         ordner: "120-HDS",
@@ -83,21 +85,6 @@ const PROJEKTE = [
         bilder: 12
     },
 
-    {
-        ordner: "102-KHN",
-        titel: "Landhaus KHN | Bergisch Gladbach",
-        untertitel: "Neubau eines Landhauses",
-        auftraggeber: "Privat",
-        ort: "Bergisch Gladbach",
-        bgf: "300 m²",
-        lph: "1-9 HOAI",
-        status: "fertiggestellt",
-        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
-        bilder: 31
-    },
 
     {
         ordner: "118-GZN",
@@ -115,6 +102,24 @@ const PROJEKTE = [
         bilder: 4
     },
 
+
+    {
+        ordner: "102-KHN",
+        titel: "Landhaus KHN | Bergisch Gladbach",
+        untertitel: "Neubau eines Landhauses",
+        auftraggeber: "Privat",
+        ort: "Bergisch Gladbach",
+        bgf: "300 m²",
+        lph: "1-9 HOAI",
+        status: "fertiggestellt",
+        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
+        bilder: 31
+    },
+
+
         {
         ordner: "040-VVW",
         titel: "Wohnhochhaus VVW | Köln",
@@ -131,6 +136,21 @@ const PROJEKTE = [
         bilder: 4
         },
 
+ {
+        ordner: "010-DCK",
+        titel: "Haus DCK | Köln",
+        untertitel: "Umbau eines Doppelhauses in Köln",
+        auftraggeber: "Privat",
+        ort: "Köln",
+        bgf: "280 m²",
+        lph: "1-3 und 5-9",
+        status: "2011 fertiggestellt",
+        team: "Lisa Donnerhack und Bartosz Czempiel",
+        fotos: "© dca.koeln",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
 
     {
         ordner: "116-HGK",

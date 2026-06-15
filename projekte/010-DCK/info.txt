@@ -1,0 +1,11 @@
+titel=Haus DCK
+untertitel=Umbau eines Doppelhauses in Köln
+auftraggeber=Privat
+ort=Köln
+bgf=280 m²
+lph=1-3 und 5-9
+status=2011 fertiggestellt
+team=Lisa Donnerhack und Bartosz Czempiel
+fotos=© dca.koeln
+auszeichnung=
+beschreibung=Die Villa aus den 1920er Jahren erhielt durch diverse Umbaumaßnahmen ihren alten Glanz zurück. Das Haus wurde im Inneren kernsaniert und die drei Wohnungen wieder zu einer großzügigen Einheit zusammengeschlossen. Hochwertige, klassisch-moderne Materialien bestimmen das innere Erscheinungsbild. Außen wurde zudem das ursprüngliche Fassadenbild wiederhergestellt.
