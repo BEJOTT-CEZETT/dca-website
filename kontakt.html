@@ -93,7 +93,17 @@
             color: rgba(0,0,0,0.3);
             font-size: 1.6rem;
         }
+        .kontakt-main {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 13rem;
+            padding-bottom: 9rem;
+            box-sizing: border-box;
+        }
+
         @media (max-width: 600px) {
+            .kontakt-main { padding-top: 11rem; padding-bottom: 9rem; }
             .kontakt-karte iframe { height: 300px; }
             .kontakt-info .name { font-size: 1.4rem; }
             .kontakt-info .rechtsform { font-size: 1.4rem; }
@@ -111,7 +121,7 @@
         <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
     </header>
 
-    <main style="display:flex; flex-direction:column; min-height:calc(100vh - 9rem - 5rem); padding-top: 13rem;">
+    <main class="kontakt-main">
         <!-- Google Maps S/W, Deutsch -->
         <div class="kontakt-karte">
             <iframe
