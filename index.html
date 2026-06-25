@@ -33,6 +33,38 @@
         .hero-slide.aktiv {
             opacity: 1;
         }
+        /* Hero Navigations-Pfeile */
+        .hero-nav {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .hero-nav-left  { left: 0;  justify-content: flex-start; }
+        .hero-nav-right { right: 0; justify-content: flex-end; }
+
+        .hero-pfeil {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 1.5rem;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            font-size: 6rem;
+            font-weight: 600;
+            line-height: 1;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 0 8px rgba(0,0,0,0.6);
+        }
+        .hero-nav:hover .hero-pfeil {
+            opacity: 1;
+        }
+
         /* Scroll-Hinweis im Hero */
         .scroll-hint {
             position: absolute;
@@ -90,6 +122,13 @@
     <main>
         <!-- Hero Slideshow -->
         <div class="hero" id="hero">
+            <!-- Navigations-Pfeile -->
+            <div class="hero-nav hero-nav-left" id="heroPrev">
+                <div class="hero-pfeil">&#8249;</div>
+            </div>
+            <div class="hero-nav hero-nav-right" id="heroNext">
+                <div class="hero-pfeil">&#8250;</div>
+            </div>
             <div class="scroll-hint" id="scrollHint">
                 <span>Scrollen</span>
                 <div class="scroll-arrow"></div>
@@ -173,19 +212,48 @@
         img.alt = 'DCA Architekten';
         img.onerror = function() { this.remove(); };
         if (i === 0) img.classList.add('aktiv');
-        // Vor dem scroll-hint einfügen
-        hero.insertBefore(img, hero.querySelector('.scroll-hint'));
+        // Vor dem ersten hero-nav einfügen
+        hero.insertBefore(img, hero.querySelector('.hero-nav'));
         slides.push(img);
     });
 
     let aktuellerSlide = 0;
-    setInterval(() => {
+
+    function zeigeSlide(index) {
         const alleSlides = hero.querySelectorAll('.hero-slide');
         if (alleSlides.length < 2) return;
         alleSlides[aktuellerSlide].classList.remove('aktiv');
-        aktuellerSlide = (aktuellerSlide + 1) % alleSlides.length;
+        aktuellerSlide = (index + alleSlides.length) % alleSlides.length;
         alleSlides[aktuellerSlide].classList.add('aktiv');
+    }
+
+    // Automatischer Wechsel
+    let autoTimer = setInterval(() => {
+        const alleSlides = hero.querySelectorAll('.hero-slide');
+        if (alleSlides.length < 2) return;
+        zeigeSlide(aktuellerSlide + 1);
     }, 5000);
+
+    function autoReset() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => {
+            const alleSlides = hero.querySelectorAll('.hero-slide');
+            if (alleSlides.length < 2) return;
+            zeigeSlide(aktuellerSlide + 1);
+        }, 5000);
+    }
+
+    // Manuelle Navigation
+    document.getElementById('heroPrev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        zeigeSlide(aktuellerSlide - 1);
+        autoReset();
+    });
+    document.getElementById('heroNext').addEventListener('click', (e) => {
+        e.stopPropagation();
+        zeigeSlide(aktuellerSlide + 1);
+        autoReset();
+    });
 
     // ---- PROJEKT GRID ----
     const grid = document.getElementById('grid');
