@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Büro | DCA Architekten</title>
+    <meta name="description" content="Das Büro DCA Architekten in Köln: Lisa Donnerhack und Bartosz Czempiel. Über 20 Jahre Erfahrung in Architektur, Innenraumplanung und nachhaltigem Bauen.">
+    <link rel="canonical" href="https://www.dca.koeln/buero.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Büro | DCA Architekten">
+    <meta property="og:description" content="Das Büro DCA Architekten in Köln: Lisa Donnerhack und Bartosz Czempiel. Über 20 Jahre Erfahrung in Architektur, Innenraumplanung und nachhaltigem Bauen.">
+    <meta property="og:url" content="https://www.dca.koeln/buero.html">
+    <meta property="og:image" content="https://www.dca.koeln/hero/DCA%20(1).jpg">
     <link rel="stylesheet" href="style.css">
     <style>
         .buero-page {
@@ -146,7 +154,7 @@
 
     <header id="site-header">
         <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
-        <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
+        <div class="subtitle">Bau- und Raumgestaltung aus Köln</div>
     </header>
 
     <main style="padding-top: 9rem;">
@@ -248,7 +256,7 @@
     </main>
 
     <nav id="bottom-nav">
-        <a href="index.html?v=2#grid">Projekte</a>
+        <a href="index.html#grid">Projekte</a>
         <span class="sep">|</span>
         <a href="buero.html">Büro</a>
         <span class="sep">|</span>
@@ -270,8 +278,13 @@
     updateHeader();
     </script>
     <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
     </script>
 </body>
 </html>

@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Haus HDS | DCA Architekten</title>
+    <meta name="description" content="Umbau eines Einfamilienhauses. DCA Architekten, Köln.">
+    <link rel="canonical" href="https://www.dca.koeln/projekte/120-HDS/index.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Haus HDS | DCA Architekten">
+    <meta property="og:description" content="Umbau eines Einfamilienhauses. DCA Architekten, Köln.">
+    <meta property="og:url" content="https://www.dca.koeln/projekte/120-HDS/index.html">
+    <meta property="og:image" content="https://www.dca.koeln/projekte/120-HDS/bilder/DCA-Titelbild.jpg">
     <link rel="stylesheet" href="../../style.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -207,7 +215,7 @@
 
     <header id="site-header" style="background: #fff; padding-bottom: 3rem;">
         <h1><a href="../../index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
-        <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
+        <div class="subtitle">Bau- und Raumgestaltung aus Köln</div>
     </header>
 
     <main>
@@ -395,9 +403,16 @@ Visualisierung: Moritz Hoffart</p>
     }
     // Nach dem Befüllen der Galerie ausführen
     setTimeout(mobileReihenfolge, 0);
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('dragstart', e => e.preventDefault());
 
+    </script>
+    <script>
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
     </script>
 </body>
 </html>

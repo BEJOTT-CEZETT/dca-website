@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /archiv/
+Disallow: /projekte/_NEUES_PROJEKT/
+Disallow: /projekte/_VORLAGE/
+
+Sitemap: https://www.dca.koeln/sitemap.xml

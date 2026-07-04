@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | DCA Architekten</title>
+    <meta name="description" content="Kontakt zu Donnerhack Czempiel Architekten: Am Greinshof 6, 50999 Köln.">
+    <link rel="canonical" href="https://www.dca.koeln/kontakt.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kontakt | DCA Architekten">
+    <meta property="og:description" content="Kontakt zu Donnerhack Czempiel Architekten in Köln.">
+    <meta property="og:url" content="https://www.dca.koeln/kontakt.html">
+    <meta property="og:image" content="https://www.dca.koeln/hero/DCA%20(1).jpg">
     <link rel="stylesheet" href="style.css">
     <style>
         .kontakt-karte {
@@ -16,6 +24,34 @@
             height: 50vh;
             border: 0;
         }
+        .karten-hinweis {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            background: #ececec;
+            text-align: center;
+            padding: 2rem;
+        }
+        .karten-hinweis p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.65);
+        }
+        .karten-hinweis button {
+            font-family: inherit;
+            font-size: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: #000;
+            color: #fff;
+            border: 0;
+            padding: 1.2rem 2.8rem;
+            cursor: pointer;
+        }
+        .karten-hinweis button:hover { opacity: 0.75; }
         .kontakt-info {
             flex: 1;
             display: flex;
@@ -105,6 +141,7 @@
         @media (max-width: 600px) {
             .kontakt-main { padding-top: 14rem; padding-bottom: 9rem; }
             .kontakt-karte iframe { height: 270px; }
+            .karten-hinweis { height: 270px; }
             .kontakt-info .name { font-size: 1.4rem; }
             .kontakt-info .rechtsform { font-size: 1.4rem; }
             .kontakt-info p { font-size: 1.4rem; line-height: 1.4; }
@@ -118,18 +155,18 @@
 
     <header id="site-header">
         <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
-        <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
+        <div class="subtitle">Bau- und Raumgestaltung aus Köln</div>
     </header>
 
     <main class="kontakt-main">
-        <!-- Google Maps S/W, Deutsch -->
-        <div class="kontakt-karte">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20000!2d6.9897!3d50.9059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf25a4e4bfffff%3A0x427ef60b8d8b4ca8!2sAm%20Greinshof%206%2C%2050999%20K%C3%B6ln!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        <!-- Google Maps: laedt erst nach Klick (Zwei-Klick-Loesung, DSGVO) -->
+        <div class="kontakt-karte" id="karte">
+            <div class="karten-hinweis">
+                <p>Hier befindet sich eine Karte von Google Maps.<br>
+                Beim Laden werden Daten an Google übertragen.<br>
+                Details in unserer <a href="datenschutz.html" style="border-bottom:1px solid rgba(0,0,0,0.3);">Datenschutzerklärung</a>.</p>
+                <button type="button" id="karteLaden">Karte laden</button>
+            </div>
         </div>
 
         <!-- Kontaktdaten -->
@@ -157,7 +194,7 @@
     </div>
 
     <nav id="bottom-nav">
-        <a href="index.html?v=2#grid">Projekte</a>
+        <a href="index.html#grid">Projekte</a>
         <span class="sep">|</span>
         <a href="buero.html">Büro</a>
         <span class="sep">|</span>
@@ -178,17 +215,35 @@
     window.addEventListener('scroll', updateHeader);
     updateHeader();
 
+    // Google Maps erst nach Einwilligung laden
+    document.getElementById('karteLaden').addEventListener('click', function() {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20000!2d6.9897!3d50.9059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf25a4e4bfffff%3A0x427ef60b8d8b4ca8!2sAm%20Greinshof%206%2C%2050999%20K%C3%B6ln!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.allowFullscreen = true;
+        const karte = document.getElementById('karte');
+        karte.innerHTML = '';
+        karte.appendChild(iframe);
+    });
+
     // Kontaktdaten zusammensetzen (Spam-/Crawler-Schutz)
-    const telTeile = ['+49', ' (0)', '177', ' ', '5608843'];
-    document.getElementById('kontakt-tel').textContent = telTeile.join('');
+    // Telefonnummer aus Zeichencodes (im Quelltext fuer Bots unlesbar)
+    document.getElementById('kontakt-tel').textContent =
+        String.fromCharCode(43,52,57,32,40,48,41,49,55,55,32,53,54,48,56,56,52,51);
 
     const mailName = ['i','n','f','o'].join('');
     const mailDomain = ['dca','.','koeln'].join('');
     document.getElementById('kontakt-mail').textContent = mailName + '@' + mailDomain;
     </script>
     <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
     </script>
 </body>
 </html>

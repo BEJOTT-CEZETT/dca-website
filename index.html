@@ -4,7 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCA | Donnerhack Czempiel Architekten</title>
+    <meta name="description" content="Donnerhack Czempiel Architekten (DCA), Architekturbüro in Köln. Neubau, Umbau und Bauen im Bestand: Wohnhäuser, Sakralbauten, Büro- und Forschungsgebäude.">
+    <link rel="canonical" href="https://www.dca.koeln/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DCA | Donnerhack Czempiel Architekten">
+    <meta property="og:description" content="Architekturbüro in Köln. Neubau, Umbau und Bauen im Bestand.">
+    <meta property="og:url" content="https://www.dca.koeln/">
+    <meta property="og:image" content="https://www.dca.koeln/hero/DCA%20(1).jpg">
+    <meta property="og:locale" content="de_DE">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Donnerhack Czempiel Architekten Partnerschaft mbB",
+        "alternateName": "DCA Architekten",
+        "description": "Architekturbüro in Köln für Neubau, Umbau und Bauen im Bestand.",
+        "url": "https://www.dca.koeln/",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Am Greinshof 6",
+            "postalCode": "50999",
+            "addressLocality": "Köln",
+            "addressCountry": "DE"
+        },
+        "founder": [
+            { "@type": "Person", "name": "Lisa Donnerhack" },
+            { "@type": "Person", "name": "Bartosz Czempiel" }
+        ]
+    }
+    </script>
     <style>
         html {
             scroll-snap-type: y mandatory;
@@ -35,6 +65,9 @@
         }
         /* Hero Navigations-Pfeile */
         .hero-nav {
+            background: none;
+            border: 0;
+            padding: 0;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -116,19 +149,19 @@
 
     <header id="site-header">
         <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
-        <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
+        <div class="subtitle">Bau- und Raumgestaltung aus Köln</div>
     </header>
 
     <main>
         <!-- Hero Slideshow -->
         <div class="hero" id="hero">
             <!-- Navigations-Pfeile -->
-            <div class="hero-nav hero-nav-left" id="heroPrev">
-                <div class="hero-pfeil">&#8249;</div>
-            </div>
-            <div class="hero-nav hero-nav-right" id="heroNext">
-                <div class="hero-pfeil">&#8250;</div>
-            </div>
+            <button type="button" class="hero-nav hero-nav-left" id="heroPrev" aria-label="Vorheriges Bild">
+                <span class="hero-pfeil" aria-hidden="true">&#8249;</span>
+            </button>
+            <button type="button" class="hero-nav hero-nav-right" id="heroNext" aria-label="Nächstes Bild">
+                <span class="hero-pfeil" aria-hidden="true">&#8250;</span>
+            </button>
             <div class="scroll-hint" id="scrollHint">
                 <span>Scrollen</span>
                 <div class="scroll-arrow"></div>
@@ -175,46 +208,23 @@
         scrollHint.style.opacity = window.scrollY > 80 ? '0' : '1';
     }, { passive: true });
 
-    // Mausrad: von Hero direkt zum Grid springen
-    let scrollSperrt = false;
-    window.addEventListener('wheel', function(e) {
-        const grid = document.getElementById('grid');
-        const heroH = document.getElementById('hero').offsetHeight;
-        const scrollPos = window.scrollY;
-
-        // Nach unten: Hero -> Grid
-        if (scrollPos < heroH * 0.9 && e.deltaY > 0) {
-            e.preventDefault();
-            if (scrollSperrt) return;
-            scrollSperrt = true;
-            window.scrollTo({ top: heroH, behavior: 'smooth' });
-            setTimeout(() => { scrollSperrt = false; }, 800);
-        }
-        // Nach oben: Grid -> Hero
-        if (scrollPos >= heroH * 0.9 && scrollPos <= heroH * 1.5 && e.deltaY < 0) {
-            e.preventDefault();
-            if (scrollSperrt) return;
-            scrollSperrt = true;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => { scrollSperrt = false; }, 800);
-        }
-    }, { passive: false });
-
     // ---- HERO SLIDESHOW ----
     const hero = document.getElementById('hero');
     const heroDateien = [...HERO_BILDER].sort(() => Math.random() - 0.5);
-    const slides = [];
 
-    heroDateien.forEach((dateiname, i) => {
+    function slideEinfuegen(dateiname, aktiv) {
         const img = document.createElement('img');
         img.src = `hero/${dateiname}`;
-        img.className = 'hero-slide';
+        img.className = 'hero-slide' + (aktiv ? ' aktiv' : '');
         img.alt = 'DCA Architekten';
         img.onerror = function() { this.remove(); };
-        if (i === 0) img.classList.add('aktiv');
-        // Vor dem ersten hero-nav einfügen
         hero.insertBefore(img, hero.querySelector('.hero-nav'));
-        slides.push(img);
+    }
+
+    // Erstes Bild sofort, die übrigen erst nach vollständigem Seitenaufbau
+    slideEinfuegen(heroDateien[0], true);
+    window.addEventListener('load', () => {
+        heroDateien.slice(1).forEach(d => slideEinfuegen(d, false));
     });
 
     let aktuellerSlide = 0;
@@ -263,7 +273,7 @@
         thumb.href = `projekte/${p.ordner}/index.html`;
         thumb.className = 'thumb';
         thumb.innerHTML = `
-            <img src="${titelbildSrc}" alt="${p.titel}"
+            <img src="${titelbildSrc}" alt="${p.titel}" loading="lazy" decoding="async"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
             <div class="thumb-placeholder" style="display:none; aspect-ratio:4/3;"></div>
             <div class="title">${p.titel}</div>
@@ -271,10 +281,14 @@
         grid.appendChild(thumb);
     });
     </script>
-
     <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
     </script>
 </body>
 </html>

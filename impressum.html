@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum | DCA Architekten</title>
+    <meta name="description" content="Impressum der Donnerhack Czempiel Architekten Partnerschaft mbB, Köln.">
+    <link rel="canonical" href="https://www.dca.koeln/impressum.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <style>
         .legal-page { max-width: 70rem; margin: 0 auto; padding: 4rem 3rem 8rem; }
@@ -22,7 +25,7 @@
 <body>
     <header id="site-header">
         <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
-        <div class="subtitle">Bau– und Raumgestaltung aus Köln</div>
+        <div class="subtitle">Bau- und Raumgestaltung aus Köln</div>
     </header>
     <main style="padding-top: 9rem;">
         <div class="legal-page">
@@ -33,7 +36,7 @@
             Am Greinshof 6 | 50999 Köln</p>
 
             <h2>Kontakt</h2>
-            <p>E-Mail: <a href="mailto:info@dca.koeln">info@dca.koeln</a></p>
+            <p>E-Mail: <span class="js-mail"></span></p>
 
             <h2>Inhaber</h2>
             <p>Lisa Donnerhack, Dipl.-Ing. Architektin<br>
@@ -65,7 +68,7 @@
 
 
             <h2>Haftung für Inhalte</h2>
-            <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+            <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG (Digitale-Dienste-Gesetz) für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
 
             <h2>Haftung für Links</h2>
             <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
@@ -77,7 +80,7 @@
         </div>
     </main>
     <nav id="bottom-nav">
-        <a href="index.html?v=2#grid">Projekte</a><span class="sep">|</span>
+        <a href="index.html#grid">Projekte</a><span class="sep">|</span>
         <a href="buero.html">Büro</a><span class="sep">|</span>
         <a href="werkliste.html">Werkliste</a><span class="sep">|</span>
         <a href="kontakt.html">Kontakt</a>
@@ -93,10 +96,24 @@
     }
     window.addEventListener('scroll', updateHeader);
     updateHeader();
+
+    // E-Mail-Adresse zusammensetzen (Spam-/Crawler-Schutz)
+    (function() {
+        var n = ['in','fo'].join('');
+        var d = ['dca','koeln'].join('.');
+        document.querySelectorAll('.js-mail').forEach(function(el) {
+            el.textContent = n + '@' + d;
+        });
+    })();
     </script>
     <script>
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-    document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
     </script>
 </body>
 </html>
