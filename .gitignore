@@ -1,0 +1,10 @@
+# Windows-Vorschaudateien
+Thumbs.db
+desktop.ini
+
+# Arbeitsordner fuer neue Projekte (Rohbilder und Projekt-Textdatei)
+projekte/_NEUES_PROJEKT/bilder_input/*
+projekte/_NEUES_PROJEKT/*.txt
+
+# Python
+__pycache__/

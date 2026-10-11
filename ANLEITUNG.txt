@@ -1,105 +1,139 @@
-DCA WEBSITE — ANLEITUNG
-========================
+DCA WEBSITE – ANLEITUNG
+=======================
+Stand: Oktober 2026
 
-ORDNERSTRUKTUR:
----------------
-_dca-website-claude/
-├── index.html              → Startseite (Hero + Projekt-Grid)
-├── projekte.html           → Projektübersicht
-├── buero.html              → Büro & Partner
-├── werkliste.html          → Vollständige Werkliste
-├── kontakt.html            → Kontakt & Karte
-├── impressum.html          → Impressum
-├── datenschutz.html        → Datenschutz
-├── style.css               → Globales Stylesheet
-├── projekte.js             → Projektkonfiguration (hier alles eintragen)
-├── hero_aktualisieren.py   → Hero-Bilder automatisch einlesen
-├── hero/                   → Hero-Slideshow Bilder (beliebige Namen)
-├── buero/                  → Bürofoto
+
+ARBEITSORDNER
+-------------
+Gearbeitet wird nur hier:
+    C:\Users\czemp\Documents\GitHub\dca-website
+
+Dieser Ordner ist mit GitHub Desktop verknüpft. Der alte Ordner auf Y:
+(...\2 Außendarstellung\4 Website\4 DCA) ist nur noch Archiv.
+Von dort nichts mehr hochladen.
+
+Die Website läuft über GitHub Pages (Repo BEJOTT-CEZETT/dca-website),
+die Domain www.dca.koeln zeigt per Strato-DNS dorthin.
+
+
+ORDNERSTRUKTUR
+--------------
+dca-website/
+├── index.html              Startseite (Hero + Projektraster)
+├── projekte.html           Projektübersicht
+├── buero.html              Büro und Partner
+├── werkliste.html          Werkliste (wird von Hand gepflegt)
+├── kontakt.html            Kontakt und Karte
+├── impressum.html / datenschutz.html
+├── style.css               Gestaltung der ganzen Seite
+├── projekte.js             Projektliste und Hero-Bilder (Reihenfolge!)
+├── sitemap.xml / robots.txt / CNAME
+├── _SKRIPT_hero_aktualisieren.py
+├── _SKRIPT_titelbilder_verkleinern.py
+├── hero/                   Bilder der Slideshow
+├── buero/                  Bürofoto
 └── projekte/
-    ├── _NEUES_PROJEKT/     → Arbeitsordner für neue Projekte
-    │   ├── dca_neues_projekt.exe  → EXE zum Verarbeiten neuer Projekte
-    │   ├── [NUMMER-KÜRZEL].txt   → Projektinfos (z.B. 119-ABC.txt)
-    │   └── bilder_input/         → Rohbilder hier ablegen
-    ├── _VORLAGE/           → Vorlage für neue Projektseiten
-    │   └── index.html
-    ├── 101-EAK/
-    │   ├── index.html
-    │   ├── info.txt
-    │   └── bilder/         → DCA (1).jpg, DCA (2).jpg ... + DCA-Titelbild.jpg
-    ├── 102-KHN/
-    ├── 104-CUB/
-    ├── 116-HGK/
-    ├── 117-ODZD/
-    ├── 118-GZN/
-    └── 120-HDS/
+    ├── _NEUES_PROJEKT/     Arbeitsordner für neue Projekte
+    │   ├── dca_neues_projekt.py
+    │   └── bilder_input/   Rohbilder hier ablegen
+    ├── _VORLAGE/           Vorlage für Projektseiten
+    └── 020-NCL/, 101-EAK/ ...
+        ├── index.html
+        ├── info.txt
+        └── bilder/         DCA (1).jpg, DCA (2).jpg ... + DCA-Titelbild.jpg
 
 
-PROJEKTBEZEICHNUNG:
---------------------
-Ordnername = Nummer + Bindestrich + Kürzel
-Beispiele:  101-EAK  |  102-KHN  |  120-HDS
-Die Nummer bestimmt die interne Sortierung im Explorer.
-Die Reihenfolge auf der Website wird in projekte.js festgelegt.
+PROJEKTBEZEICHNUNG
+------------------
+Ordnername = Nummer + Bindestrich + Kürzel, z. B. 020-NCL, 101-EAK.
+Die Nummer ist nur für die Sortierung im Explorer.
+Die Reihenfolge auf der Website steht in projekte.js.
 
 
-NEUES PROJEKT HINZUFÜGEN:
---------------------------
-1. Textdatei anlegen:  [NUMMER-KÜRZEL].txt  (z.B. 121-XYZ.txt)
-   Format (Beispiel):
+NEUES PROJEKT ANLEGEN
+---------------------
+1. Textdatei [NUMMER-KÜRZEL].txt in projekte\_NEUES_PROJEKT\ anlegen,
+   z. B. 121-XYZ.txt, gespeichert als UTF-8. Inhalt:
 
-   Projekttitel
-   Kurzbeschreibung
+      titel=Projektname
+      untertitel=Umbau eines ... in ...
+      auftraggeber=...
+      ort=Köln-Sülz
+      bgf=75 m²
+      lph=1-8 HOAI
+      status=2011 fertiggestellt
+      team=...
+      fotos=© ...
+      auszeichnung=
+      beschreibung=Langer Fließtext in einer Zeile ...
 
-   Projektdaten:
-   Auftraggeber: ...
-   Ort: ...
-   BGF: ...
-   Leistungsphase: ...
-   Status: ...
-   Team: ...
-   Fotos: ...
-   Auszeichnung: ...
+   - Die erste Zeile muss ein "=" enthalten.
+   - Leere Felder werden auf der Seite ausgeblendet.
+   - Der Titel auf der Startseite wird zu "titel | ort".
+     Soll dort nur "Köln" stehen, titel=Projektname | Köln schreiben.
 
-   Projektbeschreibung:
-   Langer Fließtext...
+2. Bilder in projekte\_NEUES_PROJEKT\bilder_input\ legen.
+   - Reihenfolge = Reihenfolge der Dateinummern (1, 2, ... 10 klappt).
+   - Das erste Bild wird das Titelbild.
+   - JPG, PNG oder TIF. Das Skript verkleinert auf max. 2000 px
+     und speichert alles als JPG (braucht Pillow: pip install Pillow).
 
-2. Textdatei in _NEUES_PROJEKT/ ablegen
-3. Rohbilder in _NEUES_PROJEKT/bilder_input/ ablegen
-4. dca_neues_projekt.exe starten
+3. dca_neues_projekt.py per Doppelklick starten. Das Skript
+   - legt projekte\[NUMMER-KÜRZEL]\ mit Bildern, info.txt und index.html an,
+   - trägt das Projekt GANZ OBEN in projekte.js ein (inkl. Beschreibung),
+   - setzt eine neue Versionsnummer (projekte.js?v=...) in index.html
+     und projekte.html, damit Browser die neue Liste sofort laden,
+   - löscht danach Textdatei und Rohbilder aus _NEUES_PROJEKT.
+     Vorher eine Kopie behalten!
 
-   → Bilder werden umbenannt (DCA (1).jpg, DCA (2).jpg ...)
-   → DCA-Titelbild.jpg wird erstellt (erstes Bild)
-   → Projektordner wird in projekte/ angelegt
-   → Eintrag wird an erster Stelle in projekte.js eingefügt
-   → Rohbilder und Textdatei werden aus _NEUES_PROJEKT/ gelöscht
+4. Von Hand nacharbeiten:
+   - Reihenfolge in projekte.js prüfen (siehe unten)
+   - Eintrag in werkliste.html ergänzen oder anpassen
+   - Titelbild tauschen, falls nicht Bild 1 gewünscht:
+     gewünschtes Bild kopieren und als DCA-Titelbild.jpg überschreiben
+
+5. Lokal prüfen: index.html im Browser öffnen, Projektseite, Galerie
+   und Vollbild ansehen.
+
+6. Hochladen (siehe unten).
 
 
-REIHENFOLGE AUF DER WEBSITE ÄNDERN:
+REIHENFOLGE AUF DER STARTSEITE ÄNDERN
 -------------------------------------
-In projekte.js die Reihenfolge der Projektblöcke verschieben.
-Oben = links oben auf der Startseite.
+projekte.js mit dem Editor öffnen. Unter "const PROJEKTE = [" steht
+jedes Projekt als Block von { bis },
+Einen ganzen Block ausschneiden und an anderer Stelle einfügen.
+
+Das Raster füllt spaltenweise: erst Spalte 1 von oben nach unten,
+dann Spalte 2 usw. Wie viele Projekte in eine Spalte passen, hängt
+von den Bildformaten ab. Ausprobieren und mit Strg + F5 neu laden.
+
+Achtung: Jeder Block endet mit "},". Fehlt ein Komma oder eine
+Klammer, bleibt die Startseite leer.
+
+Nach Änderungen von Hand an projekte.js die Versionsnummer in
+index.html und projekte.html hochzählen (projekte.js?v=...),
+sonst sehen Besucher bis zu 10 Minuten die alte Liste.
 
 
-HERO-BILDER AKTUALISIEREN:
----------------------------
-1. Neue Bilder (beliebige Namen) in den Ordner hero/ legen
-2. hero_aktualisieren.py starten (oder .exe falls kompiliert)
-   → projekte.js wird automatisch aktualisiert
+HERO-BILDER AKTUALISIEREN
+-------------------------
+1. Bilder (beliebige Namen) in den Ordner hero\ legen
+2. _SKRIPT_hero_aktualisieren.py starten
+   → die Liste HERO_BILDER in projekte.js wird neu geschrieben
 
 
-BILDER BENENNEN:
------------------
-Projektbilder:  DCA (1).jpg, DCA (2).jpg, DCA (3).jpg ...
-Titelbild:      DCA-Titelbild.jpg  (wird automatisch aus Bild 1 erstellt)
-Hero-Bilder:    beliebige Namen, werden automatisch eingelesen
+HOCHLADEN (GITHUB DESKTOP)
+--------------------------
+1. GitHub Desktop öffnen, Repository "dca-website".
+2. Links unter "Changes" prüfen, was geändert wurde.
+3. Unten bei "Summary" kurz beschreiben, z. B. "Neues Projekt 121-XYZ".
+4. "Commit to main" klicken.
+5. "Push origin" klicken.
+6. Nach 1–2 Minuten www.dca.koeln mit Strg + F5 neu laden.
 
-
-AUF STRATO HOCHLADEN:
-----------------------
-Alle Dateien per FTP in das Hauptverzeichnis hochladen.
-Empfohlenes FTP-Programm: FileZilla (kostenlos)
-Nicht hochladen: _NEUES_PROJEKT/, build/, dist/, *.py, *.spec
+Thumbs.db und der Inhalt von _NEUES_PROJEKT werden über die Datei
+.gitignore automatisch ausgelassen.
 
 
 © 2026 Donnerhack Czempiel Architekten

@@ -1,8 +1,36 @@
 # ============================================================
-# DCA — Neues Projekt einrichten v4
+# DCA — Neues Projekt einrichten v5
 # ============================================================
 
-import os, sys, shutil, glob, re
+import os, sys, shutil, glob, re, time
+
+try:
+    from PIL import Image
+    PIL_OK = True
+except ImportError:
+    PIL_OK = False
+
+MAX_KANTE = 2000        # längste Bildseite in Pixel
+JPEG_QUALITAET = 82
+
+
+def natuerlich(name):
+    # Sortiert "Bild (2)" vor "Bild (10)"
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", name)]
+
+
+def bild_speichern(quelle, ziel):
+    # Verkleinert auf MAX_KANTE und speichert als JPG; ohne Pillow wird nur kopiert
+    if not PIL_OK:
+        shutil.copy2(quelle, ziel)
+        return
+    with Image.open(quelle) as img:
+        img = img.convert("RGB")
+        w, h = img.size
+        f = MAX_KANTE / max(w, h)
+        if f < 1:
+            img = img.resize((round(w * f), round(h * f)), Image.LANCZOS)
+        img.save(ziel, "JPEG", quality=JPEG_QUALITAET, optimize=True)
 
 if getattr(sys, 'frozen', False):
     exe_ordner = os.path.dirname(sys.executable)
@@ -118,13 +146,15 @@ def bilder_umbenennen(bilder_output):
             key = os.path.normcase(os.path.basename(f))
             if key not in gefunden:
                 gefunden[key] = f
-    dateien = sorted(gefunden.values(), key=lambda f: os.path.normcase(os.path.basename(f)))
+    dateien = sorted(gefunden.values(), key=lambda f: natuerlich(os.path.basename(f)))
     if not dateien:
         print("    ⚠  Keine Bilder in bilder_input gefunden.")
         return 0
+    if not PIL_OK:
+        print("    ⚠  Pillow fehlt — Bilder werden NICHT verkleinert (pip install Pillow)")
     for i, quelle_datei in enumerate(dateien, start=1):
         ziel_datei = os.path.join(bilder_output, f"DCA ({i}).jpg")
-        shutil.copy2(quelle_datei, ziel_datei)
+        bild_speichern(quelle_datei, ziel_datei)
         print(f"    {i:02d}  {os.path.basename(quelle_datei):<40} → DCA ({i}).jpg")
     shutil.copy2(
         os.path.join(bilder_output, "DCA (1).jpg"),
@@ -220,6 +250,26 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
     print(f"    → index.html erstellt und befüllt.")
 
 
+def js_text(t):
+    return t.replace("\\", "\\\\").replace('"', '\\"')
+
+
+def version_hochzaehlen():
+    # Hängt ?v=Zeitstempel an projekte.js, damit Browser die neue Liste sofort laden
+    v = time.strftime("%Y%m%d%H%M")
+    for name in ("index.html", "projekte.html"):
+        pfad = os.path.join(basis, name)
+        if not os.path.exists(pfad):
+            continue
+        with open(pfad, encoding="utf-8", newline="") as f:
+            html = f.read()
+        neu = re.sub(r'src="projekte\.js(\?v=\d+)?"', f'src="projekte.js?v={v}"', html)
+        if neu != html:
+            with open(pfad, "w", encoding="utf-8", newline="") as f:
+                f.write(neu)
+    print(f"    → Versionsnummer projekte.js?v={v} gesetzt.")
+
+
 def in_js_eintragen(ordner, daten, anzahl):
     with open(js_pfad, encoding="utf-8") as f:
         inhalt = f.read()
@@ -242,7 +292,7 @@ def in_js_eintragen(ordner, daten, anzahl):
         f'        team: "{daten["team"]}",\n'
         f'        fotos: "{daten["fotos"]}",\n'
         f'        auszeichnung: "{daten["auszeichnung"]}",\n'
-        f'        beschreibung: "",\n'
+        f'        beschreibung: "{js_text(daten["beschreibung"])}",\n'
         f'        bilder: {anzahl}\n'
         f'        }},\n'
     )
@@ -274,7 +324,7 @@ def aufraeumen(txt_pfad):
 def main():
     print()
     trennlinie()
-    print("  DCA — Neues Projekt einrichten v4")
+    print("  DCA — Neues Projekt einrichten v5")
     trennlinie()
 
     if not pfade_pruefen():
@@ -336,6 +386,8 @@ def main():
 
     print(f"\n  projekte.js:")
     in_js_eintragen(ordnername, daten, anzahl)
+
+    version_hochzaehlen()
 
     print(f"\n  Aufräumen:")
     aufraeumen(txt_pfad)
