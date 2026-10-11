@@ -1,0 +1,10 @@
+titel=Nicolai Apotheke
+untertitel=Umbau einer Apotheke in Köln-Sülz
+auftraggeber=Privat
+ort=Köln-Sülz
+bgf=75 m²
+lph=1-8 HOAI
+status=2011 fertiggestellt
+team= Bartosz Czempiel und Sebastian Filla
+fotos= © Roland Unterbusch
+beschreibung=Eine alteingesessene Veedels-Apotheke auf der Berrenrather Straße in Köln wurde einer umfassenden Verjüngungskur unterzogen. Unter Einbeziehung der bestehenden 50er-Jahre-Architektur wurde dazu ein zeitgemäßes Apothekendesign entwickelt und umgesetzt. Eine vorhandene, jedoch im Laufe der Zeit stark abgenutzte und überformte Einrichtung aus den 70er-Jahren wurde zusammen mit der Erdgeschossfassade vollständig zurückgebaut. Anschließend wurde die Offizin räumlich neu gefasst und neben zusätzlicher Deckenhöhe auch mit einer modernen Beleuchtung versehen. Die sorgfältig horizontal angeordneten weißen Einbauten verschmelzen mit den kontrastierend dunklen Wandflächen zu einem Raumeindruck, der eine angenehme Ruhe und angemessene Seriosität ausstrahlt. Sämtliche Umbauarbeiten wurden während des laufenden Betriebs durchgeführt.

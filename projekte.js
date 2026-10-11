@@ -50,7 +50,6 @@ const HERO_BILDER = [
 // Neues Projekt: Block kopieren und einfügen
 // ============================================
 const PROJEKTE = [
-       
         {
         ordner: "101-EAK",
         titel: "Gemeindehaus EAK | Oberhausen",
@@ -146,8 +145,7 @@ const PROJEKTE = [
         beschreibung: "",
         bilder: 4
         },
-
-
+        
     {
         ordner: "116-HGK",
         titel: "Haus HGK | Köln",
@@ -180,6 +178,22 @@ const PROJEKTE = [
         beschreibung: "Das eingeschossige Einfamilienhaus aus den 70er Jahren wurde vollständig umgebaut. Dazu erfuhr das im Grundriss L-förmige Gebäude eine komplette Neustrukturierung des inneren und äußeren Erscheinungsbildes. Fließend ineinander übergehende Raumabfolgen und variierend hohe Räume prägen die offenen Wohnbereiche im Erdgeschoss. Durch die Aufstockung wurde zusätzlicher Wohnraum geschaffen. Die dunkle Putzfassade ist eine Reminiszenz an die alten, teilweise vollständig mit Schiefer verkleideten Häuser, die typisch für die Region um Solingen sind.",
         bilder: 10
     },
+
+{
+        ordner: "020-NCL",
+        titel: "Nicolai Apotheke | Köln",
+        untertitel: "Umbau einer Apotheke in Köln-Sülz",
+        auftraggeber: "Privat",
+        ort: "Köln-Sülz",
+        bgf: "75 m²",
+        lph: "1-8 HOAI",
+        status: "2011 fertiggestellt",
+        team: "Bartosz Czempiel und Sebastian Filla",
+        fotos: "© Roland Unterbusch",
+        auszeichnung: "",
+        beschreibung: "Eine alteingesessene Veedels-Apotheke auf der Berrenrather Straße in Köln wurde einer umfassenden Verjüngungskur unterzogen. Unter Einbeziehung der bestehenden 50er-Jahre-Architektur wurde dazu ein zeitgemäßes Apothekendesign entwickelt und umgesetzt. Eine vorhandene, jedoch im Laufe der Zeit stark abgenutzte und überformte Einrichtung aus den 70er-Jahren wurde zusammen mit der Erdgeschossfassade vollständig zurückgebaut. Anschließend wurde die Offizin räumlich neu gefasst und neben zusätzlicher Deckenhöhe auch mit einer modernen Beleuchtung versehen. Die sorgfältig horizontal angeordneten weißen Einbauten verschmelzen mit den kontrastierend dunklen Wandflächen zu einem Raumeindruck, der eine angenehme Ruhe und angemessene Seriosität ausstrahlt. Sämtliche Umbauarbeiten wurden während des laufenden Betriebs durchgeführt.",
+        bilder: 17
+        },
 
         {
         ordner: "105-BRV",
