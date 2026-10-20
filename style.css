@@ -42,24 +42,17 @@ img {
     border: 0;
 }
 
-/* ============================================
-   MAUSZEIGER
-   Roter Kreis (leere Fläche und über Bildern / Klickbarem)
-   ============================================ */
-
-*, *::before, *::after {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6' fill='%23ee1111'/%3E%3C/svg%3E") 7 7, auto !important;
+/* Standard-Zeiger: schwarzer Punkt (gleiche Größe wie der Zoom-Zeiger).
+   Die Hand über Links bleibt unverändert. */
+html {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='11.8' fill='%23000'/%3E%3C/svg%3E") 14 14, default;
 }
 
-a, a *, button, button *, img, [onclick],
-.buero-foto, .buero-foto *,
-.projekt-bilder .bild-wrap, .projekt-bilder .bild-wrap *,
-.kontakt-info .qr-code,
-.hero-nav, .hero-nav *,
-.lightbox, .lightbox *,
-.lightbox-schliessen,
-.lb-hover-links, .lb-hover-rechts {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='6' fill='%23ee1111'/%3E%3C/svg%3E") 7 7, pointer !important;
+/* Zoom-Zeiger: weiß gefüllter Kreis mit schwarzem Rand und Plus (ersetzt die Standard-Lupe) */
+.projekt-bilder .bild-wrap,
+.projekt-bilder .bild-wrap *,
+.kontakt-info .qr-code {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='11' fill='%23fff' stroke='%23000' stroke-width='1.6'/%3E%3Cpath d='M14 9V19M9 14H19' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 14 14, zoom-in !important;
 }
 
 /* ============================================
