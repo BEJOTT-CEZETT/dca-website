@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCA | Donnerhack Czempiel Architekten</title>
+    <meta name="description" content="Donnerhack Czempiel Architekten (DCA), Architekturbüro in Köln. Neubau, Umbau und Bauen im Bestand: Wohnhäuser, Sakralbauten, Büro- und Forschungsgebäude.">
+    <link rel="canonical" href="https://www.dca.koeln/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DCA | Donnerhack Czempiel Architekten">
+    <meta property="og:description" content="Architekturbüro in Köln. Neubau, Umbau und Bauen im Bestand.">
+    <meta property="og:url" content="https://www.dca.koeln/">
+    <meta property="og:image" content="https://www.dca.koeln/hero/DCA%20(1).jpg">
+    <meta property="og:locale" content="de_DE">
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Donnerhack Czempiel Architekten Partnerschaft mbB",
+        "alternateName": "DCA Architekten",
+        "description": "Architekturbüro in Köln für Neubau, Umbau und Bauen im Bestand.",
+        "url": "https://www.dca.koeln/",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Am Greinshof 6",
+            "postalCode": "50999",
+            "addressLocality": "Köln",
+            "addressCountry": "DE"
+        },
+        "founder": [
+            { "@type": "Person", "name": "Lisa Donnerhack" },
+            { "@type": "Person", "name": "Bartosz Czempiel" }
+        ]
+    }
+    </script>
+    <style>
+        html {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        .hero {
+            scroll-snap-align: start;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #e0e0e0;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        .hero-slide.aktiv {
+            opacity: 1;
+        }
+        /* Hero Navigations-Pfeile */
+        .hero-nav {
+            background: none;
+            border: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .hero-nav-left  { left: 0;  justify-content: flex-start; }
+        .hero-nav-right { right: 0; justify-content: flex-end; }
+
+        .hero-pfeil {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 1.5rem;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+            font-size: 6rem;
+            font-weight: 600;
+            line-height: 1;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 0 8px rgba(0,0,0,0.6);
+        }
+        .hero-nav:hover .hero-pfeil {
+            opacity: 1;
+        }
+
+        /* Scroll-Hinweis im Hero */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            pointer-events: none;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+        .scroll-hint span {
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .scroll-arrow {
+            width: 1px;
+            height: 3.2rem;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);
+            animation: pfeil-puls 1.8s ease-in-out infinite;
+        }
+        @keyframes pfeil-puls {
+            0%, 100% { opacity: 0.6; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.15); }
+        }
+        .projects-grid {
+            scroll-snap-align: start;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+            padding-top: 11rem;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 900px) {
+            .projects-grid {
+                scroll-margin-top: 0;
+                padding-top: 16rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1><a href="index.html" style="color:inherit;text-decoration:none;">Donnerhack Czempiel Architekten</a></h1>
+        <div class="subtitle">Bau- und Raumgestaltung Köln</div>
+    </header>
+
+    <main>
+        <!-- Hero Slideshow -->
+        <div class="hero" id="hero">
+            <!-- Navigations-Pfeile -->
+            <button type="button" class="hero-nav hero-nav-left" id="heroPrev" aria-label="Vorheriges Bild">
+                <span class="hero-pfeil" aria-hidden="true">&#8249;</span>
+            </button>
+            <button type="button" class="hero-nav hero-nav-right" id="heroNext" aria-label="Nächstes Bild">
+                <span class="hero-pfeil" aria-hidden="true">&#8250;</span>
+            </button>
+            <div class="scroll-hint" id="scrollHint">
+                <span>Scrollen</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+
+        <!-- Projekt-Grid -->
+        <div class="projects-grid" id="grid"></div>
+    </main>
+
+    <nav id="bottom-nav">
+        <a href="index.html#grid">Projekte</a>
+        <span class="sep">|</span>
+        <a href="buero.html">Büro</a>
+        <span class="sep">|</span>
+        <a href="werkliste.html">Werkliste</a>
+        <span class="sep">|</span>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
+
+    <script src="projekte.js?v=202610111250"></script>
+    <script>
+
+    // Bei Rückkehr zur Startseite: zu Grid scrollen wenn #grid in URL
+    if (window.location.hash === '#grid') {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('grid').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+    }
+
+    // Header
+    const header = document.getElementById('site-header');
+    function updateHeader() {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+
+    // Scroll-Hint ausblenden
+    const scrollHint = document.getElementById('scrollHint');
+    window.addEventListener('scroll', () => {
+        scrollHint.style.opacity = window.scrollY > 80 ? '0' : '1';
+    }, { passive: true });
+
+    // ---- HERO SLIDESHOW ----
+    const hero = document.getElementById('hero');
+    const heroDateien = [...HERO_BILDER].sort(() => Math.random() - 0.5);
+
+    function slideEinfuegen(dateiname, aktiv) {
+        const img = document.createElement('img');
+        img.src = `hero/${dateiname}`;
+        img.className = 'hero-slide' + (aktiv ? ' aktiv' : '');
+        img.alt = 'DCA Architekten';
+        img.onerror = function() { this.remove(); };
+        hero.insertBefore(img, hero.querySelector('.hero-nav'));
+    }
+
+    // Erstes Bild sofort, die übrigen erst nach vollständigem Seitenaufbau
+    slideEinfuegen(heroDateien[0], true);
+    window.addEventListener('load', () => {
+        heroDateien.slice(1).forEach(d => slideEinfuegen(d, false));
+    });
+
+    let aktuellerSlide = 0;
+
+    function zeigeSlide(index) {
+        const alleSlides = hero.querySelectorAll('.hero-slide');
+        if (alleSlides.length < 2) return;
+        alleSlides[aktuellerSlide].classList.remove('aktiv');
+        aktuellerSlide = (index + alleSlides.length) % alleSlides.length;
+        alleSlides[aktuellerSlide].classList.add('aktiv');
+    }
+
+    // Automatischer Wechsel
+    let autoTimer = setInterval(() => {
+        const alleSlides = hero.querySelectorAll('.hero-slide');
+        if (alleSlides.length < 2) return;
+        zeigeSlide(aktuellerSlide + 1);
+    }, 5000);
+
+    function autoReset() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => {
+            const alleSlides = hero.querySelectorAll('.hero-slide');
+            if (alleSlides.length < 2) return;
+            zeigeSlide(aktuellerSlide + 1);
+        }, 5000);
+    }
+
+    // Manuelle Navigation
+    document.getElementById('heroPrev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        zeigeSlide(aktuellerSlide - 1);
+        autoReset();
+    });
+    document.getElementById('heroNext').addEventListener('click', (e) => {
+        e.stopPropagation();
+        zeigeSlide(aktuellerSlide + 1);
+        autoReset();
+    });
+
+    // ---- PROJEKT GRID ----
+    const grid = document.getElementById('grid');
+    PROJEKTE.forEach(p => {
+        const titelbildSrc = `projekte/${p.ordner}/bilder/DCA-Titelbild.jpg`;
+        const thumb = document.createElement('a');
+        thumb.href = `projekte/${p.ordner}/index.html`;
+        thumb.className = 'thumb';
+        thumb.innerHTML = `
+            <img src="${titelbildSrc}" alt="${p.titel}" loading="lazy" decoding="async"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="thumb-placeholder" style="display:none; aspect-ratio:4/3;"></div>
+            <div class="title">${p.titel}</div>
+        `;
+        grid.appendChild(thumb);
+    });
+    </script>
+    <script>
+    // Bildschutz: Rechtsklick und Ziehen nur auf Bildern blockieren
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+    });
+    </script>
+</body>
+</html>

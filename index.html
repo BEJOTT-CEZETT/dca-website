@@ -58,7 +58,10 @@
             width: 100%; height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1.2s ease-in-out;
+            transition: opacity 1.8s ease-in-out;
+            transform-origin: 50% 50%;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
         }
         .hero-slide.aktiv {
             opacity: 1;
@@ -229,20 +232,60 @@
 
     let aktuellerSlide = 0;
 
+    // ---- KEN-BURNS-BEWEGUNG ----
+    // Standzeit pro Bild und Überblendung (ms)
+    const HERO_INTERVALL = 7000;
+    const HERO_FADE = 1800;
+    const bewegungAus = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Bewegungsvarianten: Skalierung und Verschiebung (in % der Bildgröße).
+    // Die Verschiebung bleibt immer kleiner als der Skalierungsüberstand,
+    // damit keine Bildkanten sichtbar werden.
+    const BEWEGUNGEN = [
+        { von: [1.00,  0.0,  0.0], bis: [1.10,  0.0,  0.0] },   // langsam hinein
+        { von: [1.10,  0.0,  0.0], bis: [1.00,  0.0,  0.0] },   // langsam heraus
+        { von: [1.06, -2.0,  0.0], bis: [1.12,  2.0, -1.0] },   // Schwenk nach rechts
+        { von: [1.06,  2.0,  0.0], bis: [1.12, -2.0,  1.0] },   // Schwenk nach links
+        { von: [1.12,  1.5,  2.0], bis: [1.04, -1.0, -1.0] },   // heraus mit Drift
+        { von: [1.04,  0.0,  1.5], bis: [1.10,  0.0, -2.0] },   // hinein, leicht aufwärts
+    ];
+    let letzteBewegung = -1;
+
+    function kenBurns(img) {
+        if (bewegungAus || !img.animate) return;
+        let i;
+        do { i = Math.floor(Math.random() * BEWEGUNGEN.length); }
+        while (i === letzteBewegung && BEWEGUNGEN.length > 1);
+        letzteBewegung = i;
+        const b = BEWEGUNGEN[i];
+        const t = ([sc, x, y]) => `translate(${x}%, ${y}%) scale(${sc})`;
+        if (img._kb) img._kb.cancel();
+        // läuft über Standzeit plus beide Überblendungen, damit das Bild
+        // auch beim Ein- und Ausblenden in Bewegung bleibt
+        img._kb = img.animate(
+            [{ transform: t(b.von) }, { transform: t(b.bis) }],
+            { duration: HERO_INTERVALL + HERO_FADE * 2, easing: 'linear', fill: 'forwards' }
+        );
+    }
+
     function zeigeSlide(index) {
         const alleSlides = hero.querySelectorAll('.hero-slide');
         if (alleSlides.length < 2) return;
         alleSlides[aktuellerSlide].classList.remove('aktiv');
         aktuellerSlide = (index + alleSlides.length) % alleSlides.length;
+        kenBurns(alleSlides[aktuellerSlide]);
         alleSlides[aktuellerSlide].classList.add('aktiv');
     }
+
+    // erstes Bild sofort in Bewegung setzen
+    kenBurns(hero.querySelector('.hero-slide.aktiv'));
 
     // Automatischer Wechsel
     let autoTimer = setInterval(() => {
         const alleSlides = hero.querySelectorAll('.hero-slide');
         if (alleSlides.length < 2) return;
         zeigeSlide(aktuellerSlide + 1);
-    }, 5000);
+    }, HERO_INTERVALL);
 
     function autoReset() {
         clearInterval(autoTimer);
@@ -250,7 +293,7 @@
             const alleSlides = hero.querySelectorAll('.hero-slide');
             if (alleSlides.length < 2) return;
             zeigeSlide(aktuellerSlide + 1);
-        }, 5000);
+        }, HERO_INTERVALL);
     }
 
     // Manuelle Navigation
