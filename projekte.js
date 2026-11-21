@@ -37,7 +37,6 @@ const HERO_BILDER = [
     "DCA (34).jpg",
     "DCA (35).jpg",
     "DCA (36).jpg",
-    "DCA (37).jpg",
     "DCA (4).jpg",
     "DCA (5).jpg",
     "DCA (6).jpg",
