@@ -96,6 +96,13 @@
             padding: 3rem 4rem 4rem 4rem;
             box-sizing: border-box;
         }
+        .ki-hinweis {
+            position: absolute;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+            color: #999;
+            cursor: default;
+        }
         .projekt-bilder .bild-wrap img {
             display: block;
             max-width: 75%;
@@ -287,6 +294,28 @@
         wrap.addEventListener('click', () => lightboxOeffnen(index));
         bilderSpalte.appendChild(wrap);
     });
+
+    // Hinweis unter dem letzten Bild
+    const letztesBild = bilderSpalte.lastElementChild;
+    if (letztesBild) {
+        letztesBild.style.position = 'relative';
+        const kiHinweis = document.createElement('div');
+        kiHinweis.className = 'ki-hinweis';
+        kiHinweis.textContent = 'Enthält KI-Inhalte';
+        kiHinweis.addEventListener('click', e => e.stopPropagation());
+        letztesBild.appendChild(kiHinweis);
+        // direkt unter die linke Bildkante setzen
+        const kiPosition = () => {
+            const img = letztesBild.querySelector('img');
+            if (!img) return;
+            const r = img.getBoundingClientRect(), w = letztesBild.getBoundingClientRect();
+            kiHinweis.style.left = (r.left - w.left) + 'px';
+            kiHinweis.style.top = (r.bottom - w.top + 8) + 'px';
+        };
+        letztesBild.querySelector('img').addEventListener('load', kiPosition);
+        window.addEventListener('resize', kiPosition);
+        setTimeout(kiPosition, 0);
+    }
 
     // Header und Nav: weiße Balken damit Bilder nie dahinter verschwinden
     const headerEl = document.getElementById('site-header');
