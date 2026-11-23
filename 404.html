@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seite nicht gefunden | DCA Architekten</title>
     <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="3; url=/">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style.css">
     <style>
@@ -12,6 +13,34 @@
         .fehler-main p { font-size: 1.5rem; line-height: 1.8; max-width: 40rem; }
         .fehler-main a { border-bottom: 1px solid rgba(0,0,0,0.3); }
     </style>
+    <script>
+    // Alte oder falsche Adressen weiterleiten:
+    // enthält die Adresse ein Projektkürzel (z. B. "khn"), geht es zur Projektseite, sonst zur Startseite.
+    (function () {
+        var PROJEKTE = ["010-DCK","020-NCL","026-SLM","040-VVW","101-EAK","102-KHN","104-CUB",
+                        "105-BRV","116-HGK","117-ODZD","118-GZN","120-HDS","901-TZA"];
+        var pfad = location.pathname.toLowerCase();
+        var ziel = "/";
+        for (var i = 0; i < PROJEKTE.length; i++) {
+            var kuerzel = PROJEKTE[i].split("-")[1].toLowerCase();
+            if (new RegExp("(^|[^a-z])" + kuerzel + "([^a-z]|$)").test(pfad)) {
+                ziel = "/projekte/" + PROJEKTE[i] + "/index.html";
+                break;
+            }
+        }
+        if (ziel === "/") {
+            var SEITEN = [["kontakt", "/kontakt.html"], ["contact", "/kontakt.html"],
+                          ["impressum", "/impressum.html"], ["datenschutz", "/datenschutz.html"],
+                          ["werkliste", "/werkliste.html"], ["buero", "/buero.html"],
+                          ["office", "/buero.html"], ["about", "/buero.html"], ["ueber", "/buero.html"],
+                          ["projekt", "/projekte.html"], ["project", "/projekte.html"], ["work", "/projekte.html"]];
+            for (var j = 0; j < SEITEN.length; j++) {
+                if (pfad.indexOf(SEITEN[j][0]) !== -1) { ziel = SEITEN[j][1]; break; }
+            }
+        }
+        location.replace(ziel);
+    })();
+    </script>
 </head>
 <body>
     <header id="site-header">
@@ -20,7 +49,7 @@
     </header>
 
     <main class="fehler-main">
-        <p>Diese Seite gibt es nicht mehr. Unsere Website ist umgezogen.</p>
+        <p>Diese Seite gibt es nicht mehr. Unsere Website ist umgezogen, Sie werden weitergeleitet.</p>
         <p>Weiter zur <a href="/">Startseite</a> oder direkt zu den <a href="/projekte.html">Projekten</a>.</p>
     </main>
 
