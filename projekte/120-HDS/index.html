@@ -98,7 +98,7 @@
         }
         .ki-hinweis {
             position: absolute;
-            text-align: right;
+            text-align: center;
             font-size: 1.1rem;
             letter-spacing: 0.05em;
             color: #999;
@@ -308,7 +308,7 @@ Visualisierung: Moritz Hoffart</p>
         kiHinweis.textContent = 'Darstellungen enthalten KI-Inhalte';
         kiHinweis.addEventListener('click', e => e.stopPropagation());
         letztesBild.appendChild(kiHinweis);
-        const KI_ABSTAND = 80; // Mindestabstand zwischen Bild und Navigationsleiste in px
+        const KI_ABSTAND = 50; // Abstand zwischen letztem Bild und Navigationsleiste in px
         const kiPosition = () => {
             const img = letztesBild.querySelector('img');
             if (!img) return;
@@ -316,14 +316,16 @@ Visualisierung: Moritz Hoffart</p>
             const nH = document.getElementById('bottom-nav').offsetHeight;
             // Oberkante der Navigationsleiste, gemessen ab Oberkante des eingerasteten Bildrahmens
             const navOben = window.innerHeight - hH - nH;
-            let r = img.getBoundingClientRect(), w = letztesBild.getBoundingClientRect();
-            if (window.innerWidth > 900 && navOben - (r.bottom - w.top) < KI_ABSTAND) {
-                // Bild ist zu hoch: oben ausrichten und so weit verkleinern, dass unten Platz bleibt
-                letztesBild.style.alignItems = 'flex-start';
-                r = img.getBoundingClientRect();
-                img.style.maxHeight = (navOben - (r.top - w.top) - KI_ABSTAND) + 'px';
-                r = img.getBoundingClientRect();
+            let w = letztesBild.getBoundingClientRect();
+            if (window.innerWidth > 900) {
+                // letztes Bild unten ausrichten, sodass zur Leiste genau KI_ABSTAND bleibt
+                letztesBild.style.alignItems = 'flex-end';
+                letztesBild.style.paddingBottom = (w.height - navOben + KI_ABSTAND) + 'px';
+                const oben = parseFloat(getComputedStyle(letztesBild).paddingTop) || 0;
+                img.style.maxHeight = (navOben - oben - KI_ABSTAND) + 'px';
+                w = letztesBild.getBoundingClientRect();
             }
+            const r = img.getBoundingClientRect();
             kiHinweis.style.left = (r.left - w.left) + 'px';
             kiHinweis.style.width = r.width + 'px';
             const kH = kiHinweis.getBoundingClientRect().height;
