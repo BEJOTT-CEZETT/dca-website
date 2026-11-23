@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicolai Apotheke | DCA Architekten</title>
+    <meta name="description" content="Umbau einer Apotheke in Köln-Sülz. DCA Architekten, Köln.">
+    <link rel="canonical" href="https://www.dca.koeln/projekte/020-NCL/index.html">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nicolai Apotheke | DCA Architekten">
+    <meta property="og:description" content="Umbau einer Apotheke in Köln-Sülz. DCA Architekten, Köln.">
+    <meta property="og:url" content="https://www.dca.koeln/projekte/020-NCL/index.html">
+    <meta property="og:image" content="https://www.dca.koeln/projekte/020-NCL/bilder/DCA-Titelbild.jpg">
     <link rel="stylesheet" href="../../style.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -275,7 +283,7 @@
         wrap.dataset.index = index;
         const img = document.createElement('img');
         img.src = src;
-        img.alt = 'Projektbild ' + (index + 1);
+        img.alt = document.title.split(' | ')[0] + ', Bild ' + (index + 1);
         img.loading = 'lazy';
 
         img.onerror = function() { wrap.style.display = 'none'; };

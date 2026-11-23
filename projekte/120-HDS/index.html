@@ -282,7 +282,7 @@ Visualisierung: Moritz Hoffart</p>
         wrap.dataset.index = index;
         const img = document.createElement('img');
         img.src = src;
-        img.alt = 'Projektbild ' + (index + 1);
+        img.alt = document.title.split(' | ')[0] + ', Bild ' + (index + 1);
         img.loading = 'lazy';
 
         img.onerror = function() { wrap.style.display = 'none'; };

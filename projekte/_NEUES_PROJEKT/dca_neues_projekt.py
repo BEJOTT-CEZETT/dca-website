@@ -1,8 +1,8 @@
 # ============================================================
-# DCA — Neues Projekt einrichten v5
+# DCA — Neues Projekt einrichten v6
 # ============================================================
 
-import os, sys, shutil, glob, re, time
+import os, sys, shutil, glob, re, time, html as html_mod
 
 try:
     from PIL import Image
@@ -12,6 +12,12 @@ except ImportError:
 
 MAX_KANTE = 2000        # längste Bildseite in Pixel
 JPEG_QUALITAET = 82
+DOMAIN = "https://www.dca.koeln"
+
+# Seiten außerhalb von projekte/, die in die Sitemap gehören
+SITEMAP_SEITEN = ["", "buero.html", "projekte.html", "werkliste.html",
+                  "kontakt.html", "impressum.html", "datenschutz.html"]
+PROJEKT_MUSTER = re.compile(r"^\d{3}-[A-Z0-9]+$")
 
 
 def natuerlich(name):
@@ -181,6 +187,9 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
     # Titel im <title>-Tag
     html = re.sub(r"<title>[^<]*</title>", f"<title>{kurztitel} | DCA Architekten</title>", html)
 
+    # Suchmaschinen-Angaben (Beschreibung, Canonical, Vorschaubild)
+    html = seo_kopf_einfuegen(html, kurztitel, daten, ordnername)
+
     # h2
     html = re.sub(r"<h2>[^<]*</h2>", f"<h2>{kurztitel}</h2>", html)
 
@@ -248,6 +257,59 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
     with open(ziel, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"    → index.html erstellt und befüllt.")
+
+
+def seo_kopf_einfuegen(html, kurztitel, daten, ordnername):
+    """Setzt description, canonical, favicon und og-Tags direkt nach <title>."""
+    if 'rel="canonical"' in html:
+        return html
+    teile = [daten["untertitel"].strip()] if daten["untertitel"].strip() else [kurztitel]
+    beschreibung = html_mod.escape(f"{teile[0].rstrip('.')}. DCA Architekten, Köln.", quote=True)
+    titel = html_mod.escape(f"{kurztitel} | DCA Architekten", quote=True)
+    url = f"{DOMAIN}/projekte/{ordnername}/index.html"
+    block = (
+        f'\n    <meta name="description" content="{beschreibung}">'
+        f'\n    <link rel="canonical" href="{url}">'
+        f'\n    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">'
+        f'\n    <meta property="og:type" content="website">'
+        f'\n    <meta property="og:title" content="{titel}">'
+        f'\n    <meta property="og:description" content="{beschreibung}">'
+        f'\n    <meta property="og:url" content="{url}">'
+        f'\n    <meta property="og:image" content="{DOMAIN}/projekte/{ordnername}/bilder/DCA-Titelbild.jpg">'
+    )
+    return re.sub(r"(<title>[^<]*</title>)", lambda m: m.group(1) + block, html, count=1)
+
+
+def sitemap_aktualisieren(neu=None):
+    """Schreibt sitemap.xml neu: alle Hauptseiten und alle Projektordner.
+    Bestehende Datumsangaben bleiben erhalten, neue Seiten bekommen das heutige Datum."""
+    pfad = os.path.join(basis, "sitemap.xml")
+    heute = time.strftime("%Y-%m-%d")
+    alt = {}
+    if os.path.exists(pfad):
+        with open(pfad, encoding="utf-8") as f:
+            for loc, lm in re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", f.read()):
+                alt[loc] = lm
+    urls = []
+    for seite in SITEMAP_SEITEN:
+        if seite == "" or os.path.exists(os.path.join(basis, seite)):
+            urls.append(f"{DOMAIN}/{seite}")
+    for name in sorted(os.listdir(proj_ordner)):
+        if PROJEKT_MUSTER.match(name) and os.path.exists(os.path.join(proj_ordner, name, "index.html")):
+            urls.append(f"{DOMAIN}/projekte/{name}/index.html")
+    zeilen = []
+    for u in urls:
+        if neu and f"/projekte/{neu}/" in u:
+            lm = heute
+        else:
+            lm = alt.get(u, heute)
+        zeilen.append(f"    <url><loc>{u}</loc><lastmod>{lm}</lastmod></url>")
+    inhalt = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+              + "\n".join(zeilen) + "\n</urlset>\n")
+    with open(pfad, "w", encoding="utf-8", newline="\n") as f:
+        f.write(inhalt)
+    print(f"    → sitemap.xml aktualisiert ({len(urls)} Seiten).")
 
 
 def js_text(t):
@@ -324,7 +386,7 @@ def aufraeumen(txt_pfad):
 def main():
     print()
     trennlinie()
-    print("  DCA — Neues Projekt einrichten v5")
+    print("  DCA — Neues Projekt einrichten v6")
     trennlinie()
 
     if not pfade_pruefen():
@@ -389,6 +451,9 @@ def main():
 
     version_hochzaehlen()
 
+    print(f"\n  Sitemap:")
+    sitemap_aktualisieren(neu=ordnername)
+
     print(f"\n  Aufräumen:")
     aufraeumen(txt_pfad)
 
@@ -401,4 +466,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--sitemap" in sys.argv:
+        sitemap_aktualisieren()
+    else:
+        main()
