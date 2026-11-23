@@ -96,14 +96,6 @@
             padding: 3rem 4rem 4rem 4rem;
             box-sizing: border-box;
         }
-        .ki-hinweis {
-            position: absolute;
-            text-align: center;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-            color: #999;
-            cursor: default;
-        }
         .projekt-bilder .bild-wrap img {
             display: block;
             max-width: 75%;
@@ -245,7 +237,8 @@
                     <p>Lisa Donnerhack, Bartosz Czempiel<br>
 DCA Architekten (Köln) in Zusammenarbeit mit sopha Architekten (Köln)<br>
 Grafik: Greta Romberger<br>
-Visualisierung: Moritz Hoffart</p>
+Visualisierung: Moritz Hoffart<br>
+Darstellungen enthalten KI-Inhalte</p>
                 </div>
 
 
@@ -299,42 +292,6 @@ Visualisierung: Moritz Hoffart</p>
         bilderSpalte.appendChild(wrap);
     });
 
-    // Hinweis unter dem letzten Bild
-    const letztesBild = bilderSpalte.lastElementChild;
-    if (letztesBild) {
-        letztesBild.style.position = 'relative';
-        const kiHinweis = document.createElement('div');
-        kiHinweis.className = 'ki-hinweis';
-        kiHinweis.textContent = 'Visualisierungen enthalten KI-Inhalte';
-        kiHinweis.addEventListener('click', e => e.stopPropagation());
-        letztesBild.appendChild(kiHinweis);
-        const KI_ABSTAND = 80; // Mindestabstand zwischen Bild und Navigationsleiste in px
-        const kiPosition = () => {
-            const img = letztesBild.querySelector('img');
-            if (!img) return;
-            const hH = document.getElementById('site-header').offsetHeight;
-            const nH = document.getElementById('bottom-nav').offsetHeight;
-            // Oberkante der Navigationsleiste, gemessen ab Oberkante des eingerasteten Bildrahmens
-            const navOben = window.innerHeight - hH - nH;
-            let r = img.getBoundingClientRect(), w = letztesBild.getBoundingClientRect();
-            if (window.innerWidth > 900 && navOben - (r.bottom - w.top) < KI_ABSTAND) {
-                // Bild ist zu hoch: oben ausrichten und so weit verkleinern, dass unten Platz bleibt
-                letztesBild.style.alignItems = 'flex-start';
-                r = img.getBoundingClientRect();
-                img.style.maxHeight = (navOben - (r.top - w.top) - KI_ABSTAND) + 'px';
-                r = img.getBoundingClientRect();
-            }
-            kiHinweis.style.left = (r.left - w.left) + 'px';
-            kiHinweis.style.width = r.width + 'px';
-            const kH = kiHinweis.getBoundingClientRect().height;
-            const luecke = Math.max(navOben - (r.bottom - w.top), kH + 16);
-            kiHinweis.style.top = (r.bottom - w.top + (luecke - kH) / 2) + 'px';
-        };
-        letztesBild.querySelector('img').addEventListener('load', kiPosition);
-        window.addEventListener('resize', () => setTimeout(kiPosition, 0));
-        setTimeout(kiPosition, 0);
-        if (document.fonts) document.fonts.ready.then(kiPosition);
-    }
 
     // Header und Nav: weiße Balken damit Bilder nie dahinter verschwinden
     const headerEl = document.getElementById('site-header');
