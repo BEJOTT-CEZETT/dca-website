@@ -440,8 +440,6 @@ def main():
         input("  Enter zum Beenden...")
         return
 
-    shutil.copy2(txt_pfad, os.path.join(ziel_pfad, "info.txt"))
-    print(f"\n  info.txt kopiert.")
 
     print(f"\n  Projektseite:")
     projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl)
