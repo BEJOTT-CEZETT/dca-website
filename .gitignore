@@ -8,3 +8,7 @@ projekte/_NEUES_PROJEKT/*.txt
 
 # Python
 __pycache__/
+
+# Hero-Bilder in Bearbeitung, nicht veroeffentlichen
+hero/archiv/
+hero/NEU/
