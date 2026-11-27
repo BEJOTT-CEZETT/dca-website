@@ -41,6 +41,7 @@ const HERO_BILDER = [
     "DCA (38).jpg",
     "DCA (39).jpg",
     "DCA (4).jpg",
+    "DCA (40).jpg",
     "DCA (5).jpg",
     "DCA (6).jpg",
     "DCA (7).jpg",
@@ -54,6 +55,21 @@ const HERO_BILDER = [
 // Neues Projekt: Block kopieren und einfügen
 // ============================================
 const PROJEKTE = [
+        {
+        ordner: "110-VRD",
+        titel: "Haus VRD | Duisburg",
+        untertitel: "Neubau eines Einfamilienhauses",
+        auftraggeber: "Privat",
+        ort: "Duisburg",
+        bgf: "220 m²",
+        lph: "1-4 HOAI",
+        status: "fertiggestellt",
+        team: "Lisa Donnerhack und Bartosz Czempiel<br>Visualisierung: DCA Architekten",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
 
         {
         ordner: "101-EAK",
