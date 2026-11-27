@@ -12,3 +12,8 @@ __pycache__/
 # Hero-Bilder in Bearbeitung, nicht veroeffentlichen
 hero/archiv/
 hero/NEU/
+
+# Interne Arbeitsdokumente, nicht veroeffentlichen
+*.docx
+*.xlsx
+*.pdf
