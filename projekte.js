@@ -41,7 +41,7 @@ const HERO_BILDER = [
     "DCA (38).jpg",
     "DCA (39).jpg",
     "DCA (4).jpg",
-    "DCA (40).jpg",
+    "DCA (40 ).jpg",
     "DCA (5).jpg",
     "DCA (6).jpg",
     "DCA (7).jpg",
@@ -55,22 +55,7 @@ const HERO_BILDER = [
 // Neues Projekt: Block kopieren und einfügen
 // ============================================
 const PROJEKTE = [
-        {
-        ordner: "110-VRD",
-        titel: "Haus VRD | Duisburg",
-        untertitel: "Neubau eines Einfamilienhauses",
-        auftraggeber: "Privat",
-        ort: "Duisburg",
-        bgf: "220 m²",
-        lph: "1-4 HOAI",
-        status: "fertiggestellt",
-        team: "Lisa Donnerhack, Bartosz Czempiel und Philipp Euler<br>Visualisierung: DCA Architekten",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 2
-        },
-
+ 
         {
         ordner: "101-EAK",
         titel: "Gemeindehaus EAK | Oberhausen",
@@ -85,6 +70,55 @@ const PROJEKTE = [
         auszeichnung: "1. Preis beim Architekturwettbewerb 2015 | 1. Architekturpreis der evangelischen Kirche im Rheinland 2023 | Auszeichnung Baukultur Oberhausen 2024",
         beschreibung: "Das geplante Gemeindehaus soll das vorhandene Gebäude-Ensemble sinnvoll und behutsam ergänzen. Eine klare und bodenständige Architektursprache spiegelt dies ebenso wider wie die Wahl der Materialien im Innen- und Außenraum. In dem Ansatz, das Gebäude baulich und funktional unmittelbar an die Kirche anzuschließen, äußert sich die Strategie für den Umgang mit der historischen Bausubstanz, bei der die Verschmelzung des Alten und Neuen den Gedanken der Einheit von Liturgie und Gemeindeleben repräsentiert. So wird die Außenwand der Kirche zur Innenwand des neuen Gemeindezentrums und macht durch ihre beidseitige Präsenz die Verbundenheit beider Räumlichkeiten erlebbar und wird darüber hinaus ihrer zentralen Rolle bei der Beachtung der historischen Bausubstanz im gestalterischen und funktionalen Kontext gerecht.",
         bilder: 10
+    },
+
+    {
+        ordner: "102-KHN",
+        titel: "Landhaus KHN | Bergisch Gladbach",
+        untertitel: "Neubau eines Landhauses",
+        auftraggeber: "Privat",
+        ort: "Bergisch Gladbach",
+        bgf: "300 m²",
+        lph: "1-9 HOAI",
+        status: "fertiggestellt",
+        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
+        bilder: 31
+    },
+
+    {
+        ordner: "116-HGK",
+        titel: "Haus HGK | Köln",
+        untertitel: "Neubau eines Wohn- und Atelierhauses in Köln-Bayenthal",
+        auftraggeber: "Privat",
+        ort: "Köln",
+        bgf: "450 m²",
+        lph: "1-3",
+        status: "2024 abgeschlossen",
+        team: "Bartosz Czempiel und Lisa Donnerhack",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 3
+    },
+
+
+    {
+        ordner: "117-ODZD",
+        titel: "Opernhaus ODZD | Düsseldorf",
+        untertitel: "Opernhaus der Zukunft in Düsseldorf",
+        auftraggeber: "Stadt Düsseldorf und die Deutsche Oper am Rhein",
+        ort: "Düsseldorf",
+        bgf: "38.000 m²",
+        lph: "internationaler Realisierungswettbewerb",
+        status: "abgeschlossen 2025",
+        team: "DCA Architekten in Zusammenarbeit mit WXCA Architekci, Warschau",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "Die 'Oper der Zukunft' versteht sich als offener, vielfältiger Ort mit zeitloser Gestaltung, der aus dem städtischen Kontext Düsseldorfs entwickelt wurde. Der Standort am Rhein und die Nähe zum Hofgarten prägen das Konzept einer inklusiven Struktur, die Kultur, Natur und Erholung miteinander verbindet. Der Neubau greift diese Qualitäten auf und erweitert sie im Sinne eines 'Forums', das mit anderen Institutionen geteilt wird. Eine Abfolge unterschiedlich gestalteter Räume – von großzügig und repräsentativ bis intim und atmosphärisch – öffnet sich zu den Grünflächen und erfüllt vielfältige Nutzungsansprüche. Das Forum erstreckt sich vom Erdgeschoss entlang der Straßen bis in die oberen Geschosse und verknüpft diese miteinander. Als universeller Raum von überregionaler Bedeutung fügt sich die neue Oper dauerhaft in den kulturellen Kontext Düsseldorfs ein.",
+        bilder: 3
     },
 
 {
@@ -104,39 +138,6 @@ const PROJEKTE = [
     },
 
 
- {
-        ordner: "010-DCK",
-        titel: "Haus DCK | Köln",
-        untertitel: "Umbau eines Doppelhauses in Köln",
-        auftraggeber: "Privat",
-        ort: "Köln",
-        bgf: "280 m²",
-        lph: "1-3 und 5-9",
-        status: "2011 fertiggestellt",
-        team: "Lisa Donnerhack und Bartosz Czempiel",
-        fotos: "© dca.koeln",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 2
-        },
-
-
-    {
-        ordner: "102-KHN",
-        titel: "Landhaus KHN | Bergisch Gladbach",
-        untertitel: "Neubau eines Landhauses",
-        auftraggeber: "Privat",
-        ort: "Bergisch Gladbach",
-        bgf: "300 m²",
-        lph: "1-9 HOAI",
-        status: "fertiggestellt",
-        team: "Lisa Donnerhack, Bartosz Czempiel, Greta Romberger, Nikolas Draht, Philip Euler, Norman Jansen-Nägeler",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "Das zweigeschossige Landhaus für eine fünfköpfige Familie wurde als Neubau in Holzbauweise errichtet. Das Ensemble wird durch ein Carport und ein separates Saunagebäude ergänzt. Im Erdgeschoss gehen Wohn-, Koch- und Essbereich fließend ineinander über. Unterschiedlich hohe Raumvolumen erzeugen wechselnde Lichtstimmungen im Tagesverlauf, sodass alle Gemeinschaftszonen vom Sonnenverlauf natürlich durchleuchtet werden. Die Kinderzimmer und zusätzliche Nutzflächen sind klar im Erdgeschoss zoniert. Im Obergeschoss liegen die privaten Räume für Eltern und Gäste. Fassaden und Innenräume bestehen aus nachhaltigen, ökologischen Materialien und betonen den sensiblen Bezug zum angrenzenden Naturschutzgebiet. Naturnahe Außenanlagen und die Nutzung von Regenwasser stärken die lokale Biodiversität und reduzieren den CO2-Fußabdruck.",
-        bilder: 31
-    },
-
     {
         ordner: "118-GZN",
         titel: "Gemeindezentrum GZN | Neuss",
@@ -153,6 +154,24 @@ const PROJEKTE = [
         bilder: 4
     },
 
+
+     {
+        ordner: "110-VRD",
+        titel: "Haus VRD | Duisburg",
+        untertitel: "Neubau eines Einfamilienhauses",
+        auftraggeber: "Privat",
+        ort: "Duisburg",
+        bgf: "220 m²",
+        lph: "1-4 HOAI",
+        status: "fertiggestellt",
+        team: "Lisa Donnerhack, Bartosz Czempiel und Philipp Euler<br>Visualisierung: DCA Architekten",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
+
+
         {
         ordner: "040-VVW",
         titel: "Wohnhochhaus VVW | Köln",
@@ -167,73 +186,6 @@ const PROJEKTE = [
         auszeichnung: "1. Preis (Baufeld 1 und 4) und 2. Preis (Baufeld 2 und 3) beim 2-phasigen internationalen Wettbewerb",
         beschreibung: "",
         bilder: 4
-        },
-        
-
-    {
-        ordner: "116-HGK",
-        titel: "Haus HGK | Köln",
-        untertitel: "Neubau eines Wohn- und Atelierhauses in Köln-Bayenthal",
-        auftraggeber: "Privat",
-        ort: "Köln",
-        bgf: "450 m²",
-        lph: "1-3",
-        status: "2024 abgeschlossen",
-        team: "Bartosz Czempiel und Lisa Donnerhack",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 3
-    },
-
- 
-    {
-        ordner: "026-SLM",
-        titel: "Haus SLM | Solingen",
-        untertitel: "Umbau und Aufstockung eines Einfamilienhauses",
-        auftraggeber: "Privat",
-        ort: "Solingen",
-        bgf: "340 m²",
-        lph: "1-8 HOAI",
-        status: "fertiggestellt 2013",
-        team: "Bartosz Czempiel, Sebastian Filla und Jutta Klare",
-        fotos: "Roland Unterbusch",
-        auszeichnung: "",
-        beschreibung: "Das eingeschossige Einfamilienhaus aus den 70er Jahren wurde vollständig umgebaut. Dazu erfuhr das im Grundriss L-förmige Gebäude eine komplette Neustrukturierung des inneren und äußeren Erscheinungsbildes. Fließend ineinander übergehende Raumabfolgen und variierend hohe Räume prägen die offenen Wohnbereiche im Erdgeschoss. Durch die Aufstockung wurde zusätzlicher Wohnraum geschaffen. Die dunkle Putzfassade ist eine Reminiszenz an die alten, teilweise vollständig mit Schiefer verkleideten Häuser, die typisch für die Region um Solingen sind.",
-        bilder: 10
-    },
-
-{
-        ordner: "020-NCL",
-        titel: "Nicolai Apotheke | Köln",
-        untertitel: "Umbau einer Apotheke in Köln-Sülz",
-        auftraggeber: "Privat",
-        ort: "Köln-Sülz",
-        bgf: "75 m²",
-        lph: "1-8 HOAI",
-        status: "2011 fertiggestellt",
-        team: "Bartosz Czempiel und Sebastian Filla",
-        fotos: "© Roland Unterbusch",
-        auszeichnung: "",
-        beschreibung: "Eine alteingesessene Veedels-Apotheke auf der Berrenrather Straße in Köln wurde einer umfassenden Verjüngungskur unterzogen. Unter Einbeziehung der bestehenden 50er-Jahre-Architektur wurde dazu ein zeitgemäßes Apothekendesign entwickelt und umgesetzt. Eine vorhandene, jedoch im Laufe der Zeit stark abgenutzte und überformte Einrichtung aus den 70er-Jahren wurde zusammen mit der Erdgeschossfassade vollständig zurückgebaut. Anschließend wurde die Offizin räumlich neu gefasst und neben zusätzlicher Deckenhöhe auch mit einer modernen Beleuchtung versehen. Die sorgfältig horizontal angeordneten weißen Einbauten verschmelzen mit den kontrastierend dunklen Wandflächen zu einem Raumeindruck, der eine angenehme Ruhe und angemessene Seriosität ausstrahlt. Sämtliche Umbauarbeiten wurden während des laufenden Betriebs durchgeführt.",
-        bilder: 17
-        },
-
-   
-        {
-        ordner: "105-BRV",
-        titel: "Bürokomplex BRV | Netphen",
-        untertitel: "Modernisierung und Umnutzung eines Bürogebäudes in Netphen",
-        auftraggeber: "Kriton Immobilien",
-        ort: "Netphen",
-        bgf: "ca. 12.000 m²",
-        lph: "1-8 HOAI",
-        status: "2021 fertiggestellt",
-        team: "Bartosz Czempiel, Lisa Donnerhack, Matthias Weber, Benjamin Weber, Jakob von Schwanewede und Bernhard Farnschläder",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 3
         },
 
     {
@@ -253,21 +205,69 @@ const PROJEKTE = [
         },
 
     {
-        ordner: "117-ODZD",
-        titel: "Opernhaus ODZD | Düsseldorf",
-        untertitel: "Opernhaus der Zukunft in Düsseldorf",
-        auftraggeber: "Stadt Düsseldorf und die Deutsche Oper am Rhein",
-        ort: "Düsseldorf",
-        bgf: "38.000 m²",
-        lph: "internationaler Realisierungswettbewerb",
-        status: "abgeschlossen 2025",
-        team: "DCA Architekten in Zusammenarbeit mit WXCA Architekci, Warschau",
-        fotos: "",
+        ordner: "026-SLM",
+        titel: "Haus SLM | Solingen",
+        untertitel: "Umbau und Aufstockung eines Einfamilienhauses",
+        auftraggeber: "Privat",
+        ort: "Solingen",
+        bgf: "340 m²",
+        lph: "1-8 HOAI",
+        status: "fertiggestellt 2013",
+        team: "Bartosz Czempiel, Sebastian Filla und Jutta Klare",
+        fotos: "Roland Unterbusch",
         auszeichnung: "",
-        beschreibung: "Die 'Oper der Zukunft' versteht sich als offener, vielfältiger Ort mit zeitloser Gestaltung, der aus dem städtischen Kontext Düsseldorfs entwickelt wurde. Der Standort am Rhein und die Nähe zum Hofgarten prägen das Konzept einer inklusiven Struktur, die Kultur, Natur und Erholung miteinander verbindet. Der Neubau greift diese Qualitäten auf und erweitert sie im Sinne eines 'Forums', das mit anderen Institutionen geteilt wird. Eine Abfolge unterschiedlich gestalteter Räume – von großzügig und repräsentativ bis intim und atmosphärisch – öffnet sich zu den Grünflächen und erfüllt vielfältige Nutzungsansprüche. Das Forum erstreckt sich vom Erdgeschoss entlang der Straßen bis in die oberen Geschosse und verknüpft diese miteinander. Als universeller Raum von überregionaler Bedeutung fügt sich die neue Oper dauerhaft in den kulturellen Kontext Düsseldorfs ein.",
-        bilder: 3
+        beschreibung: "Das eingeschossige Einfamilienhaus aus den 70er Jahren wurde vollständig umgebaut. Dazu erfuhr das im Grundriss L-förmige Gebäude eine komplette Neustrukturierung des inneren und äußeren Erscheinungsbildes. Fließend ineinander übergehende Raumabfolgen und variierend hohe Räume prägen die offenen Wohnbereiche im Erdgeschoss. Durch die Aufstockung wurde zusätzlicher Wohnraum geschaffen. Die dunkle Putzfassade ist eine Reminiszenz an die alten, teilweise vollständig mit Schiefer verkleideten Häuser, die typisch für die Region um Solingen sind.",
+        bilder: 10
     },
 
+   
+        {
+        ordner: "105-BRV",
+        titel: "Bürokomplex BRV | Netphen",
+        untertitel: "Modernisierung und Umnutzung eines Bürogebäudes in Netphen",
+        auftraggeber: "Kriton Immobilien",
+        ort: "Netphen",
+        bgf: "ca. 12.000 m²",
+        lph: "1-8 HOAI",
+        status: "2021 fertiggestellt",
+        team: "Bartosz Czempiel, Lisa Donnerhack, Matthias Weber, Benjamin Weber, Jakob von Schwanewede und Bernhard Farnschläder",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 3
+        },
+
+{
+        ordner: "020-NCL",
+        titel: "Nicolai Apotheke | Köln",
+        untertitel: "Umbau einer Apotheke in Köln-Sülz",
+        auftraggeber: "Privat",
+        ort: "Köln-Sülz",
+        bgf: "75 m²",
+        lph: "1-8 HOAI",
+        status: "2011 fertiggestellt",
+        team: "Bartosz Czempiel und Sebastian Filla",
+        fotos: "© Roland Unterbusch",
+        auszeichnung: "",
+        beschreibung: "Eine alteingesessene Veedels-Apotheke auf der Berrenrather Straße in Köln wurde einer umfassenden Verjüngungskur unterzogen. Unter Einbeziehung der bestehenden 50er-Jahre-Architektur wurde dazu ein zeitgemäßes Apothekendesign entwickelt und umgesetzt. Eine vorhandene, jedoch im Laufe der Zeit stark abgenutzte und überformte Einrichtung aus den 70er-Jahren wurde zusammen mit der Erdgeschossfassade vollständig zurückgebaut. Anschließend wurde die Offizin räumlich neu gefasst und neben zusätzlicher Deckenhöhe auch mit einer modernen Beleuchtung versehen. Die sorgfältig horizontal angeordneten weißen Einbauten verschmelzen mit den kontrastierend dunklen Wandflächen zu einem Raumeindruck, der eine angenehme Ruhe und angemessene Seriosität ausstrahlt. Sämtliche Umbauarbeiten wurden während des laufenden Betriebs durchgeführt.",
+        bilder: 17
+        },
+
+ {
+        ordner: "010-DCK",
+        titel: "Haus DCK | Köln",
+        untertitel: "Umbau eines Doppelhauses in Köln",
+        auftraggeber: "Privat",
+        ort: "Köln",
+        bgf: "280 m²",
+        lph: "1-3 und 5-9",
+        status: "2011 fertiggestellt",
+        team: "Lisa Donnerhack und Bartosz Czempiel",
+        fotos: "© dca.koeln",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
 
     {
         ordner: "104-CUB",

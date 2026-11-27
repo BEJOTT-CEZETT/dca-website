@@ -77,6 +77,36 @@
         grid.appendChild(thumb);
     });
 
+    // Raster zeilenweise füllen: Projekt 1 links oben, 2 rechts daneben usw.
+    // Die Spaltenzahl kommt weiter aus style.css (4 / 3 / 2 je nach Bildschirmbreite).
+    (function () {
+        const thumbs = Array.from(grid.querySelectorAll('.thumb'));
+        let spaltenAktuell = 0;
+        function anordnen() {
+            grid.classList.remove('zeilenweise');
+            grid.querySelectorAll('.grid-spalte').forEach(s => s.remove());
+            thumbs.forEach(t => grid.appendChild(t));
+            const n = parseInt(getComputedStyle(grid).columnCount, 10) || 1;
+            spaltenAktuell = n;
+            if (n < 2) return;
+            const spalten = [];
+            for (let i = 0; i < n; i++) {
+                const s = document.createElement('div');
+                s.className = 'grid-spalte';
+                grid.appendChild(s);
+                spalten.push(s);
+            }
+            thumbs.forEach((t, i) => spalten[i % n].appendChild(t));
+            grid.classList.add('zeilenweise');
+        }
+        anordnen();
+        window.addEventListener('resize', () => {
+            grid.classList.remove('zeilenweise');
+            const n = parseInt(getComputedStyle(grid).columnCount, 10) || 1;
+            if (n !== spaltenAktuell) anordnen(); else if (n >= 2) grid.classList.add('zeilenweise');
+        });
+    })();
+
     // Scroll-Header für andere Seiten die hierher zurücknavigieren
     const header = document.getElementById('site-header');
     </script>
