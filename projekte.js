@@ -55,6 +55,21 @@ const HERO_BILDER = [
 // ============================================
 const PROJEKTE = [
         {
+        ordner: "112-CML",
+        titel: "Haus CML | Lippstadt",
+        untertitel: "Neubau eines Doppelhauses",
+        auftraggeber: "Privat",
+        ort: "Lippstadt",
+        bgf: "2 x 180 m²",
+        lph: "1-3 HOAI",
+        status: "abgeschlossen",
+        team: "Lisa Donnerhack und Bartosz Czempiel<br>Visualisierung: DCA Architekten<br>Darstellungen enthalten KI-Inhalte",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
+        {
         ordner: "101-EAK",
         titel: "Gemeindehaus EAK | Oberhausen",
         untertitel: "Neubau eines Gemeindehauses in Oberhausen",
