@@ -1,0 +1,24 @@
+ZOOM-FUNKTION (Lightbox) DER PROJEKTSEITEN – archiviert am 27.11.2026
+====================================================================
+
+Bis November 2026 öffnete ein Klick auf ein Projektbild eine Vollbild-
+Ansicht (Lightbox) mit Pfeilen links/rechts, Zähler und Schließen-Kreuz.
+
+Seitdem springt ein Klick auf ein Bild zum nächsten Bild nach unten.
+
+Der Lightbox-Code ist in allen Projektseiten weiterhin enthalten, nur
+abgeschaltet. Wieder einschalten:
+
+  In projekte/<PROJEKT>/index.html (und in _VORLAGE/index.html sowie
+  _NEUES_PROJEKT/index.html für künftige Projekte) die Zeile
+
+      const ZOOM_AKTIV = false;
+
+  auf
+
+      const ZOOM_AKTIV = true;
+
+  ändern.
+
+projektseite_mit_zoom.html in diesem Ordner ist die Vorlage im alten
+Zustand (Stand 27.11.2026, vor der Umstellung) als Referenz.

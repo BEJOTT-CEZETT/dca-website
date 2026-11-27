@@ -84,7 +84,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: zoom-in;
+            cursor: pointer;
             padding: 3rem 4rem 4rem 4rem;
             box-sizing: border-box;
         }
@@ -280,7 +280,7 @@
 
         img.onerror = function() { wrap.style.display = 'none'; };
         wrap.appendChild(img);
-        wrap.addEventListener('click', () => lightboxOeffnen(index));
+        wrap.addEventListener('click', () => ZOOM_AKTIV ? lightboxOeffnen(index) : zumNaechstenBild(wrap));
         bilderSpalte.appendChild(wrap);
     });
 
@@ -314,6 +314,19 @@
     window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
+
+    // Klick auf ein Bild: zum nächsten Bild springen (nach dem letzten wieder zum ersten).
+    // Die frühere Zoom-Ansicht (Lightbox) lässt sich mit ZOOM_AKTIV = true wieder einschalten.
+    const ZOOM_AKTIV = false;
+    function zumNaechstenBild(wrap) {
+        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"])'));
+        const i = wraps.indexOf(wrap);
+        if (i < 0 || wraps.length < 2) return;
+        const ziel = wraps[(i + 1) % wraps.length];
+        const headerH = document.getElementById('site-header').offsetHeight;
+        const zielTop = ziel.getBoundingClientRect().top + window.scrollY - (window.innerWidth > 900 ? headerH : 0);
+        window.scrollTo({ top: zielTop, behavior: 'smooth' });
+    }
 
     // Scroll-Snap per JS
     let scrollSperrt = false;

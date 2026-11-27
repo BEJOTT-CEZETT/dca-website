@@ -54,21 +54,7 @@ const HERO_BILDER = [
 // Neues Projekt: Block kopieren und einfügen
 // ============================================
 const PROJEKTE = [
-        {
-        ordner: "112-CML",
-        titel: "Haus CML | Lippstadt",
-        untertitel: "Neubau eines Doppelhauses",
-        auftraggeber: "Privat",
-        ort: "Lippstadt",
-        bgf: "2 x 180 m²",
-        lph: "1-3 HOAI",
-        status: "abgeschlossen",
-        team: "Lisa Donnerhack und Bartosz Czempiel<br>Visualisierung: DCA Architekten<br>Darstellungen enthalten KI-Inhalte",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 2
-        },
+
         {
         ordner: "101-EAK",
         titel: "Gemeindehaus EAK | Oberhausen",
@@ -100,6 +86,7 @@ const PROJEKTE = [
         beschreibung: "",
         bilder: 12
     },
+
 
  {
         ordner: "010-DCK",
@@ -149,6 +136,7 @@ const PROJEKTE = [
         beschreibung: "Der Abschied von der Versöhnungskirche fällt uns nicht leicht. Wir schätzen ihr architektonisches Erscheinungsbild ebenso wie die hochwertigen Materialien, aus denen sie erbaut wurde. Doch eine wirtschaftlich vertretbare Kernsanierung ist nicht möglich. Deshalb verfolgen wir mit unserem Neubau ein klares Ziel: Bewahren, was wertvoll ist – und nachhaltig weiterbauen. Unser Konzept setzt auf Wiederverwendung und Ressourcenschonung. Der bestehende Glockenturm bleibt erhalten, ebenso zentrale Elemente wie Altar, Kanzel, Taufbecken und Weltkugel. Doch wir gehen noch weiter: Wir nutzen das Bestandsgebäude als Materialdepot, um wertvolle Ressourcen zu sichern. Die roten Klinkersteine, das Holzpflaster des Bodens, das tragende Holzdachwerk – all das findet im neuen Gemeindehaus eine zweite Heimat. Selbst Leuchten, Saalbestuhlung und Massivholztüren werden wiederverwendet. In einer Zeit, in der nachhaltiges, ressourcenschonendes Bauen immer wichtiger wird, setzen wir auf einen zirkulären Ansatz. Auch wenn dieses Prinzip in der zeitgenössischen Architektur noch jung ist, zeigt ein Blick in die Baugeschichte: Wiederverwendung war schon immer ein fester Bestandteil christlicher Kirchenbauten. Daran knüpfen wir an – mit einem Gemeindehaus, das Tradition und Zukunft verbindet.",
         bilder: 4
     },
+
         {
         ordner: "040-VVW",
         titel: "Wohnhochhaus VVW | Köln",
@@ -165,6 +153,7 @@ const PROJEKTE = [
         bilder: 4
         },
         
+
     {
         ordner: "116-HGK",
         titel: "Haus HGK | Köln",
@@ -181,6 +170,21 @@ const PROJEKTE = [
         bilder: 3
     },
 
+        {
+        ordner: "112-DHC",
+        titel: "Haus DHC | Lippstadt",
+        untertitel: "Neubau eines Doppelhauses",
+        auftraggeber: "Privat",
+        ort: "Lippstadt",
+        bgf: "2 x 180 m²",
+        lph: "1-3 HOAI",
+        status: "abgeschlossen",
+        team: "Bartosz Czempiel, Lisa Donnerhack und Philipp Euler<br>Visualisierung: DCA Architekten",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
 
     {
         ordner: "026-SLM",
