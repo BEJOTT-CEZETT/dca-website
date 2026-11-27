@@ -170,22 +170,7 @@ const PROJEKTE = [
         bilder: 3
     },
 
-        {
-        ordner: "112-DHC",
-        titel: "Doppelhaus DHC | Lippstadt",
-        untertitel: "Neubau eines Doppelhauses",
-        auftraggeber: "Privat",
-        ort: "Lippstadt",
-        bgf: "2 × 180 m²",
-        lph: "1-3 HOAI",
-        status: "2011 abgeschlossen",
-        team: "Bartosz Czempiel, Lisa Donnerhack und Philipp Euler<br>Visualisierung: DCA Architekten",
-        fotos: "",
-        auszeichnung: "",
-        beschreibung: "",
-        bilder: 2
-        },
-
+ 
     {
         ordner: "026-SLM",
         titel: "Haus SLM | Solingen",
@@ -218,6 +203,7 @@ const PROJEKTE = [
         bilder: 17
         },
 
+   
         {
         ordner: "105-BRV",
         titel: "Bürokomplex BRV | Netphen",
@@ -233,6 +219,23 @@ const PROJEKTE = [
         beschreibung: "",
         bilder: 3
         },
+
+    {
+        ordner: "112-DHC",
+        titel: "Doppelhaus DHC | Lippstadt",
+        untertitel: "Neubau eines Doppelhauses",
+        auftraggeber: "Privat",
+        ort: "Lippstadt",
+        bgf: "2 × 180 m²",
+        lph: "1-3 HOAI",
+        status: "2022 abgeschlossen",
+        team: "Bartosz Czempiel, Lisa Donnerhack und Philipp Euler<br>Visualisierung: DCA Architekten",
+        fotos: "",
+        auszeichnung: "",
+        beschreibung: "",
+        bilder: 2
+        },
+
     {
         ordner: "117-ODZD",
         titel: "Opernhaus ODZD | Düsseldorf",
