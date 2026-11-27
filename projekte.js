@@ -64,7 +64,7 @@ const PROJEKTE = [
         bgf: "220 m²",
         lph: "1-4 HOAI",
         status: "fertiggestellt",
-        team: "Lisa Donnerhack und Bartosz Czempiel<br>Visualisierung: DCA Architekten",
+        team: "Lisa Donnerhack, Bartosz Czempiel und Philipp Euler<br>Visualisierung: DCA Architekten",
         fotos: "",
         auszeichnung: "",
         beschreibung: "",
