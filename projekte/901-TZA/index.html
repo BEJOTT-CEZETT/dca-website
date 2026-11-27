@@ -341,9 +341,22 @@
         const i = wraps.indexOf(wrap);
         if (i < 0 || wraps.length < 2) return;
         const ziel = wraps[(i + 1) % wraps.length];
-        const headerH = document.getElementById('site-header').offsetHeight;
-        const zielTop = ziel.getBoundingClientRect().top + window.scrollY - (window.innerWidth > 900 ? headerH : 0);
-        window.scrollTo({ top: zielTop, behavior: 'smooth' });
+        const headerEl = document.getElementById('site-header');
+        const headerH = headerEl.offsetHeight;
+        let zielTop;
+        if (window.innerWidth > 900) {
+            zielTop = ziel.getBoundingClientRect().top + window.scrollY - headerH;
+        } else {
+            // Mobil: Bild senkrecht mittig im sichtbaren Bereich zwischen Kopf und Menüleiste
+            const img = ziel.querySelector('img') || ziel;
+            const r = img.getBoundingClientRect();
+            const pos = getComputedStyle(headerEl).position;
+            const oben = (pos === 'fixed' || pos === 'sticky') ? headerH : 0;
+            const nav = document.getElementById('bottom-nav');
+            const unten = window.innerHeight - (nav ? nav.offsetHeight : 0);
+            zielTop = window.scrollY + r.top + r.height / 2 - (oben + unten) / 2;
+        }
+        window.scrollTo({ top: Math.max(0, zielTop), behavior: 'smooth' });
     }
 
     // Scroll-Snap per JS
