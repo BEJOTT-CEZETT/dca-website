@@ -96,14 +96,6 @@
             padding: 3rem 4rem 4rem 4rem;
             box-sizing: border-box;
         }
-        .ki-hinweis {
-            position: absolute;
-            text-align: center;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-            color: #999;
-            cursor: default;
-        }
         .projekt-bilder .bild-wrap img {
             display: block;
             max-width: 75%;
@@ -297,44 +289,6 @@ Visualisierung: DCA Architekten</p>
         bilderSpalte.appendChild(wrap);
     });
 
-    // Hinweis unter dem letzten Bild
-    const letztesBild = bilderSpalte.lastElementChild;
-    if (letztesBild) {
-        letztesBild.style.position = 'relative';
-        const kiHinweis = document.createElement('div');
-        kiHinweis.className = 'ki-hinweis';
-        kiHinweis.textContent = 'Darstellungen enthalten KI-Inhalte';
-        kiHinweis.addEventListener('click', e => e.stopPropagation());
-        letztesBild.appendChild(kiHinweis);
-        const KI_ABSTAND = 50; // Abstand zwischen letztem Bild und Navigationsleiste in px
-        const kiPosition = () => {
-            const img = letztesBild.querySelector('img');
-            if (!img) return;
-            const hH = document.getElementById('site-header').offsetHeight;
-            const nH = document.getElementById('bottom-nav').offsetHeight;
-            // Oberkante der Navigationsleiste, gemessen ab Oberkante des eingerasteten Bildrahmens
-            const navOben = window.innerHeight - hH - nH;
-            let w = letztesBild.getBoundingClientRect();
-            if (window.innerWidth > 900) {
-                // letztes Bild unten ausrichten, sodass zur Leiste genau KI_ABSTAND bleibt
-                letztesBild.style.alignItems = 'flex-end';
-                letztesBild.style.paddingBottom = (w.height - navOben + KI_ABSTAND) + 'px';
-                const oben = parseFloat(getComputedStyle(letztesBild).paddingTop) || 0;
-                img.style.maxHeight = (navOben - oben - KI_ABSTAND) + 'px';
-                w = letztesBild.getBoundingClientRect();
-            }
-            const r = img.getBoundingClientRect();
-            kiHinweis.style.left = (r.left - w.left) + 'px';
-            kiHinweis.style.width = r.width + 'px';
-            const kH = kiHinweis.getBoundingClientRect().height;
-            const luecke = Math.max(navOben - (r.bottom - w.top), kH + 16);
-            kiHinweis.style.top = (r.bottom - w.top + (luecke - kH) / 2) + 'px';
-        };
-        letztesBild.querySelector('img').addEventListener('load', kiPosition);
-        window.addEventListener('resize', () => setTimeout(kiPosition, 0));
-        setTimeout(kiPosition, 0);
-        if (document.fonts) document.fonts.ready.then(kiPosition);
-    }
 
 
     // Header und Nav: weiße Balken damit Bilder nie dahinter verschwinden
