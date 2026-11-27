@@ -259,6 +259,10 @@
 
     <script>
     const BILDANZAHL = 10;  // ← anpassen
+    // Alt-Text der Bilder: Projekttitel, Kurzbeschreibung, Büro
+    const BILD_ALT = (document.querySelector('.projekt-info h2') || {textContent: document.title.split(' | ')[0]}).textContent.trim()
+        + ', ' + ((document.querySelector('meta[name="description"]') || {content: ''}).content.split('. ')[0])
+        + ' – Donnerhack Czempiel Architekten';
     const BILDORDNER = 'bilder/';
     const bildPfade = [];
     for (let i = 1; i <= BILDANZAHL; i++) {
@@ -271,7 +275,7 @@
         wrap.dataset.index = index;
         const img = document.createElement('img');
         img.src = src;
-        img.alt = document.title.split(' | ')[0] + ', Bild ' + (index + 1);
+        img.alt = BILD_ALT + ', Bild ' + (index + 1);
         img.loading = 'lazy';
 
         img.onerror = function() { wrap.style.display = 'none'; };

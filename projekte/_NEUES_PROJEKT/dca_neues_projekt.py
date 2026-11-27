@@ -288,7 +288,7 @@ def sitemap_aktualisieren(neu=None):
     alt = {}
     if os.path.exists(pfad):
         with open(pfad, encoding="utf-8") as f:
-            for loc, lm in re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", f.read()):
+            for loc, lm in re.findall(r"<url><loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", f.read()):
                 alt[loc] = lm
     urls = []
     for seite in SITEMAP_SEITEN:
@@ -303,13 +303,35 @@ def sitemap_aktualisieren(neu=None):
             lm = heute
         else:
             lm = alt.get(u, heute)
-        zeilen.append(f"    <url><loc>{u}</loc><lastmod>{lm}</lastmod></url>")
+        bilder = sitemap_bilder(u)
+        if bilder:
+            bl = "".join(f"\n      <image:image><image:loc>{b}</image:loc></image:image>" for b in bilder)
+            zeilen.append(f"    <url><loc>{u}</loc><lastmod>{lm}</lastmod>{bl}\n    </url>")
+        else:
+            zeilen.append(f"    <url><loc>{u}</loc><lastmod>{lm}</lastmod></url>")
     inhalt = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+              '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
               + "\n".join(zeilen) + "\n</urlset>\n")
     with open(pfad, "w", encoding="utf-8", newline="\n") as f:
         f.write(inhalt)
     print(f"    → sitemap.xml aktualisiert ({len(urls)} Seiten).")
+
+
+def sitemap_bilder(url):
+    """Bild-URLs einer Projektseite (DCA (1).jpg … DCA (BILDANZAHL).jpg) für die Bilder-Sitemap."""
+    m = re.search(r"/projekte/([^/]+)/index\.html$", url)
+    if not m:
+        return []
+    seite = os.path.join(proj_ordner, m.group(1), "index.html")
+    try:
+        with open(seite, encoding="utf-8") as f:
+            anzahl = int(re.search(r"BILDANZAHL = (\d+)", f.read()).group(1))
+    except (OSError, AttributeError):
+        return []
+    basis_url = f"{DOMAIN}/projekte/{m.group(1)}/bilder/"
+    return [basis_url + f"DCA%20({i}).jpg" for i in range(1, anzahl + 1)
+            if os.path.exists(os.path.join(proj_ordner, m.group(1), "bilder", f"DCA ({i}).jpg"))]
 
 
 def js_text(t):
