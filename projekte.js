@@ -172,13 +172,13 @@ const PROJEKTE = [
 
         {
         ordner: "112-DHC",
-        titel: "Haus DHC | Lippstadt",
+        titel: "Doppelhaus DHC | Lippstadt",
         untertitel: "Neubau eines Doppelhauses",
         auftraggeber: "Privat",
         ort: "Lippstadt",
-        bgf: "2 x 180 m²",
+        bgf: "2 × 180 m²",
         lph: "1-3 HOAI",
-        status: "abgeschlossen",
+        status: "2011 abgeschlossen",
         team: "Bartosz Czempiel, Lisa Donnerhack und Philipp Euler<br>Visualisierung: DCA Architekten",
         fotos: "",
         auszeichnung: "",
