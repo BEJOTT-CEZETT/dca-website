@@ -17,3 +17,9 @@ hero/NEU/
 *.docx
 *.xlsx
 *.pdf
+
+# Testseiten, nicht veroeffentlichen
+projekte/*/test-*.html
+
+# Archivierte Projektseiten (lokal)
+projekte/*/archiv/

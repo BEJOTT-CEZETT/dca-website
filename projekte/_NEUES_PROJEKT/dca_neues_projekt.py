@@ -190,6 +190,15 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
     # Suchmaschinen-Angaben (Beschreibung, Canonical, Vorschaubild)
     html = seo_kopf_einfuegen(html, kurztitel, daten, ordnername)
 
+    # Projekttext als eigene Station nach dem ersten Bild (Absätze in der Textdatei mit " | " trennen)
+    if daten["beschreibung"].strip():
+        absaetze = [html_mod.escape(t.strip(), quote=False) for t in daten["beschreibung"].split(" | ") if t.strip()]
+        block = ('<div class="projekt-bilder" id="bilderSpalte">\n'
+                 '                <div class="projekt-text-block" id="projektText">\n'
+                 + "".join(f"                    <p>{t}</p>\n" for t in absaetze)
+                 + '                </div>\n            </div>')
+        html = html.replace('<div class="projekt-bilder" id="bilderSpalte"></div>', block, 1)
+
     # h2
     html = re.sub(r"<h2>[^<]*</h2>", f"<h2>{kurztitel}</h2>", html)
 
@@ -226,7 +235,7 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
         aus_block = (
             f'                <div class="info-block">\n'
             f'                    <h4>Auszeichnung</h4>\n'
-            f'                    <p class="auszeichnung">{daten["auszeichnung"]}</p>\n'
+            f'                    <p class="auszeichnung">{daten["auszeichnung"].replace(" | ", "<br>")}</p>\n'
             f'                </div>\n'
         )
 
@@ -320,6 +329,8 @@ def sitemap_aktualisieren(neu=None):
 
 def sitemap_bilder(url):
     """Bild-URLs einer Projektseite (DCA (1).jpg … DCA (BILDANZAHL).jpg) für die Bilder-Sitemap."""
+    if url.endswith("/buero.html"):
+        return [f"{DOMAIN}/buero/DCA_Partner_4-3_web.jpg"] if os.path.exists(os.path.join(basis, "buero", "DCA_Partner_4-3_web.jpg")) else []
     m = re.search(r"/projekte/([^/]+)/index\.html$", url)
     if not m:
         return []

@@ -33,12 +33,15 @@
             align-self: start;
             height: calc(100vh - 9rem);
             overflow-y: auto;
-            padding: 3rem 4rem 3rem 5rem;
+            padding: 3rem 7rem 3rem 5rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             scrollbar-width: none;
         }
+        /* Text mittig, solange er passt; ist er länger, beginnt er oben bündig mit dem Bild */
+        .projekt-info > :first-child { margin-top: auto; }
+        .projekt-info > :last-child { margin-bottom: auto; }
         .projekt-info::-webkit-scrollbar { display: none; }
 
         .projekt-info h2 {
@@ -106,6 +109,24 @@
             transform: translateX(-19rem);
         }
 
+        /* Projekttext: eigene Station nach dem ersten Bild */
+        .projekt-text-block {
+            width: 75%;
+            max-width: 72rem;
+            align-self: center;
+            transform: translateX(-19rem);
+            min-height: calc(100vh - 9rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 0 4rem;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .projekt-text-block p { font-size: 1.5rem; line-height: 1.8; color: #000; margin: 0 0 1.4rem; }
+        @media (max-width: 900px) {
+            .projekt-text-block { width: 100%; transform: none; min-height: 0; padding: 2rem 2rem 3rem; }
+        }
         /* Lightbox */
         .lightbox {
             display: none;
@@ -239,14 +260,20 @@
                 </div>
                 <div class="info-block">
                     <h4>Team</h4>
-                    <p>Bartosz Czempiel in Zusammenarbeit mit Frederik Jaspert (JSWD Architekten, Köln) und Jakub Sztur (Sztur Architekten, Köln).<br>
+                    <p><a href="../../buero.html#bartosz-czempiel">Bartosz Czempiel</a> in Zusammenarbeit mit Frederik Jaspert (JSWD Architekten, Köln) und Jakub Sztur (Sztur Architekten, Köln).<br>
 Entwurf / Konzept (Phase 1 & Phase 2): Bartosz Czempiel
 <br><br>Weitere Teilnehmer: Hadi Teherani (Hamburg), MVRDV (Rotterdam), Benthem Crouwel / Cross architects (Amsterdam, Aachen), RKW Architekten (Düsseldorf), Kister Scheithauer Groß Architekten (Köln)</p>
                 </div>
                                 <!-- FOTOS_BLOCK -->
             </aside>
 
-            <div class="projekt-bilder" id="bilderSpalte"></div>
+            <div class="projekt-bilder" id="bilderSpalte">
+                <div class="projekt-text-block" id="projektText">
+                    <p>Über einen Wettbewerb sollten High-Rise Wohngebäude mit einer Vielzahl von Einheiten gehobenen Standards entstehen. Basierend auf den Vorgaben des bestehenden B-Plans sieht unser Entwurf vier Solitäre in unterschiedlicher Höhenstaffelung zwischen 25 und 50m vor. Um dem Anspruch der Zielgruppe von Immobilienerwerbern nach nicht nur Luxus sondern auch Individualität und persönlichem Gestaltungsfreiraum gerecht zu werden und dabei dennoch das geplante Massenwohnhaus generieren zu können, wurde eine neue Typologie entwickelt und die Idee von gestapelten Villen (Vertical Villa) ausformuliert.</p>
+                    <p>Ziel war es, eine eigenständige Identität und ein größtmögliches Gefühl von Individualität für jede einzelne Wohneinheit zu ermöglichen, ohne dabei die Vorstellung von einem sauberen und einheitlichen Gesamtbild aufzugeben. Um eine maximale Flexibilität zu erlauben, nicht nur in Bezug auf die Wohnungstypen und Wohnungsgrößen, sondern insbesondere auch, um bei der inneren und äußeren Gestaltung der einzelnen Villen möglichst frei agieren zu können, entwickelten wir ein "Rohbau-Konzept". Diesem liegt das Grundprinzip von übereinanderliegenden Parzellen vor, wobei jede Parzelle (Geschoss) aus einer oberen und einer unteren Scheibe besteht. Die Stapelung aller Scheiben bildet das Grundgerüst jeden einzelnen Solitärs und prägt das Erscheinungsbild. Die dazwischen liegenden Bereiche können individuell bespielt und gestaltet, einzeln genutzt oder zusammengeschlossen werden. Durch die Kombinationsmöglichkeit von mehreren, übereinander liegenden Parzellen werden zahlreiche Variationen ermöglicht, die auf nahezu alle Wohnwünsche eingehen können, während sie die klassischen Qualitäten der Villa zitieren.</p>
+                    <p>Eine Einheit kann auf ein bis zu drei Ebenen (Maisonette) stattfinden, dabei sind Flächenvarianten zwischen 150 und 600 m² Wohnfläche möglich. Die umlaufenden Balkone gewährleisten unterstützend, dass die horizontal geschichteten Betonscheiben gestalterisch das Gesamterscheinungsbild dominieren und zusammenhalten und dass die individuell gestaltalten Bereiche optisch in den Hintergrund treten. Ein übergeordnetes Farb- und Materialkonzept sichert darüber hinaus einen einheitlichen Duktus.</p>
+                </div>
+            </div>
 
         </div>
     </main>
@@ -333,7 +360,7 @@ Entwurf / Konzept (Phase 1 & Phase 2): Bartosz Czempiel
     // Die frühere Zoom-Ansicht (Lightbox) lässt sich mit ZOOM_AKTIV = true wieder einschalten.
     const ZOOM_AKTIV = false;
     function zumNaechstenBild(wrap) {
-        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"])'));
+        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"]), .projekt-text-block'));
         const i = wraps.indexOf(wrap);
         if (i < 0 || wraps.length < 2) return;
         const ziel = wraps[(i + 1) % wraps.length];
@@ -350,15 +377,53 @@ Entwurf / Konzept (Phase 1 & Phase 2): Bartosz Czempiel
             const oben = (pos === 'fixed' || pos === 'sticky') ? headerH : 0;
             const nav = document.getElementById('bottom-nav');
             const unten = window.innerHeight - (nav ? nav.offsetHeight : 0);
-            zielTop = window.scrollY + r.top + r.height / 2 - (oben + unten) / 2;
+            // höher als der sichtbare Bereich (z. B. langer Text): oben bündig statt mittig
+            zielTop = r.height > unten - oben
+                ? window.scrollY + r.top - oben - 16
+                : window.scrollY + r.top + r.height / 2 - (oben + unten) / 2;
         }
         window.scrollTo({ top: Math.max(0, zielTop), behavior: 'smooth' });
     }
 
+    // Projekttext (falls vorhanden) direkt nach dem ersten Bild einordnen; Klick führt weiter
+    (function () {
+        const block = document.getElementById('projektText');
+        if (!block) return;
+        const zweites = bilderSpalte.querySelectorAll('.bild-wrap')[1];
+        if (zweites) bilderSpalte.insertBefore(block, zweites); else bilderSpalte.appendChild(block);
+        block.addEventListener('click', () => zumNaechstenBild(block));
+    })();
+
+    // Textblock links: mittig, aber nie höher als die Oberkante des ersten Bildes
+    function infoAusrichten() {
+        const info = document.querySelector('.projekt-info');
+        if (!info) return;
+        const erstes = info.firstElementChild, letztes = info.lastElementChild;
+        info.style.paddingTop = '';
+        if (erstes) erstes.style.marginTop = '';
+        if (window.innerWidth <= 900 || !erstes) return;
+        const img = bilderSpalte.querySelector('.bild-wrap img');
+        if (!img || !img.complete || !img.naturalHeight) return;
+        const wrap = img.closest('.bild-wrap');
+        const headerH = document.getElementById('site-header').offsetHeight;
+        const infoOben = parseFloat(getComputedStyle(info).top) || 0;
+        // Oberkante des ersten Bildes, wenn es eingerastet ist, gemessen ab Oberkante der Textspalte
+        const bildOben = headerH + (img.getBoundingClientRect().top - wrap.getBoundingClientRect().top) - infoOben;
+        const hoehe = letztes.getBoundingClientRect().bottom - erstes.getBoundingClientRect().top;
+        const mitte = (info.clientHeight - hoehe) / 2;
+        info.style.paddingTop = Math.max(mitte, bildOben) + 'px';
+        erstes.style.marginTop = '0';
+    }
+    window.addEventListener('load', infoAusrichten);
+    window.addEventListener('resize', () => setTimeout(infoAusrichten, 50));
+    const erstesBildEl = bilderSpalte.querySelector('.bild-wrap img');
+    if (erstesBildEl) erstesBildEl.addEventListener('load', infoAusrichten);
+    if (document.fonts) document.fonts.ready.then(infoAusrichten);
+
     // Scroll-Snap per JS
     let scrollSperrt = false;
     window.addEventListener('wheel', function(e) {
-        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"])'));
+        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"]), .projekt-text-block'));
         if (wraps.length === 0 || scrollSperrt) return;
         const mitte = window.scrollY + window.innerHeight / 2;
         let aktIndex = 0;

@@ -33,12 +33,15 @@
             align-self: start;
             height: calc(100vh - 9rem);
             overflow-y: auto;
-            padding: 3rem 4rem 3rem 5rem;
+            padding: 3rem 7rem 3rem 5rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             scrollbar-width: none;
         }
+        /* Text mittig, solange er passt; ist er länger, beginnt er oben bündig mit dem Bild */
+        .projekt-info > :first-child { margin-top: auto; }
+        .projekt-info > :last-child { margin-bottom: auto; }
         .projekt-info::-webkit-scrollbar { display: none; }
 
         .projekt-info h2 {
@@ -106,6 +109,24 @@
             transform: translateX(-19rem);
         }
 
+        /* Projekttext: eigene Station nach dem ersten Bild */
+        .projekt-text-block {
+            width: 75%;
+            max-width: 72rem;
+            align-self: center;
+            transform: translateX(-19rem);
+            min-height: calc(100vh - 9rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem 0 4rem;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .projekt-text-block p { font-size: 1.5rem; line-height: 1.8; color: #000; margin: 0 0 1.4rem; }
+        @media (max-width: 900px) {
+            .projekt-text-block { width: 100%; transform: none; min-height: 0; padding: 2rem 2rem 3rem; }
+        }
         /* Lightbox */
         .lightbox {
             display: none;
@@ -235,7 +256,7 @@
                 </div>
                 <div class="info-block">
                     <h4>Team</h4>
-                    <p>Bartosz Czempiel, Lisa Donnerhack und Philipp Euler<br>Visualisierung: DCA Architekten</p>
+                    <p><a href="../../buero.html#bartosz-czempiel">Bartosz Czempiel</a>, <a href="../../buero.html#lisa-donnerhack">Lisa Donnerhack</a> und Philipp Euler<br>Visualisierung: DCA Architekten</p>
                 </div>
                                 <!-- FOTOS_BLOCK -->
             </aside>
@@ -327,7 +348,7 @@
     // Die frühere Zoom-Ansicht (Lightbox) lässt sich mit ZOOM_AKTIV = true wieder einschalten.
     const ZOOM_AKTIV = false;
     function zumNaechstenBild(wrap) {
-        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"])'));
+        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"]), .projekt-text-block'));
         const i = wraps.indexOf(wrap);
         if (i < 0 || wraps.length < 2) return;
         const ziel = wraps[(i + 1) % wraps.length];
@@ -344,15 +365,53 @@
             const oben = (pos === 'fixed' || pos === 'sticky') ? headerH : 0;
             const nav = document.getElementById('bottom-nav');
             const unten = window.innerHeight - (nav ? nav.offsetHeight : 0);
-            zielTop = window.scrollY + r.top + r.height / 2 - (oben + unten) / 2;
+            // höher als der sichtbare Bereich (z. B. langer Text): oben bündig statt mittig
+            zielTop = r.height > unten - oben
+                ? window.scrollY + r.top - oben - 16
+                : window.scrollY + r.top + r.height / 2 - (oben + unten) / 2;
         }
         window.scrollTo({ top: Math.max(0, zielTop), behavior: 'smooth' });
     }
 
+    // Projekttext (falls vorhanden) direkt nach dem ersten Bild einordnen; Klick führt weiter
+    (function () {
+        const block = document.getElementById('projektText');
+        if (!block) return;
+        const zweites = bilderSpalte.querySelectorAll('.bild-wrap')[1];
+        if (zweites) bilderSpalte.insertBefore(block, zweites); else bilderSpalte.appendChild(block);
+        block.addEventListener('click', () => zumNaechstenBild(block));
+    })();
+
+    // Textblock links: mittig, aber nie höher als die Oberkante des ersten Bildes
+    function infoAusrichten() {
+        const info = document.querySelector('.projekt-info');
+        if (!info) return;
+        const erstes = info.firstElementChild, letztes = info.lastElementChild;
+        info.style.paddingTop = '';
+        if (erstes) erstes.style.marginTop = '';
+        if (window.innerWidth <= 900 || !erstes) return;
+        const img = bilderSpalte.querySelector('.bild-wrap img');
+        if (!img || !img.complete || !img.naturalHeight) return;
+        const wrap = img.closest('.bild-wrap');
+        const headerH = document.getElementById('site-header').offsetHeight;
+        const infoOben = parseFloat(getComputedStyle(info).top) || 0;
+        // Oberkante des ersten Bildes, wenn es eingerastet ist, gemessen ab Oberkante der Textspalte
+        const bildOben = headerH + (img.getBoundingClientRect().top - wrap.getBoundingClientRect().top) - infoOben;
+        const hoehe = letztes.getBoundingClientRect().bottom - erstes.getBoundingClientRect().top;
+        const mitte = (info.clientHeight - hoehe) / 2;
+        info.style.paddingTop = Math.max(mitte, bildOben) + 'px';
+        erstes.style.marginTop = '0';
+    }
+    window.addEventListener('load', infoAusrichten);
+    window.addEventListener('resize', () => setTimeout(infoAusrichten, 50));
+    const erstesBildEl = bilderSpalte.querySelector('.bild-wrap img');
+    if (erstesBildEl) erstesBildEl.addEventListener('load', infoAusrichten);
+    if (document.fonts) document.fonts.ready.then(infoAusrichten);
+
     // Scroll-Snap per JS
     let scrollSperrt = false;
     window.addEventListener('wheel', function(e) {
-        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"])'));
+        const wraps = Array.from(bilderSpalte.querySelectorAll('.bild-wrap:not([style*="none"]), .projekt-text-block'));
         if (wraps.length === 0 || scrollSperrt) return;
         const mitte = window.scrollY + window.innerHeight / 2;
         let aktIndex = 0;

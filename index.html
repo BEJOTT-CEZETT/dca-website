@@ -15,25 +15,108 @@
     <meta property="og:locale" content="de_DE">
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Donnerhack Czempiel Architekten Partnerschaft mbB",
-        "alternateName": "DCA Architekten",
-        "description": "Architekturbüro in Köln für Neubau, Umbau und Bauen im Bestand.",
-        "url": "https://www.dca.koeln/",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Am Greinshof 6",
-            "postalCode": "50999",
-            "addressLocality": "Köln",
-            "addressCountry": "DE"
+      "@type": "ProfessionalService",
+      "@id": "https://www.dca.koeln/#buero",
+      "name": "Donnerhack Czempiel Architekten Partnerschaft mbB",
+      "alternateName": [
+        "DCA Architekten",
+        "Donnerhack Czempiel Architekten"
+      ],
+      "url": "https://www.dca.koeln/",
+      "image": "https://www.dca.koeln/buero/DCA_Partner_4-3_web.jpg",
+      "email": "info@dca.koeln",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Am Greinshof 6",
+        "postalCode": "50999",
+        "addressLocality": "Köln",
+        "addressCountry": "DE"
+      },
+      "areaServed": "Köln",
+      "knowsAbout": [
+        "Architektur",
+        "Neubau",
+        "Umbau",
+        "Bauen im Bestand",
+        "Innenraumplanung",
+        "Nachhaltiges Bauen",
+        "Wohnungsbau",
+        "Kirchenbau",
+        "Gemeindehäuser"
+      ],
+      "founder": [
+        {
+          "@id": "https://www.dca.koeln/buero.html#lisa-donnerhack"
         },
-        "founder": [
-            { "@type": "Person", "name": "Lisa Donnerhack" },
-            { "@type": "Person", "name": "Bartosz Czempiel" }
-        ]
+        {
+          "@id": "https://www.dca.koeln/buero.html#bartosz-czempiel"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.dca.koeln/buero.html#lisa-donnerhack",
+      "name": "Lisa Donnerhack",
+      "honorificPrefix": "Dipl.-Ing.",
+      "jobTitle": "Architektin, Partnerin",
+      "url": "https://www.dca.koeln/buero.html#lisa-donnerhack",
+      "image": "https://www.dca.koeln/buero/DCA_Partner_4-3_web.jpg",
+      "worksFor": {
+        "@id": "https://www.dca.koeln/#buero"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "RWTH Aachen"
+      },
+      "knowsAbout": [
+        "Innenraumplanung",
+        "Kommerzielle Architektur",
+        "Einrichtungsberatung"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.dca.koeln/buero.html#bartosz-czempiel",
+      "name": "Bartosz Czempiel",
+      "alternateName": "Bartosz Józef Czempiel",
+      "honorificPrefix": "Prof. Dr.-Ing.",
+      "jobTitle": "Architekt, Partner",
+      "url": "https://www.dca.koeln/buero.html#bartosz-czempiel",
+      "image": "https://www.dca.koeln/buero/DCA_Partner_4-3_web.jpg",
+      "worksFor": [
+        {
+          "@id": "https://www.dca.koeln/#buero"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Technische Hochschule Mittelhessen (THM)"
+        }
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "RWTH Aachen"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Universität Siegen"
+        }
+      ],
+      "knowsAbout": [
+        "Hochbau",
+        "Eigenheimplanung",
+        "Machbarkeitsstudien",
+        "Bauen im Bestand",
+        "Nachhaltiges Bauen",
+        "Entwerfen und Visualisieren"
+      ]
     }
+  ]
+}
     </script>
     <style>
         html {
