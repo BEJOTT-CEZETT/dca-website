@@ -195,6 +195,7 @@ def projektseite_erstellen(ziel_pfad, daten, ordnername, anzahl):
         absaetze = [html_mod.escape(t.strip(), quote=False) for t in daten["beschreibung"].split(" | ") if t.strip()]
         block = ('<div class="projekt-bilder" id="bilderSpalte">\n'
                  '                <div class="projekt-text-block" id="projektText">\n'
+                 '                    <h4>Konzept</h4>\n'
                  + "".join(f"                    <p>{t}</p>\n" for t in absaetze)
                  + '                </div>\n            </div>')
         html = html.replace('<div class="projekt-bilder" id="bilderSpalte"></div>', block, 1)

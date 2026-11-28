@@ -33,7 +33,7 @@
             align-self: start;
             height: calc(100vh - 9rem);
             overflow-y: auto;
-            padding: 3rem 7rem 3rem 5rem;
+            padding: 3rem 6rem 3rem 3rem;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -101,7 +101,7 @@
         }
         .projekt-bilder .bild-wrap img {
             display: block;
-            max-width: 75%;
+            max-width: min(75%, calc(100vw - 74rem)); /* bleibt zentriert, hält Abstand zur Textspalte */
             max-height: 100%;
             width: auto;
             height: auto;
@@ -112,7 +112,7 @@
         /* Projekttext: eigene Station nach dem ersten Bild */
         .projekt-text-block {
             width: 75%;
-            max-width: 72rem;
+            max-width: 66rem;
             align-self: center;
             transform: translateX(-19rem);
             min-height: calc(100vh - 9rem);
@@ -124,6 +124,7 @@
             cursor: pointer;
         }
         .projekt-text-block p { font-size: 1.5rem; line-height: 1.8; color: #000; margin: 0 0 1.4rem; }
+        .projekt-text-block h4 { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #000; margin: 0 0 0.5rem; }
         @media (max-width: 900px) {
             .projekt-text-block { width: 100%; transform: none; min-height: 0; padding: 2rem 2rem 3rem; }
         }
@@ -382,6 +383,32 @@
         block.addEventListener('click', () => zumNaechstenBild(block));
     })();
 
+    // Projekttext genau so breit wie der Titel oben: beginnt bündig mit dem D, endet spätestens am N
+    function textAnTitelAusrichten() {
+        const block = document.getElementById('projektText');
+        const h1 = document.querySelector('#site-header h1');
+        if (!block || !h1) return;
+        block.style.width = ''; block.style.maxWidth = ''; block.style.transform = '';
+        if (window.innerWidth <= 900) return;
+        const r = document.createRange();
+        r.selectNodeContents(h1);
+        const t = r.getBoundingClientRect();
+        const abstand = parseFloat(getComputedStyle(h1).letterSpacing) || 0; // Sperrung nach dem letzten Buchstaben abziehen
+        // nie in die linke Textspalte hineinragen: mindestens 50 px Luft
+        const info = document.querySelector('.projekt-info');
+        const infoRechts = info ? info.getBoundingClientRect().right - (parseFloat(getComputedStyle(info).paddingRight) || 0) : 0;
+        const links = Math.max(t.left, infoRechts + 50), rechts = t.right - abstand;
+        if (rechts - links < 400) return;
+        block.style.maxWidth = 'none';
+        block.style.width = (rechts - links) + 'px';
+        const verschiebung = new DOMMatrix(getComputedStyle(block).transform).m41;
+        block.style.transform = 'translateX(' + (verschiebung + links - block.getBoundingClientRect().left) + 'px)';
+    }
+    textAnTitelAusrichten();
+    window.addEventListener('resize', textAnTitelAusrichten);
+    window.addEventListener('load', textAnTitelAusrichten);
+    if (document.fonts) document.fonts.ready.then(textAnTitelAusrichten);
+
     // Textblock links: mittig, aber nie höher als die Oberkante des ersten Bildes
     function infoAusrichten() {
         const info = document.querySelector('.projekt-info');
@@ -418,6 +445,16 @@
         wraps.forEach((w, i) => {
             if (w.getBoundingClientRect().top + window.scrollY <= mitte) aktIndex = i;
         });
+        // Langer Text, der nicht ganz auf den Bildschirm passt: erst normal zu Ende lesen lassen
+        const akt = wraps[aktIndex];
+        if (akt && akt.classList.contains('projekt-text-block') && window.innerWidth > 900) {
+            const r = akt.getBoundingClientRect();
+            const kopf = document.getElementById('site-header').offsetHeight;
+            const navEl = document.getElementById('bottom-nav');
+            const fuss = window.innerHeight - (navEl ? navEl.offsetHeight : 0);
+            if (e.deltaY > 0 && r.bottom > fuss + 4) return;
+            if (e.deltaY < 0 && r.top < kopf - 4) return;
+        }
         const naechst = e.deltaY > 0
             ? (aktIndex + 1) % wraps.length
             : (aktIndex - 1 + wraps.length) % wraps.length;
